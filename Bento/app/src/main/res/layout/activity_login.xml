@@ -11,6 +11,7 @@
     tools:context="com.example.aishalien.bento.Login">
 
     <!-- Login progress -->
+    <!-- Login progress -->
     <ProgressBar
         android:id="@+id/login_progress"
         style="?android:attr/progressBarStyleLarge"
