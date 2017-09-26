@@ -3,33 +3,26 @@
     <!--只能有一個被選中-->
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_food"
-            android:icon="@drawable/main_tofood"
-            android:title="我的餐點" />
+            android:id="@+id/nav_store1_01"
+            android:title="鮭魚卵壽司" />
         <item
-            android:id="@+id/nav_record"
-            android:icon="@drawable/main_record"
-            android:title="購買紀錄" />
+            android:id="@+id/nav_store1_02"
+            android:title="蘆筍手卷" />
         <item
             android:id="@+id/nav_anno"
-            android:icon="@drawable/main_anno"
-            android:title="公告欄" />
+            android:title="茶碗蒸" />
         <item
             android:id="@+id/nav_info"
-            android:icon="@drawable/main_info"
-            android:title="通知" />
+            android:title="軍艦特選壽司" />
         <item
             android:id="@+id/nav_about"
-            android:icon="@drawable/main_about"
-            android:title="關於" />
+            android:title="花枝燒" />
         <item
             android:id="@+id/feed_back"
-            android:icon="@drawable/main_feedback"
-            android:title="反饋" />
+            android:title="鮪魚刺身" />
         <item
             android:id="@+id/nav_logout"
-            android:icon="@drawable/main_logout"
-            android:title="登出" />
+            android:title="旗魚刺身" />
     </group>
 
     <!--item android:title="Communicate">
