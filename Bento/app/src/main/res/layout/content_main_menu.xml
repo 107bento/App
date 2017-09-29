@@ -7,7 +7,6 @@
     android:orientation="horizontal">
 
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,8 +20,8 @@
         <LinearLayout
             android:layout_width="102dp"
             android:layout_height="21dp"
-            android:orientation="horizontal"
             android:layout_weight=".3"
+            android:orientation="horizontal"
             android:weightSum="1">
 
             <ImageView
@@ -33,18 +32,18 @@
 
             <TextView
                 android:id="@+id/detail_redball"
-                android:textSize = "10sp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="訂單人數達標且已滿" />
+                android:text="訂單人數達標且已滿"
+                android:textSize="10sp" />
         </LinearLayout>
 
         <!--單一店家起始-->
         <ImageButton
             android:id="@+id/imageButton"
-            android:layout_marginTop="20dp"
             android:layout_width="100dp"
             android:layout_height="70dp"
+            android:layout_marginTop="20dp"
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/store1" />
 
@@ -71,12 +70,11 @@
         <!--單一店家起始-->
         <ImageButton
             android:id="@+id/imageButton3"
-            android:layout_marginTop="20dp"
             android:layout_width="100dp"
             android:layout_height="70dp"
+            android:layout_marginTop="20dp"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/store3"
-            />
+            app:srcCompat="@drawable/store3" />
 
         <LinearLayout
             android:layout_width="102dp"
@@ -100,12 +98,11 @@
         <!--單一店家起始-->
         <ImageButton
             android:id="@+id/imageButton5"
-            android:layout_marginTop="20dp"
             android:layout_width="100dp"
             android:layout_height="70dp"
+            android:layout_marginTop="20dp"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/store5"
-            />
+            app:srcCompat="@drawable/store5" />
 
         <LinearLayout
             android:layout_width="102dp"
@@ -129,12 +126,11 @@
         <!--單一店家起始-->
         <ImageButton
             android:id="@+id/imageButton7"
-            android:layout_marginTop="20dp"
             android:layout_width="100dp"
             android:layout_height="70dp"
+            android:layout_marginTop="20dp"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/store9"
-            />
+            app:srcCompat="@drawable/store9" />
 
         <LinearLayout
             android:layout_width="102dp"
@@ -143,10 +139,10 @@
             android:weightSum="1">
 
             <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="13dp"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/orange_circle" />
+                android:id="@+id/imageView7"
+                android:layout_width="13dp"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/orange_circle" />
 
             <TextView
                 android:id="@+id/textView7"

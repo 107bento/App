@@ -90,6 +90,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                 Intent intent = new Intent();
                 intent.setClass(Login.this,main_menu.class);
                 startActivity(intent);
+                finish();
             }
         });
 

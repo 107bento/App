@@ -39,7 +39,7 @@ public class store_menu extends AppCompatActivity{
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
     private ListView listView;
-    private String[] list = {"我的餐點","購買紀錄","公告欄","通知","關於","反饋","登出"};
+    private String[] list = {"握壽司","鮭魚手卷","蝦捲","鮭魚定飯","天婦羅定食","茶碗蒸","刺身"};
     private ArrayAdapter<String> listAdapter;
 
     @Override
@@ -49,7 +49,7 @@ public class store_menu extends AppCompatActivity{
         //initToolbar();
         //initViewPager();
         //initSwipRefresh();
-        initListView();
+       // initListView();
     }
 
    /* private void initSwipRefresh(){
