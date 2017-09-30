@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="21dp"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="fill_parent"
+            android:layout_height="150dp"
+            android:layout_weight="0.3"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/meal01_01" />
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:paddingLeft="30dip"
+            android:paddingRight="26dip"
+            android:layout_marginTop="20dp"
+            android:text="單價           NT. 90元"
+            android:textSize="35sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="86dp"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/count"
+                android:layout_width="149dp"
+                android:layout_height="83dp"
+                android:layout_weight="0.30"
+                android:paddingLeft="30dip"
+                android:paddingRight="26dip"
+                android:text="數量"
+                android:textSize="35sp" />
+
+            <Button
+                android:id="@+id/subtraction_btn"
+                android:layout_width="57dp"
+                android:layout_height="37dp"
+                android:text="-"
+                android:background="#00FF99"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="30dip"
+                android:paddingRight="26dip"
+                android:text="2"
+                android:textSize="35sp" />
+
+            <Button
+                android:id="@+id/Addition_btn"
+                android:layout_width="57dp"
+                android:layout_height="37dp"
+                android:background="#00FF99"
+                android:text="+"
+                android:textSize="20sp" />
+        </LinearLayout>
+        <!--志願起始-->
+        <TextView
+            android:id="@+id/app_01"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="65dp"
+            android:text="志願一"
+            android:textSize="20sp" />
+        <Spinner
+            android:id="@+id/store_spinner01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="65dp"
+            android:entries="@array/store_list"
+            android:spinnerMode="dialog"
+            android:prompt="@string/store_option"
+            />
+        <Spinner
+            android:id="@+id/meal_spinner01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="65dp"
+            android:entries="@array/meal_list"
+            android:spinnerMode="dialog"
+            android:prompt="@string/meal_option"
+            />
+        <!--志願結束-->
+
+        <!--志願起始-->
+        <TextView
+            android:id="@+id/app_02"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="65dp"
+            android:text="志願二"
+            android:textSize="20sp" />
+        <Spinner
+            android:id="@+id/store_spinner02"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="65dp"
+            android:entries="@array/store_list"
+            android:spinnerMode="dialog"
+            android:prompt="@string/store_option"
+            />
+        <Spinner
+            android:id="@+id/meal_spinner02"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="65dp"
+            android:entries="@array/meal_list"
+            android:spinnerMode="dialog"
+            android:prompt="@string/meal_option"
+            />
+        <!--志願結束-->
+        <!--志願起始-->
+        <TextView
+            android:id="@+id/app_03"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="65dp"
+            android:text="志願三"
+            android:textSize="20sp" />
+        <Spinner
+            android:id="@+id/store_spinner03"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="65dp"
+            android:entries="@array/store_list"
+            android:spinnerMode="dialog"
+            android:prompt="@string/store_option"
+            />
+        <Spinner
+            android:id="@+id/meal_spinner03"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="65dp"
+            android:entries="@array/meal_list"
+            android:spinnerMode="dialog"
+            android:prompt="@string/meal_option"
+            />
+        <!--志願結束-->
+        <!--志願起始-->
+        <TextView
+            android:id="@+id/app_04"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="65dp"
+            android:text="志願四"
+            android:textSize="20sp" />
+        <Spinner
+            android:id="@+id/store_spinner04"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="65dp"
+            android:entries="@array/store_list"
+            android:spinnerMode="dialog"
+            android:prompt="@string/store_option"
+            />
+        <Spinner
+            android:id="@+id/meal_spinner04"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="65dp"
+            android:entries="@array/meal_list"
+            android:spinnerMode="dialog"
+            android:prompt="@string/meal_option"
+            />
+        <!--志願結束-->
+        <!--志願起始-->
+        <TextView
+            android:id="@+id/app_05"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="65dp"
+            android:text="志願五"
+            android:textSize="20sp" />
+        <Spinner
+            android:id="@+id/store_spinner05"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="65dp"
+            android:entries="@array/store_list"
+            android:spinnerMode="dialog"
+            android:prompt="@string/store_option"
+            />
+        <Spinner
+            android:id="@+id/meal_spinner05"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="65dp"
+            android:entries="@array/meal_list"
+            android:spinnerMode="dialog"
+            android:prompt="@string/meal_option"
+            />
+        <!--志願結束-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:paddingLeft="60dip">
+            <Button
+                android:id="@+id/confirm_change"
+                android:layout_width="276dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                android:background="#FF7744"
+                android:text="確認修改"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

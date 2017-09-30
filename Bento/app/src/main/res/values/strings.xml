@@ -24,5 +24,30 @@
     <string name="car">購物車</string>
     <string name="search_title">搜尋</string>
     <string name="action_settings">Settings</string>
-    <!--店家菜單設定-->
+    <!--志願序設定-->
+    <string-array name="store_list">
+        <item>果峰小舖</item>
+        <item>和風食堂</item>
+        <item>武嶺水果</item>
+        <item>冰品</item>
+        <item>山雞肉飯</item>
+    </string-array>
+    <string name="store_option">店家</string>
+
+    <string-array name="meal_list">
+        <item>握壽司</item>
+        <item>茶碗蒸</item>
+        <item>刺身</item>
+        <item>手卷</item>
+        <item>鮭魚定食</item>
+    </string-array>
+    <string name="meal_option">菜色</string>
+    <string name="title_activity_shopping_cart">shopping_cart</string>
+    <!--購物車-->
+    <string-array name="list_shopping_cart">
+        <item>果峰小舖</item>
+        <item>和風食堂</item>
+        <item>冰品</item>
+        <item>旗下燒烤</item>>
+    </string-array>
 </resources>

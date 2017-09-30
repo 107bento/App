@@ -57,6 +57,10 @@ public class store_menu extends AppCompatActivity{
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {//監聽
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                if(list[position].equals("握壽司")){
+
+                }
                 //如果有執行以下
                 Toast.makeText(getApplicationContext(), "你選擇的是" + list[position], Toast.LENGTH_SHORT).show();
             }
