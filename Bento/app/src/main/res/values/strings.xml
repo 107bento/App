@@ -25,4 +25,14 @@
     <string name="search_title">搜尋</string>
     <string name="action_settings">Settings</string>
     <!--店家菜單設定-->
+
+    <!--個人資料-->
+    <string name="app_name">profile</string>
+    <string name="profile_account">帳號</string>
+    <string name="profile_name">用戶名稱</string>
+    <string name="profile_passward">密碼</string>
+    <string name="profile_mail">信箱</string>
+    <string name="profile_phone">電話</string>
+    <string name="profile_modify">修改個人資料</string>
+
 </resources>
