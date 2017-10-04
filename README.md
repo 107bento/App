@@ -6,6 +6,8 @@
 - 公告欄
 - 我的餐點
 - 購買紀錄
+
+![](https://imgur.com/8nOm1f0.png)
 - 本日店家
 
 ![](https://imgur.com/YKvCFsE.png)
