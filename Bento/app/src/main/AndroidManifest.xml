@@ -26,6 +26,7 @@
         <activity
             android:name=".main_menu"
             android:label="@string/title_activity_main_menu"
+<<<<<<< HEAD
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <activity
@@ -42,6 +43,19 @@
             android:name=".profile_modify"
             android:label="@string/profile_modify"
             android:theme="@style/AppTheme.NoActionBar" />
+=======
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".order_meal" />
+        <activity android:name=".content_main_menu" />
+        <activity android:name=".store_menu" />
+        <activity android:name=".meal_purchase" />
+        <activity android:name=".application_fillment" />
+        <activity
+            android:name=".shopping_cart"
+            android:label="@string/title_activity_shopping_cart"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".modification_shopping_car"></activity>
+>>>>>>> Lien
     </application>
 
 </manifest>
