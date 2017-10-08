@@ -7,18 +7,14 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.aishalien.login.LoginActivity"
+    tools:context="com.example.aishalien.bento.Login"
     android:orientation="horizontal">
 
     <!-- Login progress -->
-    <ScrollView
-        android:id="@+id/login_form"
-        android:layout_width="452dp"
-        android:layout_height="match_parent">
 
         <!-- contain -->
         <LinearLayout
-            android:id="@+id/email_login_form"
+            android:id="@+id/login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -27,7 +23,8 @@
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="0.47"
                 android:src="@drawable/blue_logo" />
@@ -44,20 +41,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="@string/email_text"
                     android:textSize="30sp" />
                 <!-- email -->
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:hint="Account ID / Email">
 
                     <AutoCompleteTextView
                         android:id="@+id/email"
                         android:layout_width="match_parent"
                         android:layout_height="41dp"
                         android:inputType="textEmailAddress"
-                        android:maxLines="1"
-                        android:singleLine="true" />
+                        android:maxLines="1"/>
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
 
@@ -72,12 +68,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="@string/passwd_text"
                     android:textSize="30sp" />
                 <!-- passwd -->
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:hint="Passward">
 
                     <EditText
                         android:id="@+id/password"
@@ -87,8 +83,7 @@
                         android:imeActionLabel="@string/action_sign_in_short"
                         android:imeOptions="actionUnspecified"
                         android:inputType="textPassword"
-                        android:maxLines="1"
-                        android:singleLine="true" />
+                        android:maxLines="1"/>
 
                 </android.support.design.widget.TextInputLayout>
             </LinearLayout>
@@ -122,7 +117,6 @@
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
 
     <ProgressBar
         android:id="@+id/login_progress"
