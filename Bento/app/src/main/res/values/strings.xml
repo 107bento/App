@@ -2,7 +2,7 @@
     <string name="app_name">Bento</string>
 
     <!-- Strings related to login -->
-    <string name="action_sign_in">Sign in </string>
+    <string name="action_sign_in">Login</string>
     <string name="action_register">Register </string>
     <string name="email_text">Email: </string>
     <string name="passwd_text">Password: </string>
