@@ -26,8 +26,8 @@
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/profile_vertical_spacing"
-                android:paddingLeft="@dimen/profile_left_spacing"
+                android:layout_marginLeft="@dimen/profile_photo_margin"
+                android:layout_marginTop="@dimen/profile_photo_margin"
                 app:srcCompat="@android:drawable/sym_def_app_icon" />
 
 
@@ -44,7 +44,7 @@
     <include layout="@layout/content_profile" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/profile_photo_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"

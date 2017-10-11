@@ -6,10 +6,14 @@
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
+    <!--內文padding設定-->
+    <dimen name="padding_left_and_right">16dp</dimen>
+    <dimen name="padding_top">8dp</dimen>
+    <dimen name="padding_text_left">72dp</dimen>
+
     <!--個人資料-->
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="text_margin">16dp</dimen>
-    <dimen name="profile_vertical_spacing">30dp</dimen>
-    <dimen name="profile_left_spacing">30dp</dimen>
+    <dimen name="profile_photo_margin">30dp</dimen>
 
 </resources>
