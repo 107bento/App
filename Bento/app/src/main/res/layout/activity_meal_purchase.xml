@@ -91,7 +91,7 @@
             android:weightSum="1">
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/btn_put_in_cart"
                 android:layout_width="276dp"
                 android:layout_height="67dp"
                 android:layout_marginTop="20dp"

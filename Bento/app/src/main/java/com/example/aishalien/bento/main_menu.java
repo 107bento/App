@@ -63,7 +63,6 @@ public class main_menu extends AppCompatActivity
                 Intent intento = new Intent();
                 intento.setClass(main_menu.this,store_menu.class);
                 startActivity(intento);
-                finish();
             }
         });
     }
