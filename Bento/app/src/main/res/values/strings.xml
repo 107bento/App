@@ -2,9 +2,9 @@
     <string name="app_name">Bento</string>
 
     <!-- Strings related to login -->
-    <string name="action_sign_in">Sign in </string>
-    <string name="action_register">Register </string>
-    <string name="email_text">Email: </string>
+    <string name="action_sign_in">Login</string>
+    <string name="action_register">Register</string>
+    <string name="forgot_password">forgot password?</string>    <string name="email_text">Email: </string>
     <string name="passwd_text">Password: </string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
@@ -27,7 +27,7 @@
     <!--店家菜單設定-->
 
     <!--個人資料-->
-    <string name="app_name">profile</string>
+    <string name="profile">profile</string>
     <string name="profile_account">帳號</string>
     <string name="profile_name">用戶名稱</string>
     <string name="profile_passward">密碼</string>

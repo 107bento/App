@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    (2)
+    修改日期：10/11
+    修改人：Yuting Tsai
+    修改項目：調整排版
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -15,49 +21,47 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="21dp"
+        android:layout_height="wrap_content"
         android:layout_weight="0.70"
-        android:orientation="vertical"
-        android:weightSum="1">
+        android:orientation="vertical">
         <!--價錢跟數量-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="21dp"
-            android:layout_weight="0.5"
-            android:orientation="vertical"
-            android:weightSum="1">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingLeft="@dimen/padding_left_and_right"
+            android:paddingRight="@dimen/padding_left_and_right"
+            android:paddingTop="@dimen/padding_top"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView9"
                 android:layout_width="match_parent"
-                android:layout_height="66dp"
-                android:paddingLeft="30dip"
-                android:paddingRight="26dip"
-                android:layout_marginTop="20dp"
-                android:text="單價           NT. 90元"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:text="單價    NT. 90元"
                 android:textSize="35sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="21dp"
-                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/padding_left_and_right"
+                android:paddingRight="@dimen/padding_left_and_right"
                 android:orientation="horizontal"
                 android:weightSum="1">
 
                 <TextView
                     android:id="@+id/count"
-                    android:layout_width="149dp"
-                    android:layout_height="83dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="0.30"
-                    android:paddingLeft="30dip"
-                    android:paddingRight="26dip"
                     android:text="數量"
                     android:textSize="35sp" />
 
                 <Button
                     android:id="@+id/subtraction_btn"
-                    android:layout_width="57dp"
-                    android:layout_height="37dp"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
                     android:text="-"
                     android:background="#00FF99"
                     android:textSize="20sp" />
@@ -65,16 +69,16 @@
                 <TextView
                     android:id="@+id/textView10"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:paddingLeft="30dip"
-                    android:paddingRight="26dip"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/padding_left_and_right"
+                    android:paddingRight="@dimen/padding_left_and_right"
                     android:text="2"
                     android:textSize="35sp" />
 
                 <Button
                     android:id="@+id/Addition_btn"
-                    android:layout_width="57dp"
-                    android:layout_height="37dp"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
                     android:background="#00FF99"
                     android:text="+"
                     android:textSize="20sp" />
@@ -84,25 +88,25 @@
         <!--加入購物車-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="21dp"
-            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/padding_left_and_right"
+            android:paddingLeft="@dimen/padding_left_and_right"
             android:orientation="vertical"
-            android:paddingLeft="60dip"
-            android:weightSum="1">
+            android:layout_alignParentBottom="true" >
 
-            <Button
-                android:id="@+id/btn_put_in_cart"
-                android:layout_width="276dp"
-                android:layout_height="67dp"
-                android:layout_marginTop="20dp"
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/button1"
+                style="?android:textAppearanceSmall"
+                android:textColor="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:background="#FF7744"
                 android:text="加入購物車"
                 android:textSize="20sp" />
         </LinearLayout>
 
     </LinearLayout>
-
-
 </LinearLayout>
 
 

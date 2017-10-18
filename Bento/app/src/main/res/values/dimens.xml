@@ -6,10 +6,34 @@
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
+    <!--padding-->
+    <dimen name="padding_left_and_right">16dp</dimen>
+    <dimen name="padding_top">8dp</dimen>
+    <dimen name="padding_text_left">72dp</dimen>
+
     <!--個人資料-->
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="profile_photo_margin">30dp</dimen>
     <dimen name="profile_vertical_spacing">30dp</dimen>
     <dimen name="profile_left_spacing">30dp</dimen>
+
+    <!--Card-->
+    <dimen name="main_card_margin_horizontal">8dp</dimen>
+    <dimen name="main_card_margin_vertical">8dp</dimen>
+    <dimen name="card_recycler_corner_radius">2dp</dimen>
+    <dimen name="card_recycler_elevation">2dp</dimen>
+    <dimen name="card_title_margin">16dp</dimen>
+    <dimen name="card_button_margin">8dp</dimen>
+    <dimen name="card_margin_vertical_big_activity">4dp</dimen>
+    <dimen name="card_margin_horizontal_big_activity">8dp</dimen>
+    <dimen name="text_margin_very_small">4dp</dimen>
+
+    <!--顏色指示燈_說明文字-->
+    <dimen name="color_img_margin">16dp</dimen>
+    <dimen name="color_img_width_height">15dp</dimen>
+    <dimen name="color_img_text_size">15sp</dimen>
+    <dimen name="padding_picture">4dp</dimen>
+
 
 </resources>

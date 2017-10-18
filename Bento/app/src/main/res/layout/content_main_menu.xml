@@ -1,321 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+    修改日期：10/14
+    修改人：Yuting Tsai
+    修改項目：padding
+            ScrollingView
+            顏色指示燈RelativeLayout
+            店家CardView
+-->
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="60dip"
-    android:orientation="horizontal">
-
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight=".5"
-        android:orientation="vertical"
-        android:paddingLeft="50dip"
-        android:paddingTop="20dip"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        android:weightSum="1">
-        <!--說明文字(左半)-->
+        <!--顏色指示燈RelativeLayout-->
+        <include layout="@layout/content_main_color_explain"/>
+
+        <!--店家CardView-->
         <LinearLayout
-            android:layout_width="102dp"
-            android:layout_height="21dp"
-            android:layout_weight=".3"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <ImageView
-                android:id="@+id/redball"
-                android:layout_width="17dp"
-                android:layout_height="21dp"
-                app:srcCompat="@drawable/red_circle" />
-
-            <TextView
-                android:id="@+id/detail_redball"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="訂單人數達標且已滿"
-                android:textSize="10sp" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!--左-->
+            <include layout="@layout/content_main_card_shop" />
+            <!--右-->
+            <include layout="@layout/content_main_card_shop_2" />
         </LinearLayout>
-
-        <!--單一店家起始-->
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="100dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="20dp"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/store1" />
-
-        <LinearLayout
-            android:layout_width="102dp"
-            android:layout_height="21dp"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="16dp"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/red_circle" />
-
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="果峰小舖" />
-        </LinearLayout>
-        <!--單一店家結束-->
-
-        <!--單一店家起始-->
-        <ImageButton
-            android:id="@+id/imageButton3"
-            android:layout_width="100dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="20dp"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/store3" />
-
-        <LinearLayout
-            android:layout_width="102dp"
-            android:layout_height="21dp"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="27dp"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/green_circle" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="旗下燒烤" />
-        </LinearLayout>
-        <!--單一店家結束-->
-        <!--單一店家起始-->
-        <ImageButton
-            android:id="@+id/imageButton5"
-            android:layout_width="100dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="20dp"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/store5" />
-
-        <LinearLayout
-            android:layout_width="102dp"
-            android:layout_height="21dp"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="13dp"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/orange_circle" />
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="士林粥品" />
-        </LinearLayout>
-        <!--單一店家結束-->
-        <!--單一店家起始-->
-        <ImageButton
-            android:id="@+id/imageButton7"
-            android:layout_width="100dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="20dp"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/store9" />
-
-        <LinearLayout
-            android:layout_width="102dp"
-            android:layout_height="21dp"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="13dp"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/orange_circle" />
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="山雞肉飯" />
-        </LinearLayout>
-        <!--單一店家結束-->
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight=".5"
-        android:orientation="vertical"
-        android:weightSum="1">
-        <!--說明文字(右半)-->
-        <LinearLayout
-            android:layout_width="102dp"
-            android:layout_height="21dp"
-            android:layout_weight=".15"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <ImageView
-                android:id="@+id/orangeball"
-                android:layout_width="20dp"
-                android:layout_height="12dp"
-                app:srcCompat="@drawable/orange_circle" />
-
-            <TextView
-                android:id="@+id/detail_orangeball"
-                android:textSize = "10sp"
-                android:layout_width="78dp"
-                android:layout_height="match_parent"
-                android:text="訂單人數未達標"
-                android:layout_weight="4.05" />
-        </LinearLayout>
-        <!--說明文字(右半)-->
-        <LinearLayout
-            android:layout_width="102dp"
-            android:layout_height="21dp"
-            android:layout_weight=".15"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <ImageView
-                android:id="@+id/greenball"
-                android:layout_width="26dp"
-                android:layout_height="20dp"
-                app:srcCompat="@drawable/green_circle" />
-
-            <TextView
-                android:id="@+id/detail_greenball"
-                android:textSize = "10sp"
-                android:layout_width="113dp"
-                android:layout_height="match_parent"
-                android:text="訂單人數達標" />
-        </LinearLayout>
-
-        <!--單一店家起始-->
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="100dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="20dp"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/store2" />
-
-        <LinearLayout
-            android:layout_width="102dp"
-            android:layout_height="21dp"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="30dp"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/green_circle" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="武嶺水果" />
-        </LinearLayout>
-        <!--單一店家結束-->
-        <!--單一店家起始-->
-        <ImageButton
-            android:id="@+id/imageButton4"
-            android:layout_width="100dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="20dp"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/store4" />
-
-        <LinearLayout
-            android:layout_width="102dp"
-            android:layout_height="21dp"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="30dp"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/green_circle" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="冰品" />
-        </LinearLayout>
-        <!--單一店家結束-->
-        <!--單一店家起始-->
-        <ImageButton
-            android:id="@+id/imageButton6"
-            android:layout_width="100dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="20dp"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/store6" />
-
-        <LinearLayout
-            android:layout_width="102dp"
-            android:layout_height="21dp"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="30dp"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/green_circle" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="賀氏滷味" />
-        </LinearLayout>
-        <!--單一店家結束-->
-        <!--單一店家起始-->
-        <ImageButton
-            android:id="@+id/imageButton8"
-            android:layout_width="100dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="20dp"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/store8" />
-
-        <LinearLayout
-            android:layout_width="102dp"
-            android:layout_height="21dp"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <ImageView
-                android:id="@+id/imageView8"
-                android:layout_width="30dp"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/green_circle" />
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="和風食堂" />
-        </LinearLayout>
-        <!--單一店家結束-->
-    </LinearLayout>
-
-</LinearLayout>
+</android.support.v4.widget.NestedScrollView>

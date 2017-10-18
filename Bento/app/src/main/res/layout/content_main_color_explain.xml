@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    創建日期：10/14
+    創建人：Yuting Tsai
+    創建目的：顏色指示燈_說明文字
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/padding_top"
+    android:paddingRight="@dimen/padding_left_and_right"
+    android:paddingLeft="@dimen/padding_left_and_right"
+    android:layout_gravity="center">
+
+    <RelativeLayout
+        android:id="@+id/colorball_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/redball"
+            android:layout_width="@dimen/color_img_width_height"
+            android:layout_height="@dimen/color_img_width_height"
+            app:srcCompat="@drawable/red_circle" />
+
+        <TextView
+            android:id="@+id/detail_redball"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/main_card_margin_horizontal"
+            android:text="人數已滿"
+            android:textSize="@dimen/color_img_text_size"
+            android:layout_toRightOf="@id/redball" />
+
+        <ImageView
+            android:id="@+id/orangeball"
+            android:layout_width="@dimen/color_img_width_height"
+            android:layout_height="@dimen/color_img_width_height"
+            android:layout_marginLeft="@dimen/color_img_margin"
+            app:srcCompat="@drawable/orange_circle"
+            android:layout_toRightOf="@id/detail_redball"/>
+
+
+        <TextView
+            android:id="@+id/detail_orangeball"
+            android:textSize="@dimen/color_img_text_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/main_card_margin_horizontal"
+            android:text="尚未達標"
+            android:layout_toRightOf="@+id/orangeball"
+            android:layout_toEndOf="@+id/orangeball" />
+
+        <ImageView
+            android:id="@+id/greenball"
+            android:layout_width="@dimen/color_img_width_height"
+            android:layout_height="@dimen/color_img_width_height"
+            android:layout_marginLeft="@dimen/color_img_margin"
+            app:srcCompat="@drawable/green_circle"
+            android:layout_toRightOf="@id/detail_orangeball"/>
+
+        <TextView
+            android:id="@+id/detail_greenball"
+            android:textSize="@dimen/color_img_text_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/main_card_margin_horizontal"
+            android:text="人數已達標"
+            android:layout_toRightOf="@id/greenball"/>
+
+    </RelativeLayout>
+</LinearLayout>
