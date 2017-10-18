@@ -95,7 +95,7 @@
             android:layout_alignParentBottom="true" >
 
             <android.support.v7.widget.AppCompatButton
-                android:id="@+id/button1"
+                android:id="@+id/btn_put_in_cart"
                 style="?android:textAppearanceSmall"
                 android:textColor="@android:color/white"
                 android:layout_width="match_parent"

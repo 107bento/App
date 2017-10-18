@@ -177,5 +177,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="志願序接落空時，由系統隨機分配" />
+        <Button
+            android:id="@+id/finish_fillment"
+            android:layout_width="276dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="60dp"
+            android:background="#FF7744"
+            android:text="完成"
+            android:textSize="20sp" />
     </LinearLayout>
 </ScrollView>
