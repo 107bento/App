@@ -11,17 +11,10 @@
         android:layout_width="fill_parent"
         android:layout_height="134dp"
         android:scaleType="centerCrop"
+        android:layout_weight="0.3"
        />
 
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="77dp"
-        android:layout_height="0dp"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="果峰小舖"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@android:color/black" />
 
 
     <ListView
