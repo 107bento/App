@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
+    (1)
     修改日期：10/14
     修改人：Yuting Tsai
-    修改項目：padding
-            ScrollingView
-            顏色指示燈RelativeLayout
-            店家CardView
+    修改項目：padding、ScrollingView、顏色指示燈RelativeLayout、店家CardView
+    (2)
+    日期：10/20
+    作者：Yuting Tsai
+    目的：增加卡片測試可否scroll
 -->
 <android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -31,6 +33,51 @@
             <include layout="@layout/content_main_card_shop" />
             <!--右-->
             <include layout="@layout/content_main_card_shop_2" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!--左-->
+            <include layout="@layout/content_main_card_shop_3" />
+            <!--右-->
+            <include layout="@layout/content_main_card_shop_4" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!--左-->
+            <include layout="@layout/content_main_card_shop" />
+            <!--右-->
+            <include layout="@layout/content_main_card_shop_2" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!--左-->
+            <include layout="@layout/content_main_card_shop_3" />
+            <!--右-->
+            <include layout="@layout/content_main_card_shop_4" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!--左-->
+            <include layout="@layout/content_main_card_shop" />
+            <!--右-->
+            <include layout="@layout/content_main_card_shop_2" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!--左-->
+            <include layout="@layout/content_main_card_shop_3" />
+            <!--右-->
+            <include layout="@layout/content_main_card_shop_4" />
         </LinearLayout>
 
     </LinearLayout>

@@ -13,6 +13,7 @@
     android:paddingTop="@dimen/padding_top"
     android:paddingRight="@dimen/padding_left_and_right"
     android:paddingLeft="@dimen/padding_left_and_right"
+    android:paddingBottom="@dimen/padding_top"
     android:layout_gravity="center">
 
     <RelativeLayout
