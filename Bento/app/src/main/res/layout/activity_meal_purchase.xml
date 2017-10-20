@@ -25,14 +25,13 @@
         android:layout_height="128dp"
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/meal01_01"
-        android:elevation="@dimen/card_recycler_elevation"/>
+        android:elevation="@dimen/card_recycler_elevation" />
 
     <TextView
         android:id="@+id/meal_name_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_toRightOf="@id/meal_name"
         android:text="握壽司"
         android:textSize="30sp"/>
 
@@ -56,7 +55,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_margin"
-                android:layout_toEOf="@id/meal_name_detail"
                 android:text="單價"
                 android:textSize="35sp" />
 
@@ -130,10 +128,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_alignParentBottom="true"
             android:background="#FF7744"
             android:text="加入購物車"
             android:textColor="@android:color/white"
-            android:textSize="20sp" />
+            android:textSize="@dimen/text_title" />
         </LinearLayout>
 </LinearLayout>

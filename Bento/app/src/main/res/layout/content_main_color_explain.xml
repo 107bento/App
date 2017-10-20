@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/main_card_margin_horizontal"
             android:text="人數已滿"
-            android:textSize="@dimen/color_img_text_size"
+            android:textSize="@dimen/text_subhead"
             android:layout_toRightOf="@id/redball" />
 
         <ImageView
@@ -47,7 +47,7 @@
 
         <TextView
             android:id="@+id/detail_orangeball"
-            android:textSize="@dimen/color_img_text_size"
+            android:textSize="@dimen/text_subhead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/main_card_margin_horizontal"
@@ -65,7 +65,7 @@
 
         <TextView
             android:id="@+id/detail_greenball"
-            android:textSize="@dimen/color_img_text_size"
+            android:textSize="@dimen/text_subhead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/main_card_margin_horizontal"

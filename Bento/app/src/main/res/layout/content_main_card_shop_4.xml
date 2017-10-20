@@ -43,7 +43,7 @@
 
             <ImageView
                 android:id="@+id/imageView4"
-                android:layout_width="@dimen/color_img_width_height"
+                android:layout_width="@dimen/text_body_menu_btn"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackgroundBorderless"
@@ -59,7 +59,7 @@
                 android:layout_weight="2"
                 android:layout_alignBottom="@id/imageButton3"
                 android:layout_margin="@dimen/card_title_margin"
-                android:text="冰" />
+                android:text="冰品" />
 
         </LinearLayout>
 

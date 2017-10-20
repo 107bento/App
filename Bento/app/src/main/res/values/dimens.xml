@@ -5,16 +5,12 @@
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 
     <!--padding-->
     <dimen name="padding_left_and_right">16dp</dimen>
     <dimen name="padding_top">8dp</dimen>
     <dimen name="padding_text_left">72dp</dimen>
-
-    <!--個人資料-->
-    <dimen name="app_bar_height">180dp</dimen>
-    <dimen name="text_margin">16dp</dimen>
-    <dimen name="profile_photo_margin">30dp</dimen>
 
     <!--Card-->
     <dimen name="main_card_margin_horizontal">8dp</dimen>
@@ -27,10 +23,32 @@
     <dimen name="card_margin_horizontal_big_activity">8dp</dimen>
     <dimen name="text_margin_very_small">4dp</dimen>
 
+    <!--Material Design-->
+    <!--文字大小-->
+    <dimen name="text_display_56">56sp</dimen>
+    <dimen name="text_display_45">45sp</dimen>
+    <dimen name="text_display_34">34sp</dimen>
+    <dimen name="text_headline">24sp</dimen>
+    <dimen name="text_title">20sp</dimen>
+    <dimen name="text_subhead">16sp</dimen>
+    <dimen name="text_body_menu_btn">14sp</dimen>
+    <dimen name="text_caption">12sp</dimen>
+    <!--字间距-->
+    <dimen name="text_tracking_headline">0pt</dimen>
+    <dimen name="text_tracking_title">5pt</dimen>
+    <dimen name="text_tracking_subhead">10pt</dimen>
+    <dimen name="text_tracking_body_menu_btn">10pt</dimen>
+    <dimen name="text_tracking_caption">20pt</dimen>
+    <!--Material Design-->
+
+    <!--自訂-->
+    <!--個人資料-->
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="profile_photo_margin">30dp</dimen>
     <!--顏色指示燈_說明文字-->
     <dimen name="color_img_margin">16dp</dimen>
-    <dimen name="color_img_width_height">15dp</dimen>
-    <dimen name="color_img_text_size">15sp</dimen>
     <dimen name="padding_picture">4dp</dimen>
+    <dimen name="color_img_width_height">16dp</dimen>
+
 
 </resources>

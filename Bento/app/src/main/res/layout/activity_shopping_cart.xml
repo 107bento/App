@@ -1,29 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+    (1)
+    修改日期：10/20
+    修改人：Yuting Tsai
+    修改項目：微調、padding、button
+    ***
+    Q1:listview無法設定以其內容作為其高度
+    Q2:沒有上方bar?
+-->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
-    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="1">
+        android:paddingRight="@dimen/padding_left_and_right"
+        android:paddingLeft="@dimen/padding_left_and_right"
+        android:paddingTop="@dimen/padding_top"
+        android:orientation="vertical">
+
         <TextView
             android:id="@+id/textResult"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/padding_left_and_right"
+            android:paddingLeft="@dimen/padding_left_and_right" />
+
         <ListView
             android:id="@+id/activity_shopping_cart"
-            android:layout_height="506dp"
-            android:layout_width="match_parent"/>
-        <Button
+            android:layout_width="match_parent"
+            android:layout_height="500dp" />
+
+        <!--購買-->
+        <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_put_in_cart"
-            android:layout_width="276dp"
-            android:layout_height="67dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="60dp"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_alignParentBottom="true"
             android:background="#FF7744"
             android:text="購買"
-            android:textSize="20sp" />
-    </LinearLayout>
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_title" />
+    </RelativeLayout>
 </ScrollView>
