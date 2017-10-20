@@ -8,6 +8,10 @@
     修改日期：10/18
     修改人：Yuting Tsai
     修改項目：圓型數量按鈕、單價數量：RelativeLayout＆排版
+    (3)
+    修改日期：10/20
+    修改人：Yuting Tsai
+    修改項目：微調、加入餐點名稱
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -23,6 +27,15 @@
         app:srcCompat="@drawable/meal01_01"
         android:elevation="@dimen/card_recycler_elevation"/>
 
+    <TextView
+        android:id="@+id/meal_name_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_toRightOf="@id/meal_name"
+        android:text="握壽司"
+        android:textSize="30sp"/>
+
     <!--價錢跟數量-->
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,14 +49,17 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
+            android:layout_gravity="center_horizontal" >
+
             <TextView
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_margin"
+                android:layout_toEOf="@id/meal_name_detail"
                 android:text="單價"
                 android:textSize="35sp" />
+
             <TextView
                 android:layout_toRightOf="@id/textView9"
                 android:layout_width="wrap_content"
@@ -119,5 +135,5 @@
             android:text="加入購物車"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
-    </LinearLayout>
+        </LinearLayout>
 </LinearLayout>
