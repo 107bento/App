@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:paddingTop="5dip"
+    android:paddingLeft="16dip"
+    android:paddingBottom="5dip">
+    <ImageView
+        android:id="@+id/store_pic"
+        android:layout_width="82dp"
+        android:layout_height="98dp"
+        android:paddingRight="5dip"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1">
+        <TextView
+            android:id="@+id/store_name"
+            android:layout_weight="0.6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:layout_gravity="center_vertical"/>
+        <TextView
+            android:id="@+id/meal_name"
+            android:layout_weight="0.2"
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_gravity="center_vertical"/>
+        <TextView
+            android:id="@+id/meal_num"
+            android:layout_weight="0.2"
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+</LinearLayout>
