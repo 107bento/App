@@ -54,6 +54,7 @@
     </string-array>
     <string name="meal_option">菜色</string>
     <string name="title_activity_shopping_cart">shopping_cart</string>
+    <string name="action_edit">編輯</string>
     <!--購物車-->
         <!--店家-->
     <string-array name="list_shopping_cart">
