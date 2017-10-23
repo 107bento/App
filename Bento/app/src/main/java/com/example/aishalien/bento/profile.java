@@ -43,7 +43,7 @@ public class profile extends AppCompatActivity {
         // 背景顏色
         toolbar.setBackgroundColor(getResources().getColor(R.color.white));
         // nav返回鍵
-        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_back_arrow));
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

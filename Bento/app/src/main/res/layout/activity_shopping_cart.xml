@@ -5,46 +5,58 @@
     修改人：Yuting Tsai
     修改項目：微調、padding、button
     ***
-    Q1:listview無法設定以其內容作為其高度
-    Q2:沒有上方bar?
+        Q1:listview無法設定以其內容作為其高度
+        解決>>Q2:沒有上方bar?
+    ***
+    (2)
+    10/23
+    yttsai
+    增加toolbar、調整layout
 -->
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <RelativeLayout
+    <include layout="@layout/toolbar"/>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingRight="@dimen/padding_left_and_right"
-        android:paddingLeft="@dimen/padding_left_and_right"
-        android:paddingTop="@dimen/padding_top"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textResult"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:paddingRight="@dimen/padding_left_and_right"
-            android:paddingLeft="@dimen/padding_left_and_right" />
+            android:paddingLeft="@dimen/padding_left_and_right"
+            android:paddingTop="@dimen/padding_top"
+            android:orientation="vertical">
 
-        <ListView
-            android:id="@+id/activity_shopping_cart"
-            android:layout_width="match_parent"
-            android:layout_height="500dp" />
+            <TextView
+                android:id="@+id/textResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/padding_left_and_right"
+                android:paddingLeft="@dimen/padding_left_and_right" />
 
-        <!--購買-->
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_put_in_cart"
-            style="?android:textAppearanceSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_alignParentBottom="true"
-            android:background="#FF7744"
-            android:text="購買"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/text_title" />
-    </RelativeLayout>
-</ScrollView>
+            <ListView
+                android:id="@+id/activity_shopping_cart"
+                android:layout_width="match_parent"
+                android:layout_height="500dp" />
+
+            <!--購買-->
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_put_in_cart"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:background="#FF7744"
+                android:text="購買"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_title" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
