@@ -2,13 +2,19 @@
 <!--
     修改日期：10/17
     修改人：Yuting Tsai
-    修改項目：頂部店家圖片、
+    修改項目：頂部店家圖片
+
+    10/22
+    yuting tsai
+    加入toolbar
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <include layout="@layout/toolbar"/>
 
     <ImageView
         android:id="@+id/imageView1"

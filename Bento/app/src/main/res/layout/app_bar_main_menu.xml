@@ -14,7 +14,8 @@
         <android.support.v7.widget.Toolbar
             android:layout_alignParentTop="true"
             android:id="@+id/toolbar"
-            android:background="#33CCFF"
+            android:background="@color/colorPrimary"
+            app:titleTextColor="@android:color/white"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:minHeight="?attr/actionBarSize" />
