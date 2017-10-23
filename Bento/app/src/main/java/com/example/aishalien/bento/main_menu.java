@@ -1,9 +1,11 @@
 package com.example.aishalien.bento;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +16,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
+import android.widget.Toast;
+
+import static com.example.aishalien.bento.R.string.cancel;
+import static com.example.aishalien.bento.R.string.logout;
 
 public class main_menu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -55,17 +61,18 @@ public class main_menu extends AppCompatActivity
         }
     }
 
-    public void initimgbtn(){
+    public void initimgbtn() {
         ImageButton imbtn1 = (ImageButton) findViewById(R.id.imageButton);
         imbtn1.setOnClickListener(new ImageButton.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intento = new Intent();
-                intento.setClass(main_menu.this,store_menu.class);
+                intento.setClass(main_menu.this, store_menu.class);
                 startActivity(intento);
             }
         });
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -100,14 +107,31 @@ public class main_menu extends AppCompatActivity
 
         } else if (id == R.id.nav_anno) {
 
-        }  else if (id == R.id.nav_info) {
+        } else if (id == R.id.nav_info) {
 
         } else if (id == R.id.nav_about) {
 
-        }else if(id == R.id.feed_back){
+        } else if (id == R.id.feed_back) {
 
-        }else if(id == R.id.nav_logout){
+        } else if (id == R.id.nav_logout) {
+            // 按下登出跳出對話方塊
+            new AlertDialog.Builder(main_menu.this)
+                // 標題
+                .setTitle(R.string.logout)
+                // 訊息
+                .setMessage(R.string.want_to_logout)
+                // 按下登出，離開原畫面
+                .setPositiveButton(R.string.logout, new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
 
+                })
+                // 按下取消，返回原本畫面
+                .setNegativeButton(R.string.cancel, null)
+                .show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
