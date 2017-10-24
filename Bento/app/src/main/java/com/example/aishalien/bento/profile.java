@@ -37,11 +37,7 @@ public class profile extends AppCompatActivity {
 //      toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_profile);
         // Title
-        toolbar.setTitle("My Title");
-        // Sub Title
-        toolbar.setSubtitle("Sub title");
-        // 背景顏色
-        toolbar.setBackgroundColor(getResources().getColor(R.color.white));
+        toolbar.setTitle(R.string.profile);
         // nav返回鍵
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         setSupportActionBar(toolbar);
