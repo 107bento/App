@@ -4,45 +4,32 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_food"
-            android:icon="@drawable/main_tofood"
+            android:icon="@drawable/ic_cross_fork_and_spoon"
             android:title="我的餐點" />
         <item
             android:id="@+id/nav_record"
-            android:icon="@drawable/main_record"
+            android:icon="@drawable/ic_history_black_24dp"
             android:title="購買紀錄" />
         <item
             android:id="@+id/nav_anno"
-            android:icon="@drawable/main_anno"
+            android:icon="@drawable/ic_billboard"
             android:title="公告欄" />
         <item
             android:id="@+id/nav_info"
-            android:icon="@drawable/main_info"
+            android:icon="@drawable/ic_notifications_none_black_24dp"
             android:title="通知" />
         <item
             android:id="@+id/nav_about"
-            android:icon="@drawable/main_about"
+            android:icon="@drawable/ic_info_outline_black_24dp"
             android:title="關於" />
         <item
             android:id="@+id/feed_back"
-            android:icon="@drawable/main_feedback"
+            android:icon="@drawable/ic_send_black_24dp"
             android:title="反饋" />
         <item
             android:id="@+id/nav_logout"
-            android:icon="@drawable/main_logout"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
             android:title="登出" />
     </group>
-
-    <!--item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item-->
 
 </menu>
