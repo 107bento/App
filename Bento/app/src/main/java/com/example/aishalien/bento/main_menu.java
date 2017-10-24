@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import static com.example.aishalien.bento.R.string.cancel;
@@ -32,14 +33,6 @@ public class main_menu extends AppCompatActivity
         setSupportActionBar(toolbar);
         //初始化imgbut
         initimgbtn();
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -49,6 +42,20 @@ public class main_menu extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // 監聽按下nav_header
+        View navHeaderView = navigationView.inflateHeaderView(R.layout.nav_header_main_menu);
+        ImageView headIv = (ImageView) navHeaderView.findViewById(R.id.user_head);
+        headIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 跳頁
+                Toast.makeText(main_menu.this, "点击我的头像", Toast.LENGTH_SHORT).show();
+                Intent intento = new Intent();
+                intento.setClass(main_menu.this, profile.class);
+                startActivity(intento);
+            }
+        });
     }
 
     @Override
@@ -88,9 +95,17 @@ public class main_menu extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        /*if (id == R.id.action_settings) {
-            return true;
-        }*/
+        if (id == R.id.question_btn) {
+            // 說明dialog
+            new AlertDialog.Builder(main_menu.this)
+                // 標題
+                .setTitle(R.string.explanation)
+                // 訊息
+                .setMessage(R.string.explanation_content)
+                // 按下ok返回畫面
+                .setPositiveButton(R.string.ok, null)
+                .show();
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -106,6 +121,15 @@ public class main_menu extends AppCompatActivity
         } else if (id == R.id.nav_record) {
 
         } else if (id == R.id.nav_anno) {
+            // 公告欄dialog
+            new AlertDialog.Builder(main_menu.this)
+                // 標題
+                .setTitle(R.string.announcement)
+                // 訊息
+                .setMessage(R.string.announcement_content)
+                // 按下ok返回畫面
+                .setPositiveButton(R.string.ok, null)
+                .show();
 
         } else if (id == R.id.nav_info) {
 
