@@ -1,11 +1,15 @@
 package com.example.aishalien.bento;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.SearchView;
+import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -82,29 +86,47 @@ public class main_menu extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+
+        // Associate searchable configuration with the SearchView
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.my_search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.question_btn) {
-            // 說明dialog
-            new AlertDialog.Builder(main_menu.this)
-                // 標題
-                .setTitle(R.string.explanation)
-                // 訊息
-                .setMessage(R.string.explanation_content)
-                // 按下ok返回畫面
-                .setPositiveButton(R.string.ok, null)
-                .show();
+        switch (item.getItemId()) {
+            // 按下搜尋
+            case R.id.my_search:
+                //TODO search
+                break;
+
+            // 按下購物車
+            case R.id.goto_shop_cart:
+                Intent intento = new Intent();
+                intento.setClass(main_menu.this, shopping_cart.class);
+                startActivity(intento);
+                break;
+
+            // 按下說明
+            case R.id.question_btn:
+                // 彈出dialog
+                new AlertDialog.Builder(main_menu.this)
+                        // 標題
+                        .setTitle(R.string.explanation)
+                        // 訊息
+                        .setMessage(R.string.explanation_content)
+                        // 按下ok返回畫面
+                        .setPositiveButton(R.string.ok, null)
+                        .show();
+                break;
         }
 
         return super.onOptionsItemSelected(item);
