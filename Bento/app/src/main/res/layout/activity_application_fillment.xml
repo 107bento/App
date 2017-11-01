@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
+    (1)
     修改日期：10/13
     修改人：Yuting Tsai
     修改項目：調整margin、padding
+    (2)
+    修改日期：10/20
+    修改人：Yuting Tsai
+    修改項目：微調文字大小、button
 -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,9 +24,11 @@
         <TextView
             android:id="@+id/application_title"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="64dp"
+            android:layout_gravity="center"
+            android:padding="@dimen/text_margin"
             android:text="替代方案志願序"
-            android:textSize="35sp" />
+            android:textSize="@dimen/text_headline" />
         <!--志願起始-->
         <TextView
             android:id="@+id/app_01"
@@ -29,7 +37,7 @@
             android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:text="志願一"
-            android:textSize="20sp" />
+            android:textSize="@dimen/text_title" />
         <Spinner
             android:id="@+id/store_spinner01"
             android:layout_width="match_parent"
@@ -60,7 +68,7 @@
             android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:text="志願二"
-            android:textSize="20sp" />
+            android:textSize="@dimen/text_title" />
         <Spinner
             android:id="@+id/store_spinner02"
             android:layout_width="match_parent"
@@ -171,20 +179,31 @@
             android:spinnerMode="dialog"
             android:prompt="@string/meal_option"
             />
+
         <!--志願結束-->
         <CheckBox
             android:id="@+id/checkBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="志願序接落空時，由系統隨機分配" />
-        <Button
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:text="若志願序都落空時，由系統隨機分配"
+            android:textSize="@dimen/text_body_menu_btn"/>
+
+        <!--完成-->
+        <android.support.v7.widget.AppCompatButton
             android:id="@+id/finish_fillment"
-            android:layout_width="276dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="60dp"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_alignParentBottom="true"
             android:background="#FF7744"
             android:text="完成"
-            android:textSize="20sp" />
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_title" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </ScrollView>
