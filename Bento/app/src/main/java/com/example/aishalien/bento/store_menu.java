@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -19,6 +21,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
@@ -33,9 +36,9 @@ public class store_menu extends AppCompatActivity{
 
     private ActionBarDrawerToggle mActionBarDrawerToggle;
 
-    private Toolbar toolbar;
-
     private android.support.design.widget.TabLayout mTabs;
+
+    private Toolbar mtoolbar;
 
     private ViewPager mViewPager;
 
@@ -49,12 +52,30 @@ public class store_menu extends AppCompatActivity{
     private int[] piclist;// = {R.drawable.purch_1,R.drawable.purch_2,"50","75","68","77","58"};
     private ArrayAdapter<String> listAdapter;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.store_menu);
+
         setpictureList(list.length);
        initListView();
+
+//        toolbar
+        mtoolbar = (Toolbar) findViewById(R.id.tb_toolbar);
+        // 設置toolbar標題
+        mtoolbar.setTitle(R.string.shop_name);
+        // 設置標題顏色
+        mtoolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
+        // 設置狀態欄透明
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
+            localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
+        }
+        // 設置啟用toolbar
+        setSupportActionBar(mtoolbar);
+        // 設置返回按鍵作用
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
     private void setpictureList(int listLength){
         piclist = new int[listLength];
@@ -91,5 +112,4 @@ public class store_menu extends AppCompatActivity{
             }
         });
     }
-
 }

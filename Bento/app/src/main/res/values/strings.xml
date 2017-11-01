@@ -4,7 +4,8 @@
     <!-- Strings related to login -->
     <string name="action_sign_in">Login</string>
     <string name="action_register">Register</string>
-    <string name="forgot_password">forgot password?</string>    <string name="email_text">Email: </string>
+    <string name="forgot_password">forgot password?</string>
+    <string name="email_text">Email: </string>
     <string name="passwd_text">Password: </string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
@@ -20,21 +21,25 @@
     <string name="title_activity_main_menu">首頁</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="question_btn">說明</string>
-    <string name="car">購物車</string>
     <string name="search_title">搜尋</string>
-    <string name="action_settings">Settings</string>
-    <!--店家菜單設定-->
-
+    <string name="search_result">搜尋結果</string>
+    <string name="car">購物車</string>
+    <string name="explanation">說明</string>
+    <string name="action_edit">編輯</string>
+    <string name="logout">登出</string>
+    <string name="want_to_logout">確定要登出？</string>
+    <string name="cancel">取消</string>
+    <string name="announcement">公告欄</string>
+    <string name="ok">OK!</string>
     <!--個人資料-->
     <string name="profile">profile</string>
     <string name="profile_account">帳號</string>
     <string name="profile_name">用戶名稱</string>
-    <string name="profile_passward">密碼</string>
+    <string name="profile_passward">修改密碼</string>
     <string name="profile_mail">信箱</string>
     <string name="profile_phone">電話</string>
     <string name="profile_modify">修改個人資料</string>
-
+    <!--店家菜單設定-->
     <!--志願序設定-->
     <string-array name="store_list">
         <item>果峰小舖</item>
@@ -44,7 +49,6 @@
         <item>山雞肉飯</item>
     </string-array>
     <string name="store_option">店家</string>
-
     <string-array name="meal_list">
         <item>握壽司</item>
         <item>茶碗蒸</item>
@@ -53,28 +57,33 @@
         <item>鮭魚定食</item>
     </string-array>
     <string name="meal_option">菜色</string>
-    <string name="title_activity_shopping_cart">shopping_cart</string>
-    <string name="action_edit">編輯</string>
     <!--購物車-->
-        <!--店家-->
+    <!--店家-->
     <string-array name="list_shopping_cart">
         <item>果峰小舖</item>
         <item>和風食堂</item>
         <item>冰品</item>
         <item>旗下燒烤</item>>
     </string-array>
-        <!--餐點名稱-->
+    <!--餐點名稱-->
     <string-array name="list_shopping_cart_meal">
         <item>壽司</item>
         <item>雞腿便當</item>
         <item>芋頭綿綿冰</item>
         <item>烤雞翅</item>
     </string-array>
-        <!--餐點數量-->
+    <!--餐點數量-->
     <string-array name="list_shopping_cart_num">
         <item>1份</item>
         <item>2份</item>
         <item>4份</item>
         <item>3包</item>
     </string-array>
+
+    <string name="title_activity_shopping_cart">shopping_cart</string>
+    <string name="shop_name">果峰小舖</string>
+    <string name="list_menu_name">握壽司</string>
+    <string name="announcement_content">這裡是公告欄的訊息！</string>
+    <string name="explanation_content">這裡是放說明文字！</string>
+
 </resources>
