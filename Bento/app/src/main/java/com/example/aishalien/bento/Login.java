@@ -29,16 +29,36 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor>  {
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -63,38 +83,97 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
     private View mProgressView;
     private View mLoginFormView;
 
+    EditText etEmail;
+    EditText etPassword;
+    Call<LoginAPI> model;
+    LoginApi service;
+    Gson gson;
+    //定義接口
+    public interface LoginApi{
+
+        @Headers("Content-Type: application/json")
+        @POST("login")
+        Call<LoginAPI> repo(@Body JsonObject body);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        populateAutoComplete();
 
-        mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
-            }
-        });
+        /*創建一個retrofit*/
+        /*OKHTTP*/
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        // set your desired log level
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        // add your other interceptors …
+        // add logging as last interceptor
+        httpClient.addInterceptor(logging);  // <-- this is the important line!
 
+        /*連接*/
+        Retrofit retrofit= new Retrofit.Builder()
+                .baseUrl("http://163.22.17.227/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient.build())
+                .build();
+        service = retrofit.create(LoginApi.class);
+        gson = new GsonBuilder().create();
         Button mSignInButton = (Button) findViewById(R.id.sign_in_button);
         mSignInButton.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
+                etEmail = (EditText) findViewById(R.id.email);
+                etPassword = (EditText) findViewById(R.id.password);
+
+                /*開發用 之後請刪除*/
                 Intent intent = new Intent();
-                intent.setClass(Login.this,main_menu.class);
+                intent.setClass(Login.this, main_menu.class);
                 startActivity(intent);
+                 /*開發用 之後請刪除*/
+
+                /*產生要POST的東西*/
+                JsonObject paramObject = new JsonObject();
+                System.out.println(etEmail.getEditableText().toString());
+                paramObject.addProperty("username", etEmail.getEditableText().toString());
+                paramObject.addProperty("password",etPassword.getEditableText().toString());
+                if(etEmail.getEditableText().toString().equals("")||etPassword.getEditableText().toString().equals("")){
+                    Toast.makeText(view.getContext(), "請輸入帳號和密碼", Toast.LENGTH_LONG).show();
+                }
+                else {
+                /*建立連結透過他送出去*/
+                    model = service.repo(paramObject);
+                    model.clone().enqueue(new Callback<LoginAPI>() {
+                        @Override
+                        public void onResponse(Call<LoginAPI> call, Response<LoginAPI> response) {
+                            if (response.code()==200) {
+                                Intent intent = new Intent();
+                                intent.setClass(Login.this, main_menu.class);
+                                startActivity(intent);
+                            }
+                            else {
+                                try {
+                                    LoginError loginError = gson.fromJson(response.errorBody().string(),  LoginError.class);
+                                    Toast.makeText(view.getContext(), loginError.getError(), Toast.LENGTH_LONG).show();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<LoginAPI> call, Throwable t) {
+
+                        }
+
+                    });
+                }
             }
         });
 
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
+        //mLoginFormView = findViewById(R.id.login_form);
+        //mProgressView = findViewById(R.id.login_progress);
+
     }
 
     private void populateAutoComplete() {
