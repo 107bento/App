@@ -20,18 +20,19 @@ public class meal_purchase extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_purchase);
+
         value= (TextView) findViewById(R.id.meal_purchase_value);
         num= (TextView) findViewById(R.id.meal_purchase_num);
         ImageView img= (ImageView) findViewById(R.id.meal_purchase_img);
         Bundle bundle = getIntent().getExtras();
-        value.setText(bundle.getString("value"));
+        value.setText("NT."+bundle.getString("value"));
         img.setImageResource(bundle.getInt("pic"));
         initimgbtn();
 
 //        toolbar
         mtoolbar = (Toolbar) findViewById(R.id.tb_toolbar);
         // 設置toolbar標題
-        mtoolbar.setTitle(R.string.list_menu_name);
+        mtoolbar.setTitle(bundle.getString("meal"));
         // 設置標題顏色
         mtoolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
         // 設置狀態欄透明

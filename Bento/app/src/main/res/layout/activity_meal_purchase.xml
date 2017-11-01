@@ -62,17 +62,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/text_margin"
-                    android:text="單價"
+                    android:text="單價  "
                     android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/meal_purchase_value"
-                    android:layout_toRightOf="@id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/text_margin"
                     android:text="NT. 90元"
-                    android:textSize="35sp" />
+                    android:textSize="35sp"
+                    android:layout_alignBaseline="@+id/textView9"
+                    android:layout_alignBottom="@+id/textView9"
+                    android:layout_centerHorizontal="true" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -118,7 +119,7 @@
                     <Button
                         android:id="@+id/Addition_btn"
                         android:layout_marginLeft="@dimen/main_card_margin_horizontal"
-                        android:layout_toRightOf="@id/textView10"
+                        android:layout_toRightOf="@id/meal_purchase_num"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
