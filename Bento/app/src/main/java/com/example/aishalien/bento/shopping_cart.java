@@ -90,8 +90,16 @@ public class shopping_cart extends AppCompatActivity {
         }
         // 設置啟用toolbar
         setSupportActionBar(mtoolbar);
-        // 設置返回按鍵作用
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        // 設置返回按鍵作用
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // 设置返回键的点击事件：
+        mtoolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();;
+            }
+        });
     }
 
     /**

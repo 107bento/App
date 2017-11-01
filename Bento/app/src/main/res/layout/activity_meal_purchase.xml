@@ -73,7 +73,7 @@
                     android:textSize="35sp" />
 
                 <TextView
-                    android:id="@+id/meal+purchase_value"
+                    android:id="@+id/meal_purchase_value"
                     android:layout_toRightOf="@id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
