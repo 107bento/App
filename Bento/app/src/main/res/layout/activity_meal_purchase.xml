@@ -24,21 +24,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<<<<<<< HEAD
-    <ImageView
-        android:id="@+id/meal_purchase_img"
-        android:scaleType="centerCrop"
-        android:layout_width="fill_parent"
-        android:layout_height="128dp"
-        android:elevation="@dimen/card_recycler_elevation"
-        app:srcCompat="@drawable/meal01_01"/>
-
-    <!--價錢跟數量-->
-    <LinearLayout
-=======
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
->>>>>>> 4994012c67502407500752d2a435ee20a11e7dab
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
@@ -47,40 +34,13 @@
         <include layout="@layout/toolbar"/>
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/meal_purchase_img"
             android:layout_width="match_parent"
             android:layout_height="128dp"
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/meal01_01"
             android:elevation="@dimen/card_recycler_elevation" />
 
-        <TextView
-            android:id="@+id/meal_name_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-<<<<<<< HEAD
-            android:layout_gravity="center" >
-
-            <TextView
-                android:id="@+id/meal_purchase_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
-                android:text="單價"
-                android:textSize="35sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="NT. 90元"
-                android:textSize="35sp"
-                android:layout_margin="16dp"
-                android:layout_toRightOf="@id/meal_purchase_value" />
-        </RelativeLayout>
-=======
-            android:layout_gravity="center"
-            android:text="握壽司"
-            android:textSize="30sp"/>
 
         <!--價錢跟數量-->
         <LinearLayout
@@ -96,7 +56,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center">
->>>>>>> 4994012c67502407500752d2a435ee20a11e7dab
 
                 <TextView
                     android:id="@+id/textView9"
@@ -107,7 +66,7 @@
                     android:textSize="35sp" />
 
                 <TextView
-                    android:id="@+id/meal+purchase_value"
+                    android:id="@+id/meal_purchase_value"
                     android:layout_toRightOf="@id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -122,31 +81,6 @@
                 android:layout_gravity="center">
 
                 <TextView
-<<<<<<< HEAD
-                    android:id="@+id/meal_purchase_num"
-                    android:layout_marginLeft="@dimen/main_card_margin_horizontal"
-                    android:layout_toRightOf="@id/subtraction_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="@dimen/padding_left_and_right"
-                    android:paddingRight="@dimen/padding_left_and_right"
-                    android:text="0"
-                    android:textSize="35sp" />
-
-                <Button
-                    android:id="@+id/Addition_btn"
-                    android:layout_marginLeft="@dimen/main_card_margin_horizontal"
-                    android:layout_toRightOf="@id/meal_purchase_num"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/round"
-                    android:backgroundTint="#00FF99"
-                    android:text="+"
-                    android:textSize="20sp" />
-            </LinearLayout>
-        </RelativeLayout>
-=======
                     android:id="@+id/count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -159,7 +93,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/text_margin">
->>>>>>> 4994012c67502407500752d2a435ee20a11e7dab
 
                     <Button
                         android:id="@+id/subtraction_btn"
@@ -172,7 +105,7 @@
                         android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/textView10"
+                        android:id="@+id/meal_purchase_num"
                         android:layout_marginLeft="@dimen/main_card_margin_horizontal"
                         android:layout_toRightOf="@id/subtraction_btn"
                         android:layout_width="wrap_content"
@@ -209,6 +142,6 @@
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_title" />
 
-            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

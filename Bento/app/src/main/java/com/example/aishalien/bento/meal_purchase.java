@@ -24,7 +24,7 @@ public class meal_purchase extends AppCompatActivity {
         num= (TextView) findViewById(R.id.meal_purchase_num);
         ImageView img= (ImageView) findViewById(R.id.meal_purchase_img);
         Bundle bundle = getIntent().getExtras();
-        value.setText("單價    NT."+bundle.getString("value")+" 元");
+        value.setText(bundle.getString("value"));
         img.setImageResource(bundle.getInt("pic"));
         initimgbtn();
 
