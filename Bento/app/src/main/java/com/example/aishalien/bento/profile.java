@@ -5,7 +5,9 @@ package com.example.aishalien.bento;
  */
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -37,20 +39,18 @@ public class profile extends AppCompatActivity {
 //      toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_profile);
         // Title
-        toolbar.setTitle(R.string.profile);
+        toolbar.setTitle("Aisha Lien");
         // nav返回鍵
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         setSupportActionBar(toolbar);
-
+        // 設置返回按鍵作用
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        // 監聽nav返回鍵被按下時，要做動作
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+
+//        collapsingToolbar
+        CollapsingToolbarLayout collapsingToolbar =
+                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        collapsingToolbar.setTitle("Aisha Lien");
+
 
 //        FAB
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.profile_photo_fab);
@@ -62,16 +62,6 @@ public class profile extends AppCompatActivity {
             }
         });
 
-//        修改按鈕
-        Button mModifyButton = (Button) findViewById(R.id.modify_button);
-        mModifyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(profile.this,profile_modify.class);
-                startActivity(intent);
-            }
-        });
     }
 
 
