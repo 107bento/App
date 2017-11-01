@@ -125,6 +125,13 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
             public void onClick(final View view) {
                 etEmail = (EditText) findViewById(R.id.email);
                 etPassword = (EditText) findViewById(R.id.password);
+
+                /*開發用 之後請刪除*/
+                Intent intent = new Intent();
+                intent.setClass(Login.this, main_menu.class);
+                startActivity(intent);
+                 /*開發用 之後請刪除*/
+
                 /*產生要POST的東西*/
                 JsonObject paramObject = new JsonObject();
                 System.out.println(etEmail.getEditableText().toString());
