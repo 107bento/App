@@ -1,18 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/padding_left_and_right"
-    android:paddingRight="@dimen/padding_left_and_right"
-    android:paddingTop="@dimen/padding_top"
     tools:context="com.example.aishalien.bento.profile_modify">
 
-    <LinearLayout
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar_profile_modify"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:minHeight="?actionBarSize"
+        android:background="@color/colorPrimary"
+        android:fitsSystemWindows="true"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="@string/profile_modify"
+        app:titleTextColor="@android:color/white"
+        app:navigationIcon="@drawable/ic_arrow_back_black_24dp">
+    </android.support.v7.widget.Toolbar>
+
+    <GridLayout
+        android:paddingLeft="@dimen/padding_left_and_right"
+        android:paddingRight="@dimen/padding_left_and_right"
+        android:paddingTop="@dimen/padding_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:orientation="horizontal" >
 
         <TextView
             android:layout_width="wrap_content"
@@ -24,13 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
             android:text="abc123" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+        <!--用戶名稱-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,14 +52,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
-            android:text="abc" />
-    </LinearLayout>
+            android:text="Aisha Lien" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+        <!--修改密碼與確認-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -58,13 +65,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
             android:text="*****" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -74,14 +74,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
-            android:text="*****" />
-    </LinearLayout>
+            android:text="       "
+            android:maxLength="20"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+        <!--信箱-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -91,14 +87,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
-            android:text="abc123456@gmail.com" />
-    </LinearLayout>
+            android:text="lienlien@android.com" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+        <!--電話-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -109,28 +100,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
             android:text="0912345678" />
-    </LinearLayout>
+    </GridLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/cancel_action"
-            android:text="取消"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
-        <Button
-            android:id="@+id/save_action"
-            android:text="保存"
-            android:textColor="#ffffff"
-            android:background="@color/colorPrimary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"/>
-    </LinearLayout>
 </LinearLayout>

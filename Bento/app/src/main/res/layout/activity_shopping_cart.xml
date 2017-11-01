@@ -5,7 +5,7 @@
     修改人：Yuting Tsai
     修改項目：微調、padding、button
     ***
-        Q1:listview無法設定以其內容作為其高度
+        解決(11/1 JAVA)>>Q1:listview無法設定以其內容作為其高度
         解決>>Q2:沒有上方bar?
     ***
     (2)
@@ -29,22 +29,22 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingRight="@dimen/padding_left_and_right"
+            android:orientation="vertical"
             android:paddingLeft="@dimen/padding_left_and_right"
-            android:paddingTop="@dimen/padding_top"
-            android:orientation="vertical">
+            android:paddingRight="@dimen/padding_left_and_right"
+            android:paddingTop="@dimen/padding_top">
 
             <TextView
                 android:id="@+id/textResult"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingRight="@dimen/padding_left_and_right"
-                android:paddingLeft="@dimen/padding_left_and_right" />
+                android:paddingLeft="@dimen/padding_left_and_right"
+                android:paddingRight="@dimen/padding_left_and_right" />
 
             <ListView
                 android:id="@+id/activity_shopping_cart"
                 android:layout_width="match_parent"
-                android:layout_height="500dp" />
+                android:layout_height="wrap_content" />
 
             <!--購買-->
             <android.support.v7.widget.AppCompatButton
@@ -53,6 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:background="#FF7744"
                 android:text="購買"
                 android:textColor="@android:color/white"

@@ -34,6 +34,30 @@
             android:parentActivityName=".Login">
         </activity>
 
+        <!-- Points to searchable activity so the whole app can invoke search. -->
+        <meta-data
+            android:name="android.app.default_searchable"
+            android:value=".search_result" />
+
+        <!-- 啟動模式設為 singleTop, 才不會每一次查詢, 都要建立 1 個新的 activity -->
+        <activity
+            android:name=".search_result"
+            android:launchMode="singleTop"
+            android:label="@string/search_result"
+            android:parentActivityName=".main_menu"
+            android:theme="@style/AppTheme.NoActionBar"
+            >
+
+            <!-- 加入下面的 intent-filter 和 meta-data -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+
         <activity
             android:name=".profile"
             android:label="@string/profile"

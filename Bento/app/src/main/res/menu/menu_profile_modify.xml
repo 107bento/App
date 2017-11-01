@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.yuting.profile.profile">
 
-    <item android:id="@+id/action_question"
-        android:title="@string/explanation"
+    <item android:id="@+id/action_ok"
+        android:title="@string/ok"
         android:orderInCategory="80"
-        android:icon="@drawable/ic_help_black_24dp"
+        android:icon="@drawable/ic_check_black_24dp"
         app:showAsAction="ifRoom" />
+
 </menu>
