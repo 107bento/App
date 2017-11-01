@@ -146,7 +146,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                             }
                             else {
                                 try {
-                                    Error loginError = gson.fromJson(response.errorBody().string(), Error.class);
+                                    LoginError loginError = gson.fromJson(response.errorBody().string(),  LoginError.class);
                                     Toast.makeText(view.getContext(), loginError.getError(), Toast.LENGTH_LONG).show();
                                 } catch (IOException e) {
                                     e.printStackTrace();

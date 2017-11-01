@@ -1,5 +1,6 @@
 package com.example.aishalien.bento;
 
+import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -42,15 +43,27 @@ public class store_menu extends AppCompatActivity{
 
     private ListView listView;
     private String[] list = {"握壽司","鮭魚手卷","蝦捲","鮭魚定飯","天婦羅定食","茶碗蒸","刺身"};
+    private String[] vlist = {"90","100","50","75","68","77","58"};
+
+
+    private int[] piclist;// = {R.drawable.purch_1,R.drawable.purch_2,"50","75","68","77","58"};
     private ArrayAdapter<String> listAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.store_menu);
+        setpictureList(list.length);
        initListView();
     }
-
+    private void setpictureList(int listLength){
+        piclist = new int[listLength];
+        for(int i=0;i<listLength;i++){
+            String picName = "purch_"+ Integer.toString(i);
+            int picId = getResources().getIdentifier(picName, "drawable", getPackageName());
+            piclist[i] = picId;
+        }
+    }
     private void initListView(){
         listView = (ListView)findViewById(R.id.store1_menu);//找到物件
         //利用adapter當接口 this為activity,樣式,擺入的字串
@@ -59,11 +72,19 @@ public class store_menu extends AppCompatActivity{
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {//監聽
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                if(list[position].equals("握壽司")){
-                    Intent intento = new Intent();
-                    intento.setClass(store_menu.this,meal_purchase.class);
-                    startActivity(intento);
+                for(int i=0;i<list.length;i++){
+                    if(list[position].equals(list[i])){
+                        //建立一個Bundle
+                        Bundle bundle = new Bundle();
+                        bundle.putString("meal",list[i]);
+                        bundle.putString("value",vlist[i]);
+                        bundle.putInt("pic",piclist[i]);
+                        Intent intento = new Intent();
+                        intento.setClass(store_menu.this,meal_purchase.class);
+                        //將bundle傳入
+                        intento.putExtras(bundle);
+                        startActivity(intento);
+                    }
                 }
                 //如果有執行以下
                 Toast.makeText(getApplicationContext(), "你選擇的是" + list[position], Toast.LENGTH_SHORT).show();

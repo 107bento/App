@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by User on 2017/11/1.
  */
 
-public class Error {
+public class LoginError {
     @SerializedName("error")
     @Expose
     private String error;
