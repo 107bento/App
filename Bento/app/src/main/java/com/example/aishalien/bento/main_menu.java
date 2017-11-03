@@ -54,7 +54,6 @@ public class main_menu extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 // 跳頁
-                Toast.makeText(main_menu.this, "点击我的头像", Toast.LENGTH_SHORT).show();
                 Intent intento = new Intent();
                 intento.setClass(main_menu.this, profile.class);
                 startActivity(intento);

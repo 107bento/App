@@ -12,4 +12,6 @@
     <color name="gray_very_light">#e0e0e0</color>
     <color name="gray_deep">#666666</color>
     <color name="black_overlay">#66000000</color>
+
+    <color name="orange">#FF7744</color>
 </resources>

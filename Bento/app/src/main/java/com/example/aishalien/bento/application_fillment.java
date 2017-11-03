@@ -5,6 +5,7 @@ import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -46,5 +47,18 @@ public class application_fillment extends AppCompatActivity {
                 startActivity(intento);
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        int id = item.getItemId();
+        switch(id)
+        {
+            case android.R.id.home: // 按了 Action Bar 的返回鍵
+                onBackPressed();
+                return true;    // 注意! 一定要回傳 true
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

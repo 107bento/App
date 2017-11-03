@@ -21,17 +21,17 @@
 
     <include layout="@layout/toolbar"/>
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:paddingLeft="@dimen/padding_left_and_right"
             android:paddingRight="@dimen/padding_left_and_right"
-            android:paddingTop="@dimen/padding_top"
-            android:orientation="vertical">
+            android:paddingTop="@dimen/padding_top">
 
             <TextView
                 android:id="@+id/application_title"
@@ -46,30 +46,30 @@
                 android:id="@+id/app_01"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:text="志願一"
                 android:textSize="@dimen/text_title" />
+
             <Spinner
                 android:id="@+id/store_spinner01"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:entries="@array/store_list"
-                android:spinnerMode="dialog"
                 android:prompt="@string/store_option"
-                />
+                android:spinnerMode="dialog" />
+
             <Spinner
                 android:id="@+id/meal_spinner01"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:entries="@array/meal_list"
-                android:spinnerMode="dialog"
                 android:prompt="@string/meal_option"
-                />
+                android:spinnerMode="dialog" />
             <!--志願結束-->
 
             <!--志願起始-->
@@ -77,120 +77,120 @@
                 android:id="@+id/app_02"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:text="志願二"
                 android:textSize="@dimen/text_title" />
+
             <Spinner
                 android:id="@+id/store_spinner02"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:entries="@array/store_list"
-                android:spinnerMode="dialog"
                 android:prompt="@string/store_option"
-                />
+                android:spinnerMode="dialog" />
+
             <Spinner
                 android:id="@+id/meal_spinner02"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:entries="@array/meal_list"
-                android:spinnerMode="dialog"
                 android:prompt="@string/meal_option"
-                />
+                android:spinnerMode="dialog" />
             <!--志願結束-->
             <!--志願起始-->
             <TextView
                 android:id="@+id/app_03"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:text="志願三"
                 android:textSize="20sp" />
+
             <Spinner
                 android:id="@+id/store_spinner03"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:entries="@array/store_list"
-                android:spinnerMode="dialog"
                 android:prompt="@string/store_option"
-                />
+                android:spinnerMode="dialog" />
+
             <Spinner
                 android:id="@+id/meal_spinner03"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:entries="@array/meal_list"
-                android:spinnerMode="dialog"
                 android:prompt="@string/meal_option"
-                />
+                android:spinnerMode="dialog" />
             <!--志願結束-->
             <!--志願起始-->
             <TextView
                 android:id="@+id/app_04"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:text="志願四"
                 android:textSize="20sp" />
+
             <Spinner
                 android:id="@+id/store_spinner04"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:entries="@array/store_list"
-                android:spinnerMode="dialog"
                 android:prompt="@string/store_option"
-                />
+                android:spinnerMode="dialog" />
+
             <Spinner
                 android:id="@+id/meal_spinner04"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:entries="@array/meal_list"
-                android:spinnerMode="dialog"
                 android:prompt="@string/meal_option"
-                />
+                android:spinnerMode="dialog" />
             <!--志願結束-->
             <!--志願起始-->
             <TextView
                 android:id="@+id/app_05"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:text="志願五"
                 android:textSize="20sp" />
+
             <Spinner
                 android:id="@+id/store_spinner05"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:entries="@array/store_list"
-                android:spinnerMode="dialog"
                 android:prompt="@string/store_option"
-                />
+                android:spinnerMode="dialog" />
+
             <Spinner
                 android:id="@+id/meal_spinner05"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:entries="@array/meal_list"
-                android:spinnerMode="dialog"
                 android:prompt="@string/meal_option"
-                />
+                android:spinnerMode="dialog" />
 
             <!--志願結束-->
             <CheckBox
@@ -199,7 +199,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:text="若志願序都落空時，由系統隨機分配"
-                android:textSize="@dimen/text_body_menu_btn"/>
+                android:textSize="@dimen/text_body_menu_btn" />
 
             <!--完成-->
             <android.support.v7.widget.AppCompatButton
@@ -207,8 +207,8 @@
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:layout_alignParentBottom="true"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:background="#FF7744"
                 android:text="完成"
                 android:textColor="@android:color/white"
@@ -219,5 +219,7 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
+
+    <include layout="@layout/toolbar"/>
 
 </LinearLayout>
