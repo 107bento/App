@@ -20,23 +20,17 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -170,6 +164,30 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                 }
             }
         });
+
+        // 去註冊
+        Button mRegisterButton = (Button) findViewById(R.id.register_button);
+        mRegisterButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                Intent intent = new Intent();
+                intent.setClass(Login.this, Register.class);
+                startActivity(intent);
+            }
+        });
+
+        /*測試用*/
+        // 去除直
+        Button mAddValueButton = (Button) findViewById(R.id.goto_add_value);
+        mAddValueButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                Intent intent = new Intent();
+                intent.setClass(Login.this, goto_add_value.class);
+                startActivity(intent);
+            }
+        });
+        /*測試用*/
 
         //mLoginFormView = findViewById(R.id.login_form);
         //mProgressView = findViewById(R.id.login_progress);
