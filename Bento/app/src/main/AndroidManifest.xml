@@ -29,6 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".main_menu"
             android:label="@string/title_activity_main_menu"
@@ -97,13 +98,22 @@
         <activity
             android:name=".shopping_cart"
             android:label="@string/title_activity_shopping_cart"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".main_menu"/>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".modification_shopping_car"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".shopping_cart"/>
+
+        <activity
+            android:name=".Register"
+            android:label="@string/action_register"
+            android:parentActivityName=".Login"/>
+
+        <activity
+            android:name=".goto_add_value"
+            android:label="@string/goto_add_value"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
     </application>
 
