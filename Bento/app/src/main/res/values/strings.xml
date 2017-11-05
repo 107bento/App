@@ -85,5 +85,6 @@
     <string name="list_menu_name">握壽司</string>
     <string name="announcement_content">這裡是公告欄的訊息！</string>
     <string name="explanation_content">這裡是放說明文字！</string>
+    <string name="goto_add_value">儲值</string>
 
 </resources>

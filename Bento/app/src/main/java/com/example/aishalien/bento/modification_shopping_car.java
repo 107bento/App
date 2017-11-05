@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 
 public class modification_shopping_car extends AppCompatActivity {
     private Toolbar mtoolbar;
+    String mMeal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,10 +20,14 @@ public class modification_shopping_car extends AppCompatActivity {
         setContentView(R.layout.activity_modification_shopping_car);
         initimgbtn();
 
-//        toolbar
+        // 接收 shopping_cart 過來的資料
+        Bundle bundle = getIntent().getExtras();
+        mMeal = bundle.getString("meal");
+
+        // toolbar
         mtoolbar = (Toolbar) findViewById(R.id.tb_toolbar);
         // 設置toolbar標題
-        mtoolbar.setTitle(R.string.list_menu_name);
+        mtoolbar.setTitle(mMeal);
         // 設置標題顏色
         mtoolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
         // 設置狀態欄透明
