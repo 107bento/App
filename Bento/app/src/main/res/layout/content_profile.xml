@@ -27,6 +27,7 @@
                 android:layout_margin="@dimen/text_margin"
                 android:text="@string/profile_account" />
             <TextView
+                android:id="@+id/account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_margin"
@@ -44,6 +45,7 @@
                 android:layout_margin="@dimen/text_margin"
                 android:text="@string/profile_name" />
             <TextView
+                android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_margin"
@@ -61,6 +63,7 @@
                 android:layout_margin="@dimen/text_margin"
                 android:text="@string/profile_mail" />
             <TextView
+                android:id="@+id/email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_margin"
@@ -78,6 +81,7 @@
                 android:layout_margin="@dimen/text_margin"
                 android:text="@string/profile_phone" />
             <TextView
+                android:id="@+id/phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_margin"
