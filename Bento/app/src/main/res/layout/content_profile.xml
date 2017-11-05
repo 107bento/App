@@ -88,6 +88,15 @@
                 android:text="0912345678" />
         </LinearLayout>
 
+        <Button
+            android:id="@+id/goto_add_value"
+            android:background="@color/orange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:text="去儲值"
+            android:textColor="@color/white" />
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

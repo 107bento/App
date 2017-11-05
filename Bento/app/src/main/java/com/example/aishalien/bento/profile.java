@@ -75,6 +75,17 @@ public class profile extends AppCompatActivity {
             mEmail.setText(bData.getString("mEmail"));
             mPhone.setText(bData.getString("mPhone"));
         }
+
+        // 去儲值
+        Button mAddValueButton = (Button) findViewById(R.id.goto_add_value);
+        mAddValueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                Intent intent = new Intent();
+                intent.setClass(profile.this, goto_add_value.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

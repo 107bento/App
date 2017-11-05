@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    (1)
-    修改日期：10/13
-    修改人：Yuting Tsai
-    修改項目：調整margin、padding
-    (2)
-    修改日期：10/20
-    修改人：Yuting Tsai
-    修改項目：微調文字大小、button
-    (3)
-    10/23
-    yytsai
-    增加toolbar
+    餐點志願序
 -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"

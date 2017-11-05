@@ -1,14 +1,6 @@
 <!--
-    (1)
-    修改日期：10/8
-    修改人：Yuting Tsai
-    修改項目：調整排版、logo圖、TextView、登入Button、註冊文字
-    (2)
-    修改日期：10/17
-    修改人：Yuting Tsai
-    修改項目：忘記密碼button、passward可視
+    login
 -->
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -146,18 +138,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:visibility="gone" />
-
-<!--測試儲值頁面用-->
-            <Button
-                android:id="@+id/goto_add_value"
-                android:background="@color/orange"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="去除職"
-                android:textColor="@color/white" />
-
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

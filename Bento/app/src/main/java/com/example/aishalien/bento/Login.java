@@ -176,18 +176,6 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
             }
         });
 
-        /*測試用*/
-        // 去除直
-        Button mAddValueButton = (Button) findViewById(R.id.goto_add_value);
-        mAddValueButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(final View view) {
-                Intent intent = new Intent();
-                intent.setClass(Login.this, goto_add_value.class);
-                startActivity(intent);
-            }
-        });
-        /*測試用*/
 
         //mLoginFormView = findViewById(R.id.login_form);
         //mProgressView = findViewById(R.id.login_progress);

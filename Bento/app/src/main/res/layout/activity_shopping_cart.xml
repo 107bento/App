@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    (1)
-    修改日期：10/20
-    修改人：Yuting Tsai
-    修改項目：微調、padding、button
-    ***
-        解決(11/1 JAVA)>>Q1:listview無法設定以其內容作為其高度
-        解決>>Q2:沒有上方bar?
-    ***
-    (2)
-    10/23
-    yttsai
-    增加toolbar、調整layout
+    購物車
 -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
