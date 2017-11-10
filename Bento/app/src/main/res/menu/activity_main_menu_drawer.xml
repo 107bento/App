@@ -5,31 +5,31 @@
         <item
             android:id="@+id/nav_food"
             android:icon="@drawable/main_tofood"
-            android:title="我的餐點" />
+            android:title="@string/myMeal" />
         <item
             android:id="@+id/nav_record"
             android:icon="@drawable/main_record"
-            android:title="購買紀錄" />
+            android:title="@string/purchase_record" />
         <item
             android:id="@+id/nav_anno"
                 android:icon="@drawable/main_anno"
-            android:title="公告欄" />
+            android:title="@string/announcement" />
         <item
             android:id="@+id/nav_info"
             android:icon="@drawable/main_info"
-            android:title="通知" />
+            android:title="@string/info_alert" />
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/main_about"
-            android:title="關於" />
+            android:title="@string/about" />
         <item
             android:id="@+id/feed_back"
             android:icon="@drawable/main_feedback"
-            android:title="反饋" />
+            android:title="@string/feedback" />
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/main_logout"
-            android:title="登出" />
+            android:title="@string/logout" />
     </group>
 
 </menu>

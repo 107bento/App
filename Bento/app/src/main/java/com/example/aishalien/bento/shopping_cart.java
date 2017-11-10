@@ -3,8 +3,11 @@ package com.example.aishalien.bento;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +33,7 @@ public class shopping_cart extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_cart);
+
         cartListView=(ListView)findViewById(R.id.activity_shopping_cart);
         mList =  new ArrayList<>();
         String[] listFromResource = getResources().getStringArray(R.array.list_shopping_cart);
@@ -70,13 +74,14 @@ public class shopping_cart extends AppCompatActivity {
                     Bundle bundle = new Bundle();
                     bundle.putString("meal", (String) meal_name);
                     Intent intento = new Intent();
-                    intento.setClass(shopping_cart.this, modification_shopping_car.class);
+                    intento.setClass(shopping_cart.this, shopping_cart_modify.class);
                     // 將bundle傳入
                     intento.putExtras(bundle);
                     startActivity(intento);
                 }
             }
         });
+
         //設置listview高度
         setListViewHeightBasedOnChildren(cartListView);
 
@@ -84,9 +89,7 @@ public class shopping_cart extends AppCompatActivity {
         //  toolbar
         mtoolbar = (Toolbar) findViewById(R.id.tb_toolbar);
         // 設置toolbar標題
-        mtoolbar.setTitle(R.string.car);
-        // 設置標題顏色
-        mtoolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
+        mtoolbar.setTitle(R.string.shop_cart);
         // 設置狀態欄透明
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
@@ -130,10 +133,39 @@ public class shopping_cart extends AppCompatActivity {
         int id = item.getItemId();
         switch(id)
         {
-            case android.R.id.home: // 按了 Action Bar 的返回鍵
+            // 按了 Action Bar 的返回鍵
+            case android.R.id.home:
                 onBackPressed();
-                return true;    // 注意! 一定要回傳 true
+                return true;
+
+            // 按下首頁
+            case R.id.goto_main:
+                Intent intento = new Intent();
+                intento.setClass(shopping_cart.this, main_menu.class);
+                startActivity(intento);
+                break;
+
+            // 按下說明
+            case R.id.question_btn:
+                // 彈出dialog
+                new AlertDialog.Builder(shopping_cart.this)
+                        // 標題
+                        .setTitle(R.string.explanation)
+                        // 訊息
+                        .setMessage(R.string.explanation_content)
+                        // 按下ok返回畫面
+                        .setPositiveButton(R.string.ok, null)
+                        .show();
+                break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_shopping_cart, menu);
+        return true;
     }
 }

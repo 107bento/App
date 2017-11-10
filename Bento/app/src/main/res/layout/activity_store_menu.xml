@@ -12,7 +12,6 @@
 
     <ImageView
         android:id="@+id/store_img"
-        app:srcCompat="@drawable/store0"
         android:layout_width="match_parent"
         android:layout_height="128dp"
         android:scaleType="centerCrop"

@@ -23,8 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="128dp"
             android:scaleType="centerCrop"
-            android:elevation="@dimen/card_recycler_elevation"
-            app:srcCompat="@drawable/meal_1"/>
+            android:elevation="@dimen/card_recycler_elevation" />
 
 
         <!--價錢跟數量-->

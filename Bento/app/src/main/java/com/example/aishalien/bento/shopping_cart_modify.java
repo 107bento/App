@@ -10,14 +10,14 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class modification_shopping_car extends AppCompatActivity {
+public class shopping_cart_modify extends AppCompatActivity {
     private Toolbar mtoolbar;
     String mMeal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_modification_shopping_car);
+        setContentView(R.layout.sub_shopping_car_modify);
         initimgbtn();
 
         // 接收 shopping_cart 過來的資料
@@ -47,7 +47,7 @@ public class modification_shopping_car extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intento = new Intent();
-                intento.setClass(modification_shopping_car.this,shopping_cart.class);
+                intento.setClass(shopping_cart_modify.this,shopping_cart.class);
                 startActivity(intento);
             }
         });

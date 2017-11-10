@@ -10,6 +10,9 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -42,7 +45,7 @@ public class store_menu extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.store_menu);
+        setContentView(R.layout.activity_store_menu);
 
         setpictureList(list.length);
         initListView();
@@ -68,6 +71,7 @@ public class store_menu extends AppCompatActivity{
         // 設置返回按鍵作用
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
     private void setpictureList(int listLength){
         piclist = new int[listLength];
         for (int i = 0; i < listLength; i++){
@@ -78,7 +82,7 @@ public class store_menu extends AppCompatActivity{
     }
 
     private void initListView(){
-        listView = (ListView)findViewById(R.id.store1_menu); //找到物件
+        listView = (ListView) findViewById(R.id.store1_menu); //找到物件
         // 利用adapter當接口 this為activity,樣式,擺入的字串
         listAdapter = new ArrayAdapter(this,R.layout.stl_menu_1,list);
         listView.setAdapter(listAdapter);
@@ -101,5 +105,35 @@ public class store_menu extends AppCompatActivity{
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        int id = item.getItemId();
+        switch(id)
+        {
+            // 按了 Action Bar 的返回鍵
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            // 按下購物車
+            case R.id.goto_shop_cart:
+                Intent intento = new Intent();
+                intento.setClass(store_menu.this, shopping_cart.class);
+                startActivity(intento);
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_normal, menu);
+        return true;
     }
 }

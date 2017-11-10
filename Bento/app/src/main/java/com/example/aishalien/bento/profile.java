@@ -63,7 +63,7 @@ public class profile extends AppCompatActivity {
             }
         });
 
-        // 接收 profile_modify 傳回的資料
+        // 接收 sub_profile_modify 傳回的資料
         Bundle bData = getIntent().getExtras();
         if (bData != null) {
             TextView mName = (TextView) findViewById(R.id.name);

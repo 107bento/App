@@ -10,7 +10,7 @@
 
     <!--下面是include主畫面進來-->
     <include
-        layout="@layout/app_bar_main_menu"
+        layout="@layout/content_main_app_bar"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
     <!--下面是鑲入的menu程式碼-->
