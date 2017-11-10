@@ -37,7 +37,7 @@ public class profile_modify extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.profile_modify);
+        setContentView(R.layout.sub_profile_modify);
 
         // toolbar
         mtoolbar = (Toolbar) findViewById(R.id.toolbar_profile_modify);

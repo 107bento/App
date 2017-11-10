@@ -44,7 +44,7 @@
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:background="#FF7744"
-                android:text="購買"
+                android:text="結帳"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_title" />
         </LinearLayout>

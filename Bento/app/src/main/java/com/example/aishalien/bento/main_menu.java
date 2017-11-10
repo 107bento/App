@@ -53,8 +53,7 @@ public class main_menu extends AppCompatActivity
 
         // 監聽是否按下nav_header
         View navHeaderView = navigationView.inflateHeaderView(R.layout.nav_header_main_menu);
-        ImageView headIv = (ImageView) navHeaderView.findViewById(R.id.user_head);
-        headIv.setOnClickListener(new View.OnClickListener() {
+        navHeaderView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // 跳頁
@@ -168,8 +167,16 @@ public class main_menu extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_food) {
-            // Handle the camera action
+            // 今日餐點
+            Intent intent = new Intent();
+            intent.setClass(main_menu.this, today_meal.class);
+            startActivity(intent);
+
         } else if (id == R.id.nav_record) {
+            // 購買紀錄
+            Intent intent = new Intent();
+            intent.setClass(main_menu.this, purchase_record.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_anno) {
             // 公告欄dialog

@@ -21,7 +21,7 @@ public class search_result extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.search_result_activity);
+        setContentView(R.layout.search_result);
 
         txt1 = (TextView) findViewById(R.id.txt1);
 
