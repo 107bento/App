@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--我的餐點 item內容-->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/listview_item_height">
+
+    <ImageView
+        android:id="@+id/today_list_img"
+        android:layout_width="82dp"
+        android:layout_height="98dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true" />
+
+    <LinearLayout
+        android:layout_toRightOf="@id/today_list_img"
+        android:layout_toLeftOf="@+id/toady_list_status"
+        android:layout_alignTop="@+id/today_list_img"
+        android:layout_alignBottom="@+id/today_list_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/main_card_margin_vertical"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <!--店名-->
+        <TextView
+            android:id="@+id/today_list_store_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left|center_vertical"
+            android:textSize="@dimen/text_title"
+            />
+
+        <!--餐點名-->
+        <TextView
+            android:id="@+id/today_list_meal_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left|center_vertical"
+            android:textSize="@dimen/text_title"
+            />
+
+        <!--數量-->
+        <TextView
+            android:id="@+id/today_list_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left|center_vertical"
+            android:textSize="@dimen/text_subhead"
+             />
+    </LinearLayout>
+
+    <!--狀態-->
+    <TextView
+        android:id="@+id/toady_list_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/text_body_menu_btn"
+        android:textColor="@color/bule_light"/>
+
+</RelativeLayout>
