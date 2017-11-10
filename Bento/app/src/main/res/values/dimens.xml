@@ -50,5 +50,7 @@
     <dimen name="padding_picture">4dp</dimen>
     <dimen name="color_img_width_height">16dp</dimen>
 
+    <dimen name="listview_item_height">100dp</dimen>
+
 
 </resources>
