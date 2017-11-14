@@ -27,6 +27,36 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
+import retrofit2.http.Path;
+
 /**
  * Created by AishaLien on 2017/9/23.
  */
@@ -39,29 +69,37 @@ public class store_menu extends AppCompatActivity{
     private android.support.design.widget.TabLayout mTabs;
 
     private Toolbar mtoolbar;
-
     private ViewPager mViewPager;
-
     private SwipeRefreshLayout mSwipeRefreshLayout;
-
     private ListView listView;
-    private String[] list = {"握壽司","鮭魚手卷","蝦捲","鮭魚定飯","天婦羅定食","茶碗蒸","刺身"};
-    private String[] vlist = {"90","100","50","75","68","77","58"};
-
+    JsonObject resource;
+    private String[] mlist;
+    private Meal[] list ;// {"握壽司","鮭魚手卷","蝦捲","鮭魚定飯","天婦羅定食","茶碗蒸","刺身"};
 
     private int[] piclist;// = {R.drawable.purch_1,R.drawable.purch_2,"50","75","68","77","58"};
     private ArrayAdapter<String> listAdapter;
+    public interface Api{
+        @GET("shops/{id}")
+        Call<JsonObject> getinfo(@Path("id") int id);
+    }
 
+    class Meal{
+        String ID;
+        String name;
+        int value;
+    }
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.store_menu);
+        try {
+            getJson();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        setpictureList(list.length);
-       initListView();
-
-//        toolbar
+        //        toolbar
         mtoolbar = (Toolbar) findViewById(R.id.tb_toolbar);
         // 設置toolbar標題
         mtoolbar.setTitle(R.string.shop_name);
@@ -77,18 +115,11 @@ public class store_menu extends AppCompatActivity{
         // 設置返回按鍵作用
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-    private void setpictureList(int listLength){
-        piclist = new int[listLength];
-        for(int i=0;i<listLength;i++){
-            String picName = "purch_"+ Integer.toString(i);
-            int picId = getResources().getIdentifier(picName, "drawable", getPackageName());
-            piclist[i] = picId;
-        }
-    }
+
     private void initListView(){
         listView = (ListView)findViewById(R.id.store1_menu);//找到物件
         //利用adapter當接口 this為activity,樣式,擺入的字串
-        listAdapter = new ArrayAdapter(this,R.layout.stl_menu_1,list);
+        listAdapter = new ArrayAdapter(this,R.layout.stl_menu_1,mlist);
         listView.setAdapter(listAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {//監聽
             @Override
@@ -97,8 +128,8 @@ public class store_menu extends AppCompatActivity{
                     if(list[position].equals(list[i])){
                         //建立一個Bundle
                         Bundle bundle = new Bundle();
-                        bundle.putString("meal",list[i]);
-                        bundle.putString("value",vlist[i]);
+                        bundle.putString("meal",list[i].name);
+                        bundle.putInt("value",list[i].value);
                         bundle.putInt("pic",piclist[i]);
                         Intent intento = new Intent();
                         intento.setClass(store_menu.this,meal_purchase.class);
@@ -107,9 +138,63 @@ public class store_menu extends AppCompatActivity{
                         startActivity(intento);
                     }
                 }
+
                 //如果有執行以下
-                Toast.makeText(getApplicationContext(), "你選擇的是" + list[position], Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "你選擇的是" + list[position].name, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void getJson() throws IOException {
+        /*創建一個retrofit*/
+        /*OKHTTP*/
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        // set your desired log level
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        // add your other interceptors …
+        // add logging as last interceptor
+        httpClient.addInterceptor(logging);  // <-- this is the important line!
+        Retrofit retrofit= new Retrofit.Builder()
+                .baseUrl("http://163.22.17.227/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient.build())
+                .build();
+        Api api = retrofit.create(Api.class);
+        Call<JsonObject> Model = api.getinfo(1);
+        Model.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                resource = response.body();
+
+
+                initList();
+                initListView();
+            }
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+            }
+        });
+    }
+    public void initList(){
+        list = new Meal[resource.entrySet().size()];
+        mlist = new String[resource.entrySet().size()];
+        setpictureList(list.length);
+        for(int i=0;i<resource.entrySet().size();i++){
+            list[i] = new Meal();
+            System.out.println(" 嗨囉"+resource.getAsJsonObject(Integer.toString(i+1)).getAsJsonObject().getAsJsonPrimitive("meal_id").toString());
+            list[i].ID = resource.getAsJsonObject(Integer.toString(i+1)).getAsJsonObject().getAsJsonPrimitive("meal_id").getAsString();
+            list[i].name = resource.getAsJsonObject(Integer.toString(i+1)).getAsJsonObject().getAsJsonPrimitive("meal_name").getAsString();
+            mlist[i] = resource.getAsJsonObject(Integer.toString(i+1)).getAsJsonObject().getAsJsonPrimitive("meal_name").getAsString();
+            list[i].value = resource.getAsJsonObject(Integer.toString(i+1)).getAsJsonObject().getAsJsonPrimitive("meal_price").getAsInt();
+        }
+    }
+    /*處理圖片*/
+    private void setpictureList(int listLength){
+        piclist = new int[listLength];
+        for(int i=0;i<listLength;i++){
+            String picName = "purch_"+ Integer.toString(i);
+            int picId = getResources().getIdentifier(picName, "drawable", getPackageName());
+            piclist[i] = picId;
+        }
     }
 }

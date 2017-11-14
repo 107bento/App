@@ -20,12 +20,14 @@ public class meal_purchase extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_purchase);
-
+        //找到元件
         value= (TextView) findViewById(R.id.meal_purchase_value);
         num= (TextView) findViewById(R.id.meal_purchase_num);
         ImageView img= (ImageView) findViewById(R.id.meal_purchase_img);
+        //接收傳過來的東西
         Bundle bundle = getIntent().getExtras();
-        value.setText("NT."+bundle.getString("value"));
+        //設定值
+        value.setText("NT."+bundle.getInt("value"));
         img.setImageResource(bundle.getInt("pic"));
         initimgbtn();
 
