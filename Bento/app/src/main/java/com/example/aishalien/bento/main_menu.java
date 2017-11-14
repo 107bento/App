@@ -41,12 +41,7 @@ public class main_menu extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-<<<<<<< HEAD
         //初始化imgbut
-        initimgbtn();
-=======
-
->>>>>>> 5a4cede645c5a98cc2a40690b746edcc9cc2f19f
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

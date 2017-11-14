@@ -31,13 +31,8 @@ public class meal_purchase extends AppCompatActivity {
         ImageView img= (ImageView) findViewById(R.id.meal_purchase_img);
         //接收傳過來的東西
         Bundle bundle = getIntent().getExtras();
-<<<<<<< HEAD
-        //設定值
         value.setText("NT."+bundle.getInt("value"));
-=======
-        value.setText("NT."+bundle.getString("value"));
         mMeal = bundle.getString("meal");
->>>>>>> 5a4cede645c5a98cc2a40690b746edcc9cc2f19f
         img.setImageResource(bundle.getInt("pic"));
         initimgbtn();
 

@@ -19,45 +19,23 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-<<<<<<< HEAD
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
 import okhttp3.OkHttpClient;
-import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
-import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 /**
  * Created by AishaLien on 2017/9/23.
  */
-=======
-
->>>>>>> 5a4cede645c5a98cc2a40690b746edcc9cc2f19f
-
 public class store_menu extends AppCompatActivity{
     private DrawerLayout mDrawerLayout;
 
@@ -69,15 +47,9 @@ public class store_menu extends AppCompatActivity{
     private ViewPager mViewPager;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private ListView listView;
-<<<<<<< HEAD
     JsonObject resource;
     private String[] mlist;
     private Meal[] list ;// {"握壽司","鮭魚手卷","蝦捲","鮭魚定飯","天婦羅定食","茶碗蒸","刺身"};
-=======
-    private String[] list = {"握壽司","鮭魚手卷","蝦捲","鮭魚定飯","天婦羅定食","茶碗蒸","刺身"};
-    private String[] vlist = {"90","100","50","75","68","77","58"};
->>>>>>> 5a4cede645c5a98cc2a40690b746edcc9cc2f19f
-
     private int[] piclist;// = {R.drawable.purch_1,R.drawable.purch_2,"50","75","68","77","58"};
     private ArrayAdapter<String> listAdapter;
     public interface Api{
@@ -94,28 +66,20 @@ public class store_menu extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-<<<<<<< HEAD
-        setContentView(R.layout.store_menu);
+        setContentView(R.layout.activity_store_menu);
+        setpictureList(list.length);
         try {
             getJson();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        //        toolbar
-=======
-        setContentView(R.layout.activity_store_menu);
-
-        setpictureList(list.length);
         initListView();
-
         ImageView storeImg = (ImageView)findViewById(R.id.store_img);
         Bundle bundle = getIntent().getExtras();
         storeImg.setImageResource(bundle.getInt("store_img"));
 
 
         // toolbar
->>>>>>> 5a4cede645c5a98cc2a40690b746edcc9cc2f19f
         mtoolbar = (Toolbar) findViewById(R.id.tb_toolbar);
         // 設置toolbar標題
         mtoolbar.setTitle(bundle.getString("store_name"));
@@ -132,26 +96,12 @@ public class store_menu extends AppCompatActivity{
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-<<<<<<< HEAD
+
     private void initListView(){
         listView = (ListView)findViewById(R.id.store1_menu);//找到物件
         //利用adapter當接口 this為activity,樣式,擺入的字串
         listAdapter = new ArrayAdapter(this,R.layout.stl_menu_1,mlist);
-=======
-    private void setpictureList(int listLength){
-        piclist = new int[listLength];
-        for (int i = 0; i < listLength; i++){
-            String picName = "purch_"+ Integer.toString(i);
-            int picId = getResources().getIdentifier(picName, "drawable", getPackageName());
-            piclist[i] = picId;
-        }
-    }
 
-    private void initListView(){
-        listView = (ListView) findViewById(R.id.store1_menu); //找到物件
-        // 利用adapter當接口 this為activity,樣式,擺入的字串
-        listAdapter = new ArrayAdapter(this,R.layout.stl_menu_1,list);
->>>>>>> 5a4cede645c5a98cc2a40690b746edcc9cc2f19f
         listView.setAdapter(listAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() { //監聽
             @Override
@@ -170,8 +120,6 @@ public class store_menu extends AppCompatActivity{
                         startActivity(intento);
                     }
                 }
-<<<<<<< HEAD
-
                 //如果有執行以下
                 Toast.makeText(getApplicationContext(), "你選擇的是" + list[position].name, Toast.LENGTH_SHORT).show();
             }
@@ -229,9 +177,6 @@ public class store_menu extends AppCompatActivity{
             int picId = getResources().getIdentifier(picName, "drawable", getPackageName());
             piclist[i] = picId;
         }
-=======
-            }
-        });
     }
 
     @Override
@@ -258,10 +203,8 @@ public class store_menu extends AppCompatActivity{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_normal, menu);
         return true;
->>>>>>> 5a4cede645c5a98cc2a40690b746edcc9cc2f19f
     }
 }
