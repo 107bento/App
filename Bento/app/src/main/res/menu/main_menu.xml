@@ -9,7 +9,7 @@
         app:actionViewClass="android.support.v7.widget.SearchView" />
     <item
         android:id="@+id/goto_shop_cart"
-        android:title="@string/car"
+        android:title="@string/shop_cart"
         android:icon="@drawable/ic_shopping_cart_black_24dp"
         app:showAsAction="collapseActionView|always"
         />

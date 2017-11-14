@@ -27,6 +27,7 @@
                 android:layout_margin="@dimen/text_margin"
                 android:text="@string/profile_account" />
             <TextView
+                android:id="@+id/account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_margin"
@@ -44,6 +45,7 @@
                 android:layout_margin="@dimen/text_margin"
                 android:text="@string/profile_name" />
             <TextView
+                android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_margin"
@@ -61,6 +63,7 @@
                 android:layout_margin="@dimen/text_margin"
                 android:text="@string/profile_mail" />
             <TextView
+                android:id="@+id/email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_margin"
@@ -78,12 +81,22 @@
                 android:layout_margin="@dimen/text_margin"
                 android:text="@string/profile_phone" />
             <TextView
+                android:id="@+id/phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_margin"
                 android:text="0912345678" />
         </LinearLayout>
 
+        <Button
+            android:id="@+id/goto_add_value"
+            android:background="@color/orange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:text="去儲值"
+            android:textColor="@color/white" />
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

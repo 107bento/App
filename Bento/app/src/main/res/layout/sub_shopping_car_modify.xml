@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    (1)
-    日期：10/20
-    作者：Yuting Tsai
-    項目：調整版面
-    (2)
-    10/23
-    yttsai
-    增加toolbar
+    購物車中修改餐點
 -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -27,21 +20,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!--商品圖-->
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
                 android:layout_height="128dp"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/meal01_01"
-                android:elevation="@dimen/card_recycler_elevation" />
-
-            <TextView
-                android:id="@+id/meal_name_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="握壽司"
-                android:textSize="30sp"/>
+                android:elevation="@dimen/card_recycler_elevation"
+                app:srcCompat="@drawable/purch_0"/>
 
         <!--價錢跟數量-->
         <LinearLayout

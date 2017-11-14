@@ -12,4 +12,10 @@
     <color name="gray_very_light">#e0e0e0</color>
     <color name="gray_deep">#666666</color>
     <color name="black_overlay">#66000000</color>
+
+    <color name="orange">#FF7744</color>
+    <color name="ball_red">#FF1744</color>
+    <color name="ball_orange">#F39C12</color>
+    <color name="ball_green">#00E676</color>
+    <color name="bule_light">#40C4FF</color>
 </resources>

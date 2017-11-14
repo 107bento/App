@@ -13,6 +13,10 @@
     <!-- 加入網路連線權限 -->
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!--outOfMemmoryError處理方式(增加系統的內存記憶體容量,不好,治標不治本)
+         android:hardwareAccelerated="false"
+         android:largeHeap="true"
+    -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/icon_test"
@@ -29,6 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".main_menu"
             android:label="@string/title_activity_main_menu"
@@ -47,8 +52,7 @@
             android:launchMode="singleTop"
             android:label="@string/search_result"
             android:parentActivityName=".main_menu"
-            android:theme="@style/AppTheme.NoActionBar"
-            >
+            android:theme="@style/AppTheme.NoActionBar">
 
             <!-- 加入下面的 intent-filter 和 meta-data -->
             <intent-filter>
@@ -88,22 +92,53 @@
 
         <activity
             android:name=".meal_purchase"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".store_menu"/>
 
         <activity
             android:name=".application_fillment"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".meal_purchase"/>
 
         <activity
             android:name=".shopping_cart"
-            android:label="@string/title_activity_shopping_cart"
+            android:label="@string/shop_cart"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".shopping_cart_modify"
             android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".shopping_cart"/>
+
+        <activity
+            android:name=".Register"
+            android:label="@string/action_register"
+            android:parentActivityName=".Login"/>
+
+        <activity
+            android:name=".goto_add_value"
+            android:label="@string/goto_add_value"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".today_meal"
+            android:label="@string/myMeal"
             android:parentActivityName=".main_menu"/>
 
         <activity
-            android:name=".modification_shopping_car"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".shopping_cart"/>
+            android:name=".today_meal_detail"
+            android:label="@string/deatil"
+            android:parentActivityName=".today_meal"/>
+
+        <activity
+            android:name=".purchase_record"
+            android:label="@string/purchase_record"
+            android:parentActivityName=".main_menu"/>
+
+        <activity
+            android:name=".purchase_record_detail"
+            android:label="@string/deatil"
+            android:parentActivityName=".purchase_record" />
 
     </application>
 

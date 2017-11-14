@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    (1)
-    修改日期：10/11
-    修改人：Yuting Tsai
-    修改項目：調整排版
-    (2)
-    修改日期：10/18
-    修改人：Yuting Tsai
-    修改項目：圓型數量按鈕、單價數量：RelativeLayout＆排版
-    (3)
-    修改日期：10/20
-    修改人：Yuting Tsai
-    修改項目：微調、加入餐點名稱
-    (4)
-    10/23
-    yttsai
-    增加toolbar
+    餐點購買畫面
 -->
-
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -33,12 +17,12 @@
 
         <include layout="@layout/toolbar"/>
 
+        <!--商品圖-->
         <ImageView
             android:id="@+id/meal_purchase_img"
             android:layout_width="match_parent"
             android:layout_height="128dp"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/meal01_01"
             android:elevation="@dimen/card_recycler_elevation" />
 
 

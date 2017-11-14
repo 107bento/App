@@ -5,9 +5,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.MenuInflater;
 import android.view.View;
@@ -19,24 +20,33 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import static com.example.aishalien.bento.R.string.cancel;
-import static com.example.aishalien.bento.R.string.logout;
+import java.util.ArrayList;
+import java.util.List;
+
+
 
 public class main_menu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private String[] shop_tittle_list = {"果峰小舖","武嶺水果","旗下燒烤","冰品","士林粥品","賀氏滷味","和風食堂","山雞肉飯"};
+    private int[] shop_img_list;
+    private List<ShopItemData> itemsData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+<<<<<<< HEAD
         //初始化imgbut
         initimgbtn();
+=======
+
+>>>>>>> 5a4cede645c5a98cc2a40690b746edcc9cc2f19f
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -46,19 +56,55 @@ public class main_menu extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        // 監聽按下nav_header
+        // 監聽是否按下nav_header
         View navHeaderView = navigationView.inflateHeaderView(R.layout.nav_header_main_menu);
-        ImageView headIv = (ImageView) navHeaderView.findViewById(R.id.user_head);
-        headIv.setOnClickListener(new View.OnClickListener() {
+        navHeaderView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // 跳頁
-                Toast.makeText(main_menu.this, "点击我的头像", Toast.LENGTH_SHORT).show();
                 Intent intento = new Intent();
                 intento.setClass(main_menu.this, profile.class);
                 startActivity(intento);
             }
         });
+
+        // recycler view 初始化
+        initData();
+        initView();
+
+    }
+
+    private void initView() {
+
+        // 宣告 recyclerView
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.shops_recycler_view);
+        // Grid型態，第二個參數控制一列顯示幾項
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        // 設定打開recycler view不是top
+        recyclerView.setFocusable(false);
+        // （可選）如果可以確定每個item的高度是固定的，設置這個選項可以提高性能
+        recyclerView.setHasFixedSize(true);
+
+        // 設定要給 Adapter 的陣列為 itemsData
+        ShopAdapter mAdapter = new ShopAdapter(itemsData);
+        recyclerView.setAdapter(mAdapter);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+    }
+
+    // 塞入店家資料
+    private void initData() {
+        itemsData = new ArrayList<>(); // 店家標題
+        shop_img_list = new int[shop_tittle_list.length]; // 店家圖片
+
+        for (int i = 0; i < shop_tittle_list.length; i++) {
+
+            String imgName = "store"+ Integer.toString(i);
+            int imgId = getResources().getIdentifier(imgName, "drawable", getPackageName());
+            shop_img_list[i] = imgId;
+
+            itemsData.add(new ShopItemData(shop_tittle_list[i], imgId));
+        }
     }
 
     @Override
@@ -69,18 +115,6 @@ public class main_menu extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
-    }
-
-    public void initimgbtn() {
-        ImageButton imbtn1 = (ImageButton) findViewById(R.id.imageButton);
-        imbtn1.setOnClickListener(new ImageButton.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intento = new Intent();
-                intento.setClass(main_menu.this, store_menu.class);
-                startActivity(intento);
-            }
-        });
     }
 
     @Override
@@ -137,8 +171,16 @@ public class main_menu extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_food) {
-            // Handle the camera action
+            // 今日餐點
+            Intent intent = new Intent();
+            intent.setClass(main_menu.this, today_meal.class);
+            startActivity(intent);
+
         } else if (id == R.id.nav_record) {
+            // 購買紀錄
+            Intent intent = new Intent();
+            intent.setClass(main_menu.this, purchase_record.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_anno) {
             // 公告欄dialog

@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    使用者 修改個人資訊
+-->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -32,15 +35,16 @@
         android:orientation="horizontal" >
 
         <TextView
+            android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
             android:text="@string/profile_account" />
         <TextView
+            android:id="@+id/account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:text="abc123" />
+            android:layout_margin="@dimen/text_margin" />
 
         <!--用戶名稱-->
         <TextView
@@ -49,33 +53,10 @@
             android:layout_margin="@dimen/text_margin"
             android:text="@string/profile_name" />
         <EditText
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:text="Aisha Lien" />
-
-        <!--修改密碼與確認-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:text="@string/profile_passward" />
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:text="*****" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:text="確認密碼" />
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:text="       "
-            android:maxLength="20"/>
+            android:layout_margin="@dimen/text_margin" />
 
         <!--信箱-->
         <TextView
@@ -84,10 +65,10 @@
             android:layout_margin="@dimen/text_margin"
             android:text="@string/profile_mail" />
         <EditText
+            android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:text="lienlien@android.com" />
+            android:layout_margin="@dimen/text_margin" />
 
         <!--電話-->
         <TextView
@@ -96,10 +77,45 @@
             android:layout_margin="@dimen/text_margin"
             android:text="@string/profile_phone" />
         <EditText
+            android:id="@+id/phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin" />
+
+        <!--修改密碼與確認-->
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
-            android:text="0912345678" />
+            android:text="輸入舊密碼" />
+        <EditText
+            android:id="@+id/old_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:maxLength="20"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:text="輸入新密碼" />
+        <EditText
+            android:id="@+id/new_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:maxLength="20"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:text="確認密碼" />
+        <EditText
+            android:id="@+id/check_new_pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:maxLength="20"/>
     </GridLayout>
 
 </LinearLayout>

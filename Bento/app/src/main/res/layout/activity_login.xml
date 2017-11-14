@@ -1,14 +1,6 @@
 <!--
-    (1)
-    修改日期：10/8
-    修改人：Yuting Tsai
-    修改項目：調整排版、logo圖、TextView、登入Button、註冊文字
-    (2)
-    修改日期：10/17
-    修改人：Yuting Tsai
-    修改項目：忘記密碼button、passward可視
+    login
 -->
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -107,29 +99,37 @@
                 <!--android:layout_height="wrap_content"-->
                 <!--android:layout_marginTop="@dimen/activity_vertical_margin" />-->
 
-
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/register_button"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin">
+                android:layout_gravity="center"
+                android:text="@string/action_register"
+                android:textColor="@color/colorAccent" />
 
-                <Button
-                    android:id="@+id/btn_forgot_password"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/forgot_password"
-                    android:textColor="@color/colorAccent" />
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="@dimen/activity_vertical_margin">-->
 
-                <Button
-                    android:id="@+id/register_button"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:text="@string/action_register"
-                    android:textColor="@color/colorAccent" />
-            </RelativeLayout>
+                <!--<Button-->
+                    <!--android:id="@+id/btn_forgot_password"-->
+                    <!--style="@style/Widget.AppCompat.Button.Borderless"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/forgot_password"-->
+                    <!--android:textColor="@color/colorAccent" />-->
+
+                <!--<Button-->
+                    <!--android:id="@+id/register_button"-->
+                    <!--style="@style/Widget.AppCompat.Button.Borderless"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentEnd="true"-->
+                    <!--android:text="@string/action_register"-->
+                    <!--android:textColor="@color/colorAccent" />-->
+            <!--</RelativeLayout>-->
 
             <ProgressBar
                 android:id="@+id/login_progress"
@@ -138,7 +138,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:visibility="gone" />
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

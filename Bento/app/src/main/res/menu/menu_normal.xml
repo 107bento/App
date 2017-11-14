@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.yuting.profile.profile">
+
+    <!--購物車-->
+    <item
+        android:id="@+id/goto_shop_cart"
+        android:title="@string/shop_cart"
+        android:icon="@drawable/ic_shopping_cart_black_24dp"
+        app:showAsAction="collapseActionView|ifRoom"
+        />
+
+</menu>
