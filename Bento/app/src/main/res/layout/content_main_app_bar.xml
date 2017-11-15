@@ -18,7 +18,8 @@
             app:titleTextColor="@android:color/white"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:minHeight="?attr/actionBarSize" />
+            android:minHeight="?attr/actionBarSize"
+            android:fitsSystemWindows="true" />
 
     </android.support.design.widget.AppBarLayout>
 
