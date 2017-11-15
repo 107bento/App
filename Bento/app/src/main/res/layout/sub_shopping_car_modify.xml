@@ -29,92 +29,93 @@
                 android:elevation="@dimen/card_recycler_elevation"
                 app:srcCompat="@drawable/purch_0"/>
 
-        <!--價錢跟數量-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:paddingLeft="@dimen/padding_left_and_right"
-            android:paddingRight="@dimen/padding_left_and_right"
-            android:paddingTop="@dimen/padding_top"
+            <!--價錢跟數量-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:orientation="vertical">
 
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal" >
-
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/text_margin"
-                    android:text="單價"
-                    android:textSize="35sp" />
-
-                <TextView
-                    android:layout_toRightOf="@id/textView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/text_margin"
-                    android:text="NT. 90元"
-                    android:textSize="35sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
-
-                <TextView
-                    android:id="@+id/count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/text_margin"
-                    android:text="數量"
-                    android:textSize="35sp" />
-
-                <LinearLayout
-                    android:layout_toRightOf="@id/count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/text_margin">
-
-                    <Button
-                        android:id="@+id/subtraction_btn"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/round"
-                        android:backgroundTint="#00FF99"
-                        android:text="-"
-                        android:textSize="20sp" />
+                    android:layout_gravity="center">
 
                     <TextView
-                        android:id="@+id/textView10"
-                        android:layout_marginLeft="@dimen/main_card_margin_horizontal"
-                        android:layout_toRightOf="@id/subtraction_btn"
+                        android:id="@+id/textView9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="@dimen/padding_left_and_right"
-                        android:paddingRight="@dimen/padding_left_and_right"
-                        android:text="2"
+                        android:layout_margin="@dimen/text_margin"
+                        android:text="單價"
                         android:textSize="35sp" />
 
-                    <Button
-                        android:id="@+id/Addition_btn"
-                        android:layout_marginLeft="@dimen/main_card_margin_horizontal"
-                        android:layout_toRightOf="@id/textView10"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/round"
-                        android:backgroundTint="#00FF99"
-                        android:text="+"
-                        android:textSize="20sp" />
-                </LinearLayout>
-            </RelativeLayout>
+                    <TextView
+                        android:id="@+id/meal_purchase_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="NT.90元"
+                        android:textSize="35sp"
+                        android:layout_alignBaseline="@id/textView9"
+                        android:layout_alignBottom="@id/textView9"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="@dimen/text_margin"
+                        android:layout_toRightOf="@id/textView9"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/text_margin"
+                        android:text="數量"
+                        android:textSize="35sp" />
+
+                    <LinearLayout
+                        android:layout_toRightOf="@id/count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/text_margin">
+
+                        <Button
+                            android:id="@+id/subtraction_btn"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/round"
+                            android:backgroundTint="#00FF99"
+                            android:text="-"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/meal_purchase_num"
+                            android:layout_marginLeft="@dimen/main_card_margin_horizontal"
+                            android:layout_toRightOf="@id/subtraction_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="@dimen/padding_left_and_right"
+                            android:paddingRight="@dimen/padding_left_and_right"
+                            android:text="2"
+                            android:textSize="35sp" />
+
+                        <Button
+                            android:id="@+id/Addition_btn"
+                            android:layout_marginLeft="@dimen/main_card_margin_horizontal"
+                            android:layout_toRightOf="@id/meal_purchase_num"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/round"
+                            android:backgroundTint="#00FF99"
+                            android:text="+"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                </RelativeLayout>
+
             </LinearLayout>
 
         <!--志願序開始-->
@@ -125,6 +126,7 @@
             android:paddingRight="@dimen/padding_left_and_right"
             android:paddingTop="@dimen/padding_top"
             android:orientation="vertical">
+
             <!--志願起始-->
             <TextView
                 android:id="@+id/app_01"
@@ -210,63 +212,6 @@
                 android:spinnerMode="dialog"
                 android:prompt="@string/meal_option" />
             <!--志願結束-->
-            <!--志願起始-->
-            <TextView
-                android:id="@+id/app_04"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:text="志願四"
-                android:textSize="20sp" />
-            <Spinner
-                android:id="@+id/store_spinner04"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:entries="@array/store_list"
-                android:spinnerMode="dialog"
-                android:prompt="@string/store_option" />
-            <Spinner
-                android:id="@+id/meal_spinner04"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:entries="@array/meal_list"
-                android:spinnerMode="dialog"
-                android:prompt="@string/meal_option"
-                />
-            <!--志願結束-->
-            <!--志願起始-->
-            <TextView
-                android:id="@+id/app_05"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:text="志願五"
-                android:textSize="20sp" />
-            <Spinner
-                android:id="@+id/store_spinner05"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:entries="@array/store_list"
-                android:spinnerMode="dialog"
-                android:prompt="@string/store_option" />
-            <Spinner
-                android:id="@+id/meal_spinner05"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:entries="@array/meal_list"
-                android:spinnerMode="dialog"
-                android:prompt="@string/meal_option" />
-        <!--志願結束-->
 
             <CheckBox
                 android:id="@+id/checkBox"
@@ -282,16 +227,13 @@
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_margin="@dimen/activity_vertical_margin"
                 android:background="#FF7744"
                 android:text="確認修改"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_title" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

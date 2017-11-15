@@ -25,16 +25,12 @@
             android:scaleType="centerCrop"
             android:elevation="@dimen/card_recycler_elevation" />
 
-
         <!--價錢跟數量-->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/padding_left_and_right"
-            android:paddingRight="@dimen/padding_left_and_right"
-            android:paddingTop="@dimen/padding_top">
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -46,18 +42,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/text_margin"
-                    android:text="單價  "
+                    android:text="單價"
                     android:textSize="35sp" />
 
                 <TextView
                     android:id="@+id/meal_purchase_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="NT. 90元"
+                    android:text="NT.90元"
                     android:textSize="35sp"
-                    android:layout_alignBaseline="@+id/textView9"
-                    android:layout_alignBottom="@+id/textView9"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_alignBaseline="@id/textView9"
+                    android:layout_alignBottom="@id/textView9"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="@dimen/text_margin"
+                    android:layout_toRightOf="@id/textView9"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -114,6 +112,14 @@
                 </LinearLayout>
             </RelativeLayout>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:paddingLeft="@dimen/padding_left_and_right"
+            android:paddingRight="@dimen/padding_left_and_right"
+            android:paddingTop="@dimen/padding_top"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
             <!--加入購物車-->
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn_put_in_cart"
@@ -126,7 +132,6 @@
                 android:text="加入購物車"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_title" />
-
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
