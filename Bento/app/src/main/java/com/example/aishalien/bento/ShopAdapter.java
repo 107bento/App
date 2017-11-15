@@ -45,6 +45,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ViewHolder> {
         // 設定 textView 的文字由 itemsData 取出，而 itemsData 的內容已經在 ItemData.java 設定好了
         holder.shopTittle.setText(itemsData.get(position).getTitle());
         final String mStoreName = itemsData.get(position).getTitle();
+        final int mStoreID = itemsData.get(position).storeId;
 
         // 設定 imgview 的圖片由 itemsData 取出
         holder.shopImg.setImageResource(itemsData.get(position).imgId);
@@ -59,6 +60,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ViewHolder> {
                 Bundle bundle = new Bundle();
                 bundle.putString("store_name", mStoreName);
                 bundle.putInt("store_img", mStoreImg);
+                bundle.putInt("store_id", mStoreID);
 
                 // 將bundle傳入
                 // 換頁

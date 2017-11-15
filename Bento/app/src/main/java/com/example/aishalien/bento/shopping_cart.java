@@ -44,7 +44,7 @@ public class shopping_cart extends AppCompatActivity {
         for(int i=0; i<listFromResource.length;i++) {
             item = new HashMap<String, Object>();
             item.put("store_name",listFromResource[i]);
-            item.put("store_pic", R.drawable.meal_1);
+            item.put("store_pic", R.drawable.store2_1);
             item.put("meal_name",listFromMeal[i]);
             item.put("meal_num",listFromNum[i]);
             mList.add(item);
