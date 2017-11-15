@@ -1,5 +1,6 @@
 package com.example.aishalien.bento;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -9,7 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -20,6 +22,7 @@ import java.util.List;
 public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ViewHolder> {
 
     private List<ShopItemData> itemsData;
+    private Context mContext;
 
     // 這邊是接 main_menu 傳進來的值
     public ShopAdapter(List<ShopItemData> ItemData) {
@@ -33,6 +36,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ViewHolder> {
     public ShopAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemLayoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_main_card_item, null);
         ViewHolder viewHolder = new ViewHolder(itemLayoutView);
+        mContext = parent.getContext();
         return viewHolder;
     }
 
@@ -47,8 +51,12 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ViewHolder> {
         final String mStoreName = itemsData.get(position).getTitle();
 
         // 設定 imgview 的圖片由 itemsData 取出
-        holder.shopImg.setImageResource(itemsData.get(position).imgId);
         final int mStoreImg = itemsData.get(position).imgId;
+//        holder.shopImg.setImageResource(itemsData.get(position).imgId);
+
+        Glide.with(holder.shopImg.getContext())
+                .load(itemsData.get(position).imgId)
+                .into(holder.shopImg);
 
         // 點擊 shop 項目時
         holder.shopCard.setOnClickListener(new View.OnClickListener() {
