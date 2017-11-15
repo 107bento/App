@@ -92,11 +92,13 @@
 
         <activity
             android:name=".meal_purchase"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".store_menu"/>
 
         <activity
             android:name=".application_fillment"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".meal_purchase"/>
 
         <activity
             android:name=".shopping_cart"

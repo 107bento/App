@@ -24,23 +24,45 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
+import retrofit2.http.GET;
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 
 public class main_menu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private String[] shop_tittle_list = {"果峰小舖","武嶺水果","旗下燒烤","冰品","士林粥品","賀氏滷味","和風食堂","山雞肉飯"};
+    private String[] shop_tittle_list;
+    private int[] shop_tittle_ID;
     private int[] shop_img_list;
+    Retrofit retrofit;
+    JsonArray resource;
     private List<ShopItemData> itemsData;
-
+    //定義接口
+    public interface StructureApi{
+        @GET("shops")
+        Call<JsonArray> getinfo();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         // 設置狀態欄透明
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -49,7 +71,23 @@ public class main_menu extends AppCompatActivity
         }
         // 設置啟用toolbar
         setSupportActionBar(toolbar);
+        //設定架接API元件
+        /*創建一個retrofit*/
+        /*OKHTTP*/
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        // set your desired log level
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        httpClient.addInterceptor(logging);
 
+        /*連接 OKHTTP 連線*/
+        retrofit= new Retrofit.Builder()
+                .baseUrl("http://163.22.17.227/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient.build())
+                .build();
+
+        //初始化imgbut
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -70,15 +108,36 @@ public class main_menu extends AppCompatActivity
                 startActivity(intento);
             }
         });
-
         // recycler view 初始化
-        initData();
-        initView();
-
+        getAPI();
     }
-
+    private void initArray(){
+        shop_tittle_ID = new int[resource.size()];
+        shop_tittle_list = new String[resource.size()];
+        for(int i=0;i<resource.size();i++){
+            JsonObject tmp = new JsonObject();
+            tmp = resource.get(i).getAsJsonObject();
+            shop_tittle_ID[i] = tmp.get("shop_id").getAsInt();
+            shop_tittle_list[i] = tmp.get("shop_name").getAsString();
+        }
+    }
+    private void getAPI(){
+        StructureApi api = retrofit.create(StructureApi.class);
+        Call<JsonArray> Model = api.getinfo();
+        Model.enqueue(new Callback<JsonArray>() {
+            @Override
+            public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
+                resource = response.body();
+                initArray();
+                initData();
+                initView();
+            }
+            @Override
+            public void onFailure(Call<JsonArray> call, Throwable t) {
+            }
+        });
+    }
     private void initView() {
-
         // 宣告 recyclerView
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.shops_recycler_view);
         // Grid型態，第二個參數控制一列顯示幾項
@@ -87,26 +146,21 @@ public class main_menu extends AppCompatActivity
         recyclerView.setFocusable(false);
         // （可選）如果可以確定每個item的高度是固定的，設置這個選項可以提高性能
         recyclerView.setHasFixedSize(true);
-
         // 設定要給 Adapter 的陣列為 itemsData
         ShopAdapter mAdapter = new ShopAdapter(itemsData);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
     }
 
     // 塞入店家資料
     private void initData() {
         itemsData = new ArrayList<>(); // 店家標題
         shop_img_list = new int[shop_tittle_list.length]; // 店家圖片
-
         for (int i = 0; i < shop_tittle_list.length; i++) {
-
             String imgName = "store"+ Integer.toString(i);
             int imgId = getResources().getIdentifier(imgName, "drawable", getPackageName());
             shop_img_list[i] = imgId;
-
-            itemsData.add(new ShopItemData(shop_tittle_list[i], imgId));
+            itemsData.add(new ShopItemData(shop_tittle_list[i], imgId,shop_tittle_ID[i]));
         }
     }
 
@@ -122,15 +176,12 @@ public class main_menu extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
-
         // Associate searchable configuration with the SearchView
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.my_search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-
         return true;
     }
 

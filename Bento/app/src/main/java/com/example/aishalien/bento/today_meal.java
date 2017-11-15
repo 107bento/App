@@ -41,7 +41,7 @@ public class today_meal extends AppCompatActivity {
         Map<String, Object> item;
         for (int i = 0; i< listFromResource.length; i++) {
             item = new HashMap<String, Object>();
-            item.put("meal_pic", R.drawable.meal_1);
+            item.put("meal_pic", R.drawable.store2_1);
             item.put("store_name", listFromResource[i]);
             item.put("meal_name", listFromMeal[i]);
             item.put("meal_num", listFromNum[i]);

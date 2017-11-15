@@ -44,7 +44,7 @@ public class shopping_cart extends AppCompatActivity {
         for(int i=0; i<listFromResource.length;i++) {
             item = new HashMap<String, Object>();
             item.put("store_name",listFromResource[i]);
-            item.put("store_pic", R.drawable.meal_1);
+            item.put("store_pic", R.drawable.store2_1);
             item.put("meal_name",listFromMeal[i]);
             item.put("meal_num",listFromNum[i]);
             mList.add(item);
@@ -97,8 +97,16 @@ public class shopping_cart extends AppCompatActivity {
         }
         // 設置啟用toolbar
         setSupportActionBar(mtoolbar);
-        // 設置返回按鍵作用
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        // 設置返回按鍵作用
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // 设置返回键的点击事件：
+        mtoolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();;
+            }
+        });
     }
 
     /**
