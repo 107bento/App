@@ -1,7 +1,9 @@
 package com.example.aishalien.bento;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -137,6 +139,23 @@ public class purchase_record extends AppCompatActivity {
                     listStatus[i] = codeStatus[tmpcode];
                 }
                 setlist();
+
+                // 購買紀錄為空
+                if (resource.size() == 0) {
+                    // 提示訊息
+                    new AlertDialog.Builder(purchase_record.this)
+                            // 標題
+                            .setTitle("提示")
+                            // 訊息
+                            .setMessage("你還沒有購買過商品喔！")
+                            .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    onBackPressed();
+                                }
+                            })
+                            .show();
+                }
             }
 
             @Override

@@ -10,7 +10,6 @@
         android:layout_toLeftOf="@+id/purchase_record_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/main_card_margin_vertical"
         android:gravity="center_vertical"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
@@ -42,10 +41,11 @@
         android:id="@+id/purchase_record_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:textSize="@dimen/text_body_menu_btn"
         android:textColor="@color/bule_light"
-        android:text="statux"/>
+        android:text="status"/>
 
 </RelativeLayout>

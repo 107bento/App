@@ -53,7 +53,7 @@ public class purchase_record_detail extends AppCompatActivity {
         mealImg.setImageResource(mealPic);
         storeText.setText(store);
         mealText.setText(meal);
-        countsText.setText(counts);
+        countsText.setText("x" + counts);
         statusText.setText(status);
     }
     @Override
