@@ -84,7 +84,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:entries="@array/meal_list"
                 android:prompt="@string/meal_option"
                 android:spinnerMode="dialog" />
             <!--志願結束-->
@@ -113,11 +112,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
-                android:entries="@array/meal_list"
                 android:prompt="@string/meal_option"
                 android:spinnerMode="dialog" />
             <!--志願結束-->
-            
+
             <CheckBox
                 android:id="@+id/checkBox"
                 android:layout_width="match_parent"
