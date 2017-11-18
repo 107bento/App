@@ -61,6 +61,8 @@ public class main_menu extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+        Bundle bundle = getIntent().getExtras();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //設定架接API元件
@@ -179,14 +181,12 @@ public class main_menu extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         //noinspection SimplifiableIfStatement
         switch (item.getItemId()) {
             // 按下搜尋
             case R.id.my_search:
                 //TODO search
                 break;
-
             // 按下購物車
             case R.id.goto_shop_cart:
                 Intent intento = new Intent();

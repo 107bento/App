@@ -27,8 +27,6 @@ public class search_result extends AppCompatActivity
 
         // 注意這一行指令
         handleIntent(getIntent());
-
-
         // toolbar
         Toolbar mtoolbar = (Toolbar) findViewById(R.id.tb_toolbar);
         // 設置狀態欄透明

@@ -82,6 +82,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
     Call<LoginAPI> model;
     LoginApi service;
     Gson gson;
+    Bundle bundle;
     //定義接口
     public interface LoginApi{
 
@@ -113,6 +114,8 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                 .build();
         service = retrofit.create(LoginApi.class);
         gson = new GsonBuilder().create();
+        bundle = new Bundle();
+
         Button mSignInButton = (Button) findViewById(R.id.sign_in_button);
         mSignInButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -121,9 +124,9 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                 etPassword = (EditText) findViewById(R.id.password);
 
                 /*開發用 之後請刪除*/
-                Intent intent = new Intent();
-                intent.setClass(Login.this, main_menu.class);
-                startActivity(intent);
+                //Intent intent = new Intent();
+                //intent.setClass(Login.this, main_menu.class);
+                //startActivity(intent);
                  /*開發用 之後請刪除*/
 
                 /*產生要POST的東西*/
@@ -141,6 +144,9 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                         @Override
                         public void onResponse(Call<LoginAPI> call, Response<LoginAPI> response) {
                             if (response.code()==200) {
+                                String cookie = response.headers().get("Set-Cookie").toString();
+                                GlobalVariable User = (GlobalVariable)getApplicationContext();
+                                User.setCookie(cookie);
                                 Intent intent = new Intent();
                                 intent.setClass(Login.this, main_menu.class);
                                 startActivity(intent);
