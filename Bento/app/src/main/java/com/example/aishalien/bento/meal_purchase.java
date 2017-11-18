@@ -54,6 +54,7 @@ public class meal_purchase extends AppCompatActivity {
 
         // 數量控件
         AmountView mAmountView = (AmountView) findViewById(R.id.amountView);
+        mAmountView.setGoods_storage(99);  //设置库存数量
         mAmountView.setListener(new AmountView.OnAmountChangeListener() {
             @Override
             public void onAmountChange(View view, int amount) {

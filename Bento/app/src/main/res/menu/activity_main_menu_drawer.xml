@@ -7,29 +7,34 @@
             android:icon="@drawable/main_tofood"
             android:title="@string/myMeal" />
         <item
-            android:id="@+id/nav_record"
-            android:icon="@drawable/main_record"
+            android:id="@+id/nav_purchase_record"
+            android:icon="@drawable/purchase_record"
             android:title="@string/purchase_record" />
         <item
-            android:id="@+id/nav_anno"
-                android:icon="@drawable/main_anno"
-            android:title="@string/announcement" />
+            android:id="@+id/nav_addValue"
+            android:icon="@drawable/add_value_3"
+            android:title="@string/goto_add_value" />
         <item
-            android:id="@+id/nav_info"
-            android:icon="@drawable/main_info"
-            android:title="@string/info_alert" />
-        <item
-            android:id="@+id/nav_about"
-            android:icon="@drawable/main_about"
-            android:title="@string/about" />
-        <item
-            android:id="@+id/feed_back"
-            android:icon="@drawable/main_feedback"
-            android:title="@string/feedback" />
+            android:id="@+id/nav_money_record"
+            android:icon="@drawable/money_record"
+            android:title="金錢紀錄" />
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/main_logout"
             android:title="@string/logout" />
+        <!--<item-->
+            <!--android:id="@+id/nav_anno"-->
+                <!--android:icon="@drawable/main_anno"-->
+            <!--android:title="@string/announcement" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_info"-->
+            <!--android:icon="@drawable/main_info"-->
+            <!--android:title="@string/info_alert" />-->
+        <!--<item-->
+            <!--android:id="@+id/feed_back"-->
+            <!--android:icon="@drawable/main_feedback"-->
+            <!--android:title="@string/feedback" />-->
+
     </group>
 
 </menu>
