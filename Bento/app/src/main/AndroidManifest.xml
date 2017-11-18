@@ -135,11 +135,14 @@
             android:name=".purchase_record"
             android:label="@string/purchase_record"
             android:parentActivityName=".main_menu"/>
-
         <activity
-            android:name=".purchase_record_detail"
-            android:label="@string/deatil"
+            android:name=".purchase_record_order"
+            android:label="@string/order_deatil"
             android:parentActivityName=".purchase_record" />
+        <activity
+            android:name=".purchase_record_order_detail"
+            android:label="@string/deatil"
+            android:parentActivityName=".purchase_record_order" />
     </application>
 
 </manifest>

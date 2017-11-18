@@ -3,7 +3,6 @@ package com.example.aishalien.bento;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,7 +13,7 @@ import java.util.HashMap;
  * Created by yuting on 2017/11/10.
  */
 
-public class purchase_record_detail extends AppCompatActivity {
+public class purchase_record_order_detail extends AppCompatActivity {
 
     Integer mealPic;
     String date, store, meal, counts, status;
@@ -24,7 +23,7 @@ public class purchase_record_detail extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sub_purchase_record_detail);
+        setContentView(R.layout.sub_purchase_record_order_detail);
 
         /*
         *  接收 HashMap 物件

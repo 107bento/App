@@ -14,13 +14,10 @@ import android.widget.SimpleAdapter;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,8 +32,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 
-
-
 public class purchase_record extends AppCompatActivity {
 
     // 目標放入的MAP
@@ -44,23 +39,27 @@ public class purchase_record extends AppCompatActivity {
     ListView recordListView;
     String[] listFromResource ;
     String[] listDate ;
+    String[] listTime ;
     String[] listFromMeal;
     String[] listFromNum;
     String[] codeStatus =  {"訂單確認中","已成單", "已領取", "流單"};
     String[] listStatus;
     JsonArray resource;
+    JsonArray mJsonArray;//要傳到下一頁的array資料
     static String cookie;
+
     public interface Api{
         @GET("user/orders")
         Call<JsonArray> getinfo(@Header("Cookie") String userCookie);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchase_record);
         GlobalVariable User = (GlobalVariable)getApplicationContext();
         cookie = User.getCookie();
-        recordListView = (ListView) findViewById(R.id.purchase_record_list);
+        recordListView = (ListView) findViewById(R.id.purchase_record_listview);
         mList =  new ArrayList<>();
         try {
             getJson();
@@ -75,20 +74,23 @@ public class purchase_record extends AppCompatActivity {
                                     long arg3) {
                 // 获得选中项的HashMap对象
                 HashMap<String,Object> map = (HashMap<String,Object>) recordListView.getItemAtPosition(arg2);
-                Object orderDate = map.get("date");
 
-                /*
-                *  傳遞 HashMap 物件:
-                *  由於Bundle是可以帶Serializable的，而HashMap實作了Serializable
-                */
-                Intent intent = new Intent(purchase_record.this, purchase_record_detail.class);
+
+                // 取得被點擊的 order項目底下的 detail
+
+
+                /**
+                 *  傳遞 json Array
+                 *  把 jsonArray.toString()
+                 */
+                Intent intent = new Intent(purchase_record.this, purchase_record_order.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("HashMap", map);
+                bundle.putString("jsonArray", mJsonArray.toString());
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
-}
+    }
 
 
     public void getJson() throws IOException {
@@ -176,18 +178,23 @@ public class purchase_record extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    public void setlist(){/**
+
+    public void setlist(){
+        /**
          * 目前還沒有把志願序的資料放進map
          */
         Map<String, Object> item ;
         for (int i = 0; i < listFromResource.length; i++) {
             item = new HashMap<String, Object>();
             item.put("date", listDate[i]);
-            item.put("store_name",listFromResource[i]);
-            item.put("meal_pic", R.drawable.store2_1);
-            item.put("meal_name",listFromMeal[i]);
-            item.put("meal_num", listFromNum[i]);
-            item.put("status", listStatus[i]);
+            item.put("time", listTime[i]);
+
+//            it123em.put("store_name",listFromResource[i]);
+//            item.put("meal_pic", R.drawable.store2_1);
+//            item.put("meal_name",listFromMeal[i]);
+//            item.put("meal_num", listFromNum[i]);
+//            item.put("status", listStatus[i]);
+
             mList.add(item);
         }
 
@@ -195,14 +202,12 @@ public class purchase_record extends AppCompatActivity {
         SimpleAdapter adapter = new SimpleAdapter(
                 this,
                 mList,
-                R.layout.list_item_purchase_record,
+                R.layout.list_item_purchase_record_list,
                 new String[] {  "date",
-                        "meal_name",
-                        "status"
+                                "time"
                 },
-                new int[] { R.id.purchase_record_date,
-                        R.id.purchase_record_meal_name,
-                        R.id.purchase_record_status,
+                new int[] { R.id.purchase_record_list_date,
+                            R.id.purchase_record_list_time,
                 });
 
         recordListView.setAdapter(adapter);

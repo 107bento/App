@@ -35,7 +35,7 @@
     <string name="announcement">公告欄</string>
     <string name="goto_add_value">儲值</string>
     <string name="myMeal">我的餐點</string>
-    <string name="purchase_record">購買紀錄</string>
+    <string name="purchase_record">訂單記錄</string>
     <string name="info_alert">通知</string>
     <string name="about">關於</string>
     <string name="feedback">反饋</string>
@@ -93,5 +93,6 @@
     <string name="explanation_content">這裡是放說明文字！</string>
     <string name="meal_detail">餐點詳細</string>
     <string name="deatil">詳細資訊</string>
+    <string name="order_deatil">訂單資料</string>
 
 </resources>
