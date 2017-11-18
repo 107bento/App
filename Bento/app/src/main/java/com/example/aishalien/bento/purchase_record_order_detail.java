@@ -9,10 +9,6 @@ import android.widget.TextView;
 
 import java.util.HashMap;
 
-/**
- * Created by yuting on 2017/11/10.
- */
-
 public class purchase_record_order_detail extends AppCompatActivity {
 
     Integer mealPic;
