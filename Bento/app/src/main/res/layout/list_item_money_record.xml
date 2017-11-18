@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--money紀錄 list內容-->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/listview_item_height">
+
+    <LinearLayout
+        android:id="@+id/money_record_listview"
+        android:layout_toLeftOf="@+id/purchase_record_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:paddingRight="@dimen/padding_left_and_right"
+        android:paddingLeft="@dimen/padding_left_and_right"
+        android:orientation="vertical">
+
+        <!--日期-->
+        <TextView
+            android:id="@+id/money_record_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left|center_vertical"
+            android:textSize="@dimen/text_title"
+            android:text="日期"/>
+    </LinearLayout>
+
+    <!--value-->
+    <TextView
+        android:id="@+id/money_record_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/text_body_menu_btn"
+        android:textColor="@color/bule_light"
+        android:text="value"/>
+
+</RelativeLayout>
