@@ -2,7 +2,6 @@ package com.example.aishalien.bento;
 
 import android.content.Intent;
 import android.os.Build;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -16,10 +15,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.nukc.amountview.AmountView;
+
+
 public class meal_purchase extends AppCompatActivity {
     TextView value,num;
     String mMeal;
-    int counter = 0;
+    int counter = 0; //數量
     private Toolbar mtoolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +51,16 @@ public class meal_purchase extends AppCompatActivity {
         }
         // 設置啟用toolbar
         setSupportActionBar(mtoolbar);
-        // 設置返回按鍵作用
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // 數量控件
+        AmountView mAmountView = (AmountView) findViewById(R.id.amountView);
+        mAmountView.setListener(new AmountView.OnAmountChangeListener() {
+            @Override
+            public void onAmountChange(View view, int amount) {
+                //  紀錄數量
+                counter = amount;
+            }
+        });
     }
 
     public void initimgbtn(){
@@ -61,6 +71,7 @@ public class meal_purchase extends AppCompatActivity {
                 // 建立一個Bundle
                 Bundle bundle = new Bundle();
                 bundle.putString("meal",mMeal);
+                bundle.putInt("amount", counter);
                 Intent intento = new Intent();
                 intento.setClass(meal_purchase.this, application_fillment.class);
                 // 將bundle傳入
@@ -82,7 +93,7 @@ public class meal_purchase extends AppCompatActivity {
                 return true;
 
             // 按下購物車
-            case R.id.goto_shop_cart:
+            case R.id.menuItem_shoppingCart:
                 Intent intento = new Intent();
                 intento.setClass(meal_purchase.this, shopping_cart.class);
                 startActivity(intento);
