@@ -22,12 +22,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
-import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,12 +37,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
-import retrofit2.http.POST;
-import retrofit2.http.Path;
-
 
 public class main_menu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -184,6 +178,7 @@ public class main_menu extends AppCompatActivity
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.my_search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
         return true;
     }
 
@@ -196,7 +191,7 @@ public class main_menu extends AppCompatActivity
                 //TODO search
                 break;
             // 按下購物車
-            case R.id.goto_shop_cart:
+            case R.id.menuItem_shoppingCart:
                 Intent intento = new Intent();
                 intento.setClass(main_menu.this, shopping_cart.class);
                 startActivity(intento);
@@ -231,7 +226,7 @@ public class main_menu extends AppCompatActivity
             intent.setClass(main_menu.this, today_meal.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_record) {
+        } else if (id == R.id.nav_purchase_record) {
             // 購買紀錄
             Intent intent = new Intent();
             intent.setClass(main_menu.this, purchase_record.class);
@@ -250,7 +245,17 @@ public class main_menu extends AppCompatActivity
 
         } else if (id == R.id.nav_info) {
 
-        } else if (id == R.id.nav_about) {
+        } else if (id == R.id.nav_addValue) {
+            // 儲值
+            Intent intent = new Intent();
+            intent.setClass(main_menu.this, goto_add_value.class);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_money_record) {
+            // 金錢紀錄
+            Intent intent = new Intent();
+            intent.setClass(main_menu.this, money_record.class);
+            startActivity(intent);
 
         } else if (id == R.id.feed_back) {
 
@@ -266,17 +271,30 @@ public class main_menu extends AppCompatActivity
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
+                        memberLogOut();
                     }
-
                 })
                 // 按下取消，返回原本畫面
-                .setNegativeButton(R.string.cancel, null)
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
                 .show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    //系統登出
+    private void memberLogOut() {
+        GlobalVariable User = (GlobalVariable)getApplicationContext();
+        User.setCookie("");
+        //顯示Toast
+        Toast.makeText(main_menu.this, "已登出", Toast.LENGTH_LONG).show();
+        finish();
     }
 }
