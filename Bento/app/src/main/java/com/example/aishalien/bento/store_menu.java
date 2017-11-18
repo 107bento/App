@@ -167,7 +167,6 @@ public class store_menu extends AppCompatActivity{
             piclist[i] = picId;
         }
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {

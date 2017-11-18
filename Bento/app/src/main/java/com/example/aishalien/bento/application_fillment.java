@@ -10,19 +10,23 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class application_fillment extends AppCompatActivity {
 
     private Toolbar mtoolbar;
     String mMeal;
-
+    String[] store;//設定店家
+    String[] meal;//設定店家 meal
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_application_fillment);
+        //initspinner();
         initimgbtn();
 
         // 接收 meal_purchase 過來的資料
@@ -62,9 +66,7 @@ public class application_fillment extends AppCompatActivity {
 //                intento.putExtras(bundle);
 //                startActivity(intento);
 
-
                 // 抓取頁面資料，保存到本地端（購物車資料）
-
                 // 提示訊息
                 Toast toast = Toast.makeText(application_fillment.this,
                         "已加入購物車", Toast.LENGTH_LONG);
@@ -72,7 +74,13 @@ public class application_fillment extends AppCompatActivity {
             }
         });
     }
-
+    public void initspinner(){
+        Spinner spinner = (Spinner)findViewById(R.id.store_spinner01);
+        ArrayAdapter<String> lunchList = new ArrayAdapter<>(application_fillment.this,
+                android.R.layout.simple_spinner_dropdown_item,
+                store);
+        spinner.setAdapter(lunchList);
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
