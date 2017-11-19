@@ -3,7 +3,9 @@ package com.example.aishalien.bento;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -95,6 +97,8 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        /*製造一個存於local的檔*/
+        //呼叫getSharedPreferences()方法，產生一個檔名為cart.xml的設定儲存檔，並只供本專案(app)可讀取，物件名稱為cart
 
         /*創建一個retrofit*/
         /*OKHTTP*/
@@ -147,6 +151,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                                 String cookie = response.headers().get("Set-Cookie").toString();
                                 GlobalVariable User = (GlobalVariable)getApplicationContext();
                                 User.setCookie(cookie);
+                                //User.cart = getSharedPreferences("cart", Activity.MODE_PRIVATE);
                                 Intent intent = new Intent();
                                 intent.setClass(Login.this, main_menu.class);
                                 startActivity(intent);

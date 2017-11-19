@@ -27,7 +27,7 @@
                 android:layout_height="128dp"
                 android:scaleType="centerCrop"
                 android:elevation="@dimen/card_recycler_elevation"
-                app:srcCompat="@drawable/store0_0"/>
+                app:srcCompat="@drawable/store0_1"/>
 
             <!--價錢跟數量-->
             <LinearLayout

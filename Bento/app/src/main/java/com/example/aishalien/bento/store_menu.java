@@ -38,6 +38,7 @@ public class store_menu extends AppCompatActivity{
     private ListView listView;
     JsonArray resource;
     int store_id;
+    String store_name;
     private String[] mlist;
     private Meal[] list ;
     private int[] piclist;
@@ -72,6 +73,7 @@ public class store_menu extends AppCompatActivity{
         mtoolbar = (Toolbar) findViewById(R.id.tb_toolbar);
         // 設置toolbar標題
         mtoolbar.setTitle(bundle.getString("store_name"));
+        store_name = bundle.getString("store_name");
         // 設置標題顏色
         mtoolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
         // 設置狀態欄透明
@@ -98,7 +100,10 @@ public class store_menu extends AppCompatActivity{
                     if (list[position].equals(list[i])) {
                         //建立一個Bundle
                         Bundle bundle = new Bundle();
+                        bundle.putString("store",store_name);
+                        bundle.putString("store_name_id", Integer.toString(store_id));
                         bundle.putString("meal",list[i].name);
+                        bundle.putString("meal_id",list[i].ID);
                         bundle.putInt("value",list[i].value);
                         bundle.putInt("pic",piclist[i]);
                         Intent intento = new Intent();
@@ -149,7 +154,6 @@ public class store_menu extends AppCompatActivity{
     public void initList(){
         list = new Meal[resource.size()];
         mlist = new String[resource.size()];
-        setpictureList(list.length);
         for(int i=0;i<resource.size();i++){
             JsonObject tmp = new JsonObject();
             tmp = resource.get(i).getAsJsonObject();
@@ -160,12 +164,13 @@ public class store_menu extends AppCompatActivity{
             mlist[i] = tmp.get("meal_name").getAsString();
             list[i].value =tmp.get("meal_price").getAsInt();
         }
+        setpictureList(list.length);
     }
     /*處理圖片*/
     private void setpictureList(int listLength){
         piclist = new int[listLength];
         for(int i=0;i<listLength;i++){
-            String picName = "store"+Integer.toString(store_id-1)+"_"+ Integer.toString(i);
+            String picName = "store"+Integer.toString(store_id-1)+"_"+list[i].ID;
             int picId = getResources().getIdentifier(picName, "drawable", getPackageName());
             piclist[i] = picId;
         }
