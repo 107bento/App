@@ -39,12 +39,13 @@ public class GlobalVariable extends Application {
         tmpcart.addProperty("random_pic",random_pic);
         details.add(tmpcart);
     }
-    public void remCart(){
+    public JsonArray remCart(){
         //先放入最外層的cart
         cart_item.addProperty("total",total);
         //放入array中
         shopping_cart.add(cart_item);
         shopping_cart.add(details);
+        return shopping_cart;
     }
     public void editCart(){
 
