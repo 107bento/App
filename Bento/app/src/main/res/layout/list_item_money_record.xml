@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--購買紀錄 item內容-->
+<!--money紀錄 list內容-->
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/listview_item_height">
 
     <LinearLayout
-        android:id="@+id/purchase_record_item"
+        android:id="@+id/money_record_listview"
         android:layout_toLeftOf="@+id/purchase_record_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/main_card_margin_vertical"
         android:gravity="center_vertical"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
@@ -20,32 +19,24 @@
 
         <!--日期-->
         <TextView
-            android:id="@+id/purchase_record_date"
+            android:id="@+id/money_record_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="left|center_vertical"
             android:textSize="@dimen/text_title"
             android:text="日期"/>
-
-        <!--餐點名-->
-        <TextView
-            android:id="@+id/purchase_record_meal_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="left|center_vertical"
-            android:textSize="@dimen/text_title"
-            android:text="成單的餐點名稱"/>
     </LinearLayout>
 
-    <!--狀態-->
+    <!--value-->
     <TextView
-        android:id="@+id/purchase_record_status"
+        android:id="@+id/money_record_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:textSize="@dimen/text_body_menu_btn"
         android:textColor="@color/bule_light"
-        android:text="statux"/>
+        android:text="value"/>
 
 </RelativeLayout>
