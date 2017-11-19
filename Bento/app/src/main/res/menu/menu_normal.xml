@@ -5,10 +5,9 @@
 
     <!--購物車-->
     <item
-        android:id="@+id/goto_shop_cart"
+        android:id="@+id/menuItem_shoppingCart"
         android:title="@string/shop_cart"
         android:icon="@drawable/ic_shopping_cart_black_24dp"
-        app:showAsAction="collapseActionView|ifRoom"
+        app:showAsAction="collapseActionView|always"
         />
-
 </menu>

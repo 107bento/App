@@ -94,10 +94,12 @@ public class application_fillment extends AppCompatActivity {
 //                startActivity(intento);
 
                 // 抓取頁面資料，保存到本地端（購物車資料）
+
                 // 提示訊息
                 Toast toast = Toast.makeText(application_fillment.this,
                         "已加入購物車", Toast.LENGTH_LONG);
                 toast.show();
+                onBackPressed();
             }
         });
     }
@@ -239,7 +241,7 @@ public class application_fillment extends AppCompatActivity {
                 return true;
 
             // 按下購物車
-            case R.id.goto_shop_cart:
+            case R.id.menuItem_shoppingCart:
                 Intent intento = new Intent();
                 intento.setClass(application_fillment.this, shopping_cart.class);
                 startActivity(intento);

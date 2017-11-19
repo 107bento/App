@@ -67,7 +67,7 @@ public class shopping_cart extends AppCompatActivity {
                 HashMap<String,Object> map=(HashMap<String,Object>)cartListView.getItemAtPosition(arg2);
                 Object store_name = map.get("store_name");
                 Object meal_name = map.get("meal_name");
-                Toast.makeText(getApplicationContext(), "你選擇的是" + meal_name, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "你選擇的是" + meal_name, Toast.LENGTH_SHORT).show();
 
                 if(meal_name.equals("壽司")) {
                     // 建立一個Bundle
@@ -154,6 +154,7 @@ public class shopping_cart extends AppCompatActivity {
                 break;
 
             // 按下說明
+            /*
             case R.id.question_btn:
                 // 彈出dialog
                 new AlertDialog.Builder(shopping_cart.this)
@@ -165,6 +166,7 @@ public class shopping_cart extends AppCompatActivity {
                         .setPositiveButton(R.string.ok, null)
                         .show();
                 break;
+            */
         }
         return super.onOptionsItemSelected(item);
     }

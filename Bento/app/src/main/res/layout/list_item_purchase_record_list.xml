@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--購買紀錄 order內容-->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/listview_item_height">
+
+    <LinearLayout
+        android:id="@+id/purchase_record_order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:paddingRight="@dimen/padding_left_and_right"
+        android:paddingLeft="@dimen/padding_left_and_right"
+        android:orientation="vertical">
+
+        <!--日期-->
+        <TextView
+            android:id="@+id/purchase_record_list_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left|center_vertical"
+            android:textSize="@dimen/text_title"
+            android:text="日期"/>
+
+        <!--時間-->
+        <TextView
+            android:id="@+id/purchase_record_list_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left|center_vertical"
+            android:textSize="@dimen/text_title"
+            android:text="時間"/>
+    </LinearLayout>
+</RelativeLayout>

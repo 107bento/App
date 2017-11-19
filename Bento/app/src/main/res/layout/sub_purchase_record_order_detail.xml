@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--購買紀錄 詳細資料 order.detail -->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/padding_left_and_right"
+        android:paddingRight="@dimen/padding_left_and_right">
+
+        <ImageView
+            android:id="@+id/purchase_record_detail_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/purchase_record_detail_store"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/main_card_margin_horizontal"
+            android:text="店家名稱"
+            android:textSize="@dimen/text_headline"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/purchase_record_detail_meal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/main_card_margin_horizontal"
+                android:text="餐點名稱"
+                android:textSize="@dimen/text_title"
+                />
+            <TextView
+                android:id="@+id/purchase_record_detail_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/main_card_margin_horizontal"
+                android:text="餐點數量"
+                android:textSize="@dimen/text_title"
+
+                />
+            <TextView
+                android:id="@+id/purchase_record_detail_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/main_card_margin_horizontal"
+                android:text="領餐狀態"
+                android:textSize="@dimen/text_title"
+                />
+        </LinearLayout>
+
+        <View
+            android:background="@color/gray_very_light"
+            android:layout_height="1dp"
+            android:layout_width="fill_parent"
+            android:layout_margin="@dimen/main_card_margin_horizontal"/>
+
+        <TextView
+            android:id="@+id/purchase_record_detail_application_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/main_card_margin_horizontal"
+            android:layout_column="0"
+            android:text="志願一"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/purchase_record_detail_application_1_shop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/main_card_margin_horizontal"
+                android:layout_column="1"
+                android:text="志願序1店家名稱"/>
+            <TextView
+                android:id="@+id/purchase_record_detail_application_1_meal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/main_card_margin_horizontal"
+                android:layout_column="2"
+                android:text="志願序1餐點名稱"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/purchase_record_detail_application_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/main_card_margin_horizontal"
+            android:layout_column="0"
+            android:text="志願二"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/purchase_record_detail_application_2_shop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/main_card_margin_horizontal"
+                android:layout_column="1"
+                android:text="志願序2店家名稱"/>
+            <TextView
+                android:id="@+id/purchase_record_detail_application_2_meal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/main_card_margin_horizontal"
+                android:layout_column="2"
+                android:text="志願序2餐點名稱"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/purchase_record_detail_application_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/main_card_margin_horizontal"
+            android:layout_column="0"
+            android:text="志願三"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/purchase_record_detail_application_3_shop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/main_card_margin_horizontal"
+                android:layout_column="1"
+                android:text="志願序3店家名稱"/>
+            <TextView
+                android:id="@+id/purchase_record_detail_application_3_meal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/main_card_margin_horizontal"
+                android:layout_column="2"
+                android:text="志願序3餐點名稱"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

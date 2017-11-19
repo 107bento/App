@@ -17,7 +17,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.io.IOException;
@@ -31,9 +30,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
-/**
- * Created by AishaLien on 2017/9/23.
- */
 public class store_menu extends AppCompatActivity{
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
@@ -112,8 +108,6 @@ public class store_menu extends AppCompatActivity{
                         startActivity(intento);
                     }
                 }
-                //如果有執行以下
-                Toast.makeText(getApplicationContext(), "你選擇的是" + list[position].name, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -187,7 +181,7 @@ public class store_menu extends AppCompatActivity{
                 onBackPressed();
                 return true;
             // 按下購物車
-            case R.id.goto_shop_cart:
+            case R.id.menuItem_shoppingCart:
                 Intent intento = new Intent();
                 intento.setClass(store_menu.this, shopping_cart.class);
                 startActivity(intento);

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
     android:parentActivityName：指定回去的那一頁
     android:theme：主題
 -->
@@ -13,7 +12,8 @@
     <!-- 加入網路連線權限 -->
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <!--outOfMemmoryError處理方式(增加系統的內存記憶體容量,不好,治標不治本)
+    <!--
+    outOfMemmoryError處理方式(增加系統的內存記憶體容量,不好,治標不治本)
          android:hardwareAccelerated="false"
          android:largeHeap="true"
     -->
@@ -34,13 +34,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".main_menu"
             android:label="@string/title_activity_main_menu"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".Login">
-        </activity>
+            android:parentActivityName=".Login"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <!-- Points to searchable activity so the whole app can invoke search. -->
         <meta-data
@@ -50,8 +48,8 @@
         <!-- 啟動模式設為 singleTop, 才不會每一次查詢, 都要建立 1 個新的 activity -->
         <activity
             android:name=".search_result"
-            android:launchMode="singleTop"
             android:label="@string/search_result"
+            android:launchMode="singleTop"
             android:parentActivityName=".main_menu"
             android:theme="@style/AppTheme.NoActionBar">
 
@@ -62,84 +60,80 @@
 
             <meta-data
                 android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
+                android:resource="@xml/searchable" />
         </activity>
-
         <activity
             android:name=".profile"
             android:label="@string/profile"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".main_menu">
-        </activity>
-
+            android:parentActivityName=".main_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".profile_modify"
             android:label="@string/profile_modify"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".profile"/>
-
+            android:parentActivityName=".profile"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".order_meal"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".content_main_menu"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".store_menu"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".main_menu"/>
-
+            android:parentActivityName=".main_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".meal_purchase"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".store_menu"/>
-
+            android:parentActivityName=".store_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".application_fillment"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".meal_purchase"/>
-
+            android:parentActivityName=".meal_purchase"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".shopping_cart"
             android:label="@string/shop_cart"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".shopping_cart_modify"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".shopping_cart"/>
-
+            android:parentActivityName=".shopping_cart"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Register"
             android:label="@string/action_register"
-            android:parentActivityName=".Login"/>
-
+            android:parentActivityName=".Login" />
         <activity
             android:name=".goto_add_value"
             android:label="@string/goto_add_value"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".today_meal"
             android:label="@string/myMeal"
-            android:parentActivityName=".main_menu"/>
-
+            android:parentActivityName=".main_menu" />
         <activity
             android:name=".today_meal_detail"
             android:label="@string/deatil"
-            android:parentActivityName=".today_meal"/>
-
+            android:parentActivityName=".today_meal" />
         <activity
             android:name=".purchase_record"
             android:label="@string/purchase_record"
-            android:parentActivityName=".main_menu"/>
-
+            android:parentActivityName=".main_menu" />
         <activity
-            android:name=".purchase_record_detail"
-            android:label="@string/deatil"
+            android:name=".purchase_record_order"
+            android:label="@string/order_deatil"
             android:parentActivityName=".purchase_record" />
+        <activity
+            android:name=".purchase_record_order_detail"
+            android:label="@string/deatil"
+            android:parentActivityName=".purchase_record_order" />
+        <activity
+            android:name=".money_record"
+            android:label="@string/money_record"
+            android:parentActivityName=".main_menu" />
+        <activity
+            android:name=".money_record_content"
+            android:label="@string/deatil"
+            android:parentActivityName=".money_record"/>
     </application>
 
 </manifest>

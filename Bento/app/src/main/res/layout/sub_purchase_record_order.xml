@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--購買紀錄-->
+<!--購買紀錄 order-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ListView
-        android:id="@+id/purchase_record_listview"
+        android:id="@+id/purchase_record_order"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
