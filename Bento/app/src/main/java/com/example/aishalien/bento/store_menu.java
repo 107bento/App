@@ -46,8 +46,10 @@ public class store_menu extends AppCompatActivity{
     private Meal[] list ;
     private int[] piclist;
     private ArrayAdapter<String> listAdapter;
+    /*跟API架接的架構 使用GET後面加上base url後的路徑*/
     public interface Api{
         @GET("shops/{id}")
+        // Call內部為接的資料格式  以及參數Path
         Call<JsonArray> getinfo(@Path("id") int id);
     }
 
@@ -124,18 +126,24 @@ public class store_menu extends AppCompatActivity{
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         // add your other interceptors …
         // add logging as last interceptor
-        httpClient.addInterceptor(logging);  // <-- this is the important line!
+        httpClient.addInterceptor(logging);
+        //建立retrofit網路接口
+        //設定base url
         Retrofit retrofit= new Retrofit.Builder()
                 .baseUrl("http://163.22.17.227/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient.build())
                 .build();
+        //接API
         Api api = retrofit.create(Api.class);
         Call<JsonArray> Model = api.getinfo(store_id);
+        //使用方法為異步 並且呼叫
         Model.enqueue(new Callback<JsonArray>() {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
+                //成功接到 response
                 resource = response.body();
+                //初始化
                 initList();
                 initListView();
             }
@@ -152,6 +160,7 @@ public class store_menu extends AppCompatActivity{
             JsonObject tmp = new JsonObject();
             tmp = resource.get(i).getAsJsonObject();
             list[i] = new Meal();
+            //根據json 架構接入並轉成string
             list[i].ID = tmp.get("meal_id").getAsString();
             list[i].name = tmp.get("meal_name").getAsString();
             mlist[i] = tmp.get("meal_name").getAsString();
