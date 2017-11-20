@@ -3,38 +3,20 @@ package com.example.aishalien.bento;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -45,20 +27,30 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.GET;
+import retrofit2.http.Body;
 import retrofit2.http.Header;
 import retrofit2.http.PATCH;
 
 public class profile_modify extends AppCompatActivity {
     private Toolbar mtoolbar;
 
+    String mAccount, modified_name, old_pwd, new_pwd, check_new_pwd, modified_email, modified_phone;
     String user_id, password, name, money, email, phone;
     static String cookie;
+    JsonObject paramObject;
+
+    public interface PatientInfoAPI{
+        @PATCH("user")
+        Call<JsonObject> update(@Header("Cookie") String userCookie, @Body JsonObject updatedDATA);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sub_profile_modify);
+
+        GlobalVariable User = (GlobalVariable)getApplicationContext();
+        cookie = User.getCookie();
 
         // toolbar
         mtoolbar = (Toolbar) findViewById(R.id.toolbar_profile_modify);
@@ -81,7 +73,6 @@ public class profile_modify extends AppCompatActivity {
         JsonParser jsonParser = new JsonParser();
         JsonObject gsonObject = (JsonObject)jsonParser.parse(jsonString);
         initText(gsonObject);
-
     }
 
     @Override
@@ -103,9 +94,11 @@ public class profile_modify extends AppCompatActivity {
 
             // 點擊 menu 上的 ok
             case R.id.action_ok:
-                // 檢查 > patch > back
-                if (checkOK()){
-                    onBackPressed();
+                // 檢查 > patch > 資料映射回去
+                if (check()) {
+                    Intent intent = new Intent(profile_modify.this, profile.class);
+                    intent.putExtra("jsonResult", paramObject.toString());
+                    startActivityForResult(intent, RESULT_OK);
                 }
                 return true;
         }
@@ -113,28 +106,28 @@ public class profile_modify extends AppCompatActivity {
     }
 
     /**
-     * 修改個人資料
-     * 還沒patch回資料庫
+     * 修改個人資料：檢查後patch
      * @return
      */
-    private boolean checkOK() {
-        boolean isOk = false;
+    private boolean check() {
+        boolean flag = false;
 
         // 取得頁面資料
-        String mAccount = (((TextView) findViewById(R.id.account)).getText()).toString();
-        String modified_name = (((EditText) findViewById(R.id.name)).getText()).toString();
-        String old_pwd = (((EditText) findViewById(R.id.old_password)).getText()).toString();
-        String new_pwd = (((EditText) findViewById(R.id.new_password)).getText()).toString();
-        String check_new_pwd = (((EditText) findViewById(R.id.check_new_pwd)).getText()).toString();
-        String modified_email = (((EditText) findViewById(R.id.email)).getText()).toString();
-        String modified_phone = (((EditText) findViewById(R.id.phone)).getText()).toString();
+        mAccount = (((TextView) findViewById(R.id.proMod_account)).getText()).toString();
+        modified_name = (((EditText) findViewById(R.id.new_name)).getText()).toString();
+        old_pwd = (((EditText) findViewById(R.id.old_password)).getText()).toString();
+        new_pwd = (((EditText) findViewById(R.id.new_password)).getText()).toString();
+        check_new_pwd = (((EditText) findViewById(R.id.check_new_pwd)).getText()).toString();
+        modified_email = (((EditText) findViewById(R.id.new_email)).getText()).toString();
+        modified_phone = (((EditText) findViewById(R.id.new_phone)).getText()).toString();
 
         /**
          * 若有修改密碼:
          * 1. 檢查舊密碼是否正確
          * 2. double check 新密碼
+         * 3. 更新密碼
          */
-        if ( !(old_pwd.equals("")) || !(new_pwd.equals("")) || !(check_new_pwd.equals("")) ) {
+        if ( !(old_pwd.isEmpty()) || !(new_pwd.isEmpty()) || !(check_new_pwd.isEmpty()) ) {
 
             // 舊密碼錯誤
             if ( !(old_pwd.equals(password)) ) {
@@ -145,7 +138,7 @@ public class profile_modify extends AppCompatActivity {
                         // 按下ok返回畫面
                         .setPositiveButton(R.string.ok, null)
                         .show();
-                return isOk;
+                return flag;
 
             // 新密碼不相符
             } else if ( !(new_pwd.equals(check_new_pwd)) ) {
@@ -156,17 +149,75 @@ public class profile_modify extends AppCompatActivity {
                         // 按下ok返回畫面
                         .setPositiveButton(R.string.ok, null)
                         .show();
-                return isOk;
+                return flag;
+
+            } else {
+                password = new_pwd;
             }
         }
 
         /**
          * patch回資料庫
          */
-        isOk = true;
+        try {
+            patchJson();
+            flag = true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+        return flag;
+    }
 
-        return isOk;
+    /**
+     * patch
+     */
+    public void patchJson() throws IOException {
+        /*創建一個retrofit*/
+        /*OKHTTP*/
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        // set your desired log level
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        // add your other interceptors …
+        // add logging as last interceptor
+        httpClient.addInterceptor(logging);
+        //建立retrofit網路接口
+        //設定base url
+        Retrofit retrofit= new Retrofit.Builder()
+                .baseUrl("http://163.22.17.227/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient.build())
+                .build();
+        //接API
+        PatientInfoAPI patchService =  retrofit.create(PatientInfoAPI.class);
+
+        // 要patch的資料
+        paramObject = new JsonObject();
+        paramObject.addProperty("name", modified_name);
+        paramObject.addProperty("password", password);
+        paramObject.addProperty("phone", modified_phone);
+        paramObject.addProperty("email", modified_email);
+
+        //Passing the tableId along with the data to update
+        Call<JsonObject> Model = patchService.update(cookie, paramObject);
+        //使用方法為異步 並且呼叫
+        Model.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                //成功接到 response
+
+                if (response.code() == 200){
+                    Toast.makeText(profile_modify.this, "修改成功！", Toast.LENGTH_SHORT).show();
+                } else if (response.code() == 400){
+                    Toast.makeText(profile_modify.this, "修改失敗", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Log.v("Error", t.getLocalizedMessage().toString());
+            }
+        });
     }
 
     private void initText(JsonObject object) {
@@ -180,10 +231,10 @@ public class profile_modify extends AppCompatActivity {
         phone = object.get("phone").getAsString();
 
         // 找到元件
-        TextView mAccount = (TextView) findViewById(R.id.account) ;
-        EditText mName = (EditText) findViewById(R.id.name);
-        EditText mEmail = (EditText) findViewById(R.id.email);
-        EditText mPhone = (EditText) findViewById(R.id.phone);
+        TextView mAccount = (TextView) findViewById(R.id.proMod_account) ;
+        EditText mName = (EditText) findViewById(R.id.new_name);
+        EditText mEmail = (EditText) findViewById(R.id.new_email);
+        EditText mPhone = (EditText) findViewById(R.id.new_phone);
 
         // 設定文字
         mAccount.setText(user_id);

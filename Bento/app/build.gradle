@@ -43,6 +43,8 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     // 數量控件
     compile 'com.github.nukc.amountview:library:1.0'
+    // 表單驗證
+    compile 'com.mobsandgeeks:android-saripaar:2.0.2'
 }
 // 使用glide
 repositories {

@@ -41,7 +41,7 @@
             android:layout_margin="@dimen/text_margin"
             android:text="@string/profile_account" />
         <TextView
-            android:id="@+id/account"
+            android:id="@+id/proMod_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin" />
@@ -53,7 +53,7 @@
             android:layout_margin="@dimen/text_margin"
             android:text="@string/profile_name" />
         <EditText
-            android:id="@+id/name"
+            android:id="@+id/new_name"
             android:layout_width="@dimen/profile_editText_width"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin" />
@@ -65,7 +65,7 @@
             android:layout_margin="@dimen/text_margin"
             android:text="@string/profile_mail" />
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/new_email"
             android:layout_width="@dimen/profile_editText_width"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin" />
@@ -77,7 +77,7 @@
             android:layout_margin="@dimen/text_margin"
             android:text="@string/profile_phone" />
         <EditText
-            android:id="@+id/phone"
+            android:id="@+id/new_phone"
             android:layout_width="@dimen/profile_editText_width"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin" />
