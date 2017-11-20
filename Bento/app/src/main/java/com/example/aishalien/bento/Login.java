@@ -120,8 +120,8 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
         mSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(final View view) {
-                etEmail = (EditText) findViewById(R.id.email);
-                etPassword = (EditText) findViewById(R.id.password);
+                etEmail = (EditText) findViewById(R.id.login_email);
+                etPassword = (EditText) findViewById(R.id.login_password);
 
                 /*開發用 之後請刪除*/
                 //Intent intent = new Intent();
@@ -149,6 +149,8 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                                 User.setCookie(cookie);
                                 Intent intent = new Intent();
                                 intent.setClass(Login.this, main_menu.class);
+                                //傳個username
+                                intent.putExtra("username", etEmail.getEditableText().toString());
                                 startActivity(intent);
                             }
                             else {

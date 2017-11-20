@@ -51,6 +51,7 @@
     <dimen name="color_img_width_height">16dp</dimen>
 
     <dimen name="listview_item_height">100dp</dimen>
+    <dimen name="profile_editText_width">200dp</dimen>
 
 
 </resources>
