@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import java.io.IOException;
 
@@ -85,10 +86,10 @@ public class profile extends AppCompatActivity {
 
     // 找到元件
     private void getView() {
-        tv_account = (TextView) findViewById(R.id.account);
-        tv_name = (TextView) findViewById(R.id.name);
-        tv_email = (TextView) findViewById(R.id.email);
-        tv_phone = (TextView) findViewById(R.id.phone);
+        tv_account = (TextView) findViewById(R.id.profile_account);
+        tv_name = (TextView) findViewById(R.id.profile_name);
+        tv_email = (TextView) findViewById(R.id.profile_email);
+        tv_phone = (TextView) findViewById(R.id.profile_phone);
         tv_remain = (TextView) findViewById(R.id.remain);
     }
 
@@ -108,10 +109,10 @@ public class profile extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_edit) { // 點擊 menu 上的編輯
-            String p_account = (((TextView) findViewById(R.id.account)).getText()).toString();
-            String p_name = (((TextView) findViewById(R.id.name)).getText()).toString();
-            String p_email = (((TextView) findViewById(R.id.email)).getText()).toString();
-            String p_phone = (((TextView) findViewById(R.id.phone)).getText()).toString();
+            String p_account = (((TextView) findViewById(R.id.profile_account)).getText()).toString();
+            String p_name = (((TextView) findViewById(R.id.profile_name)).getText()).toString();
+            String p_email = (((TextView) findViewById(R.id.profile_email)).getText()).toString();
+            String p_phone = (((TextView) findViewById(R.id.profile_phone)).getText()).toString();
 
             // 傳jsonObject
             Intent intent = new Intent();
@@ -177,6 +178,24 @@ public class profile extends AppCompatActivity {
          tv_email.setText(email);
          tv_phone.setText(phone);
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        switch (requestCode)
+        {
+            case RESULT_OK:
+                // 接收 profile_modify 的資料
+                Intent intent = getIntent();
+                String jsonString = intent.getStringExtra("jsonResult");
+
+                // 重新serialize 傳進來的 json.toString
+                JsonParser jsonParser = new JsonParser();
+                JsonObject gsonObject = (JsonObject)jsonParser.parse(jsonString);
+                initText(gsonObject);
+                break;
+        }
     }
 }
 
