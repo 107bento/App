@@ -42,7 +42,7 @@ public class purchase_record extends AppCompatActivity {
     String[] listTime ;
     String[] listFromMeal;
     String[] listFromNum;
-    String[] codeStatus =  {"訂單確認中","已成單", "已領取", "流單"};
+    String[] codeStatus =  {"訂單確認中,未銷帳", "已成單", "已領取", "流單"};
     String[] listStatus;
     JsonArray resource;
     JsonArray mJsonArray;//要傳到下一頁的array資料

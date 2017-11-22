@@ -22,7 +22,7 @@
         android:orientation="vertical">
 
         <!--顏色指示燈RelativeLayout-->
-        <include layout="@layout/content_main_colorball"/>
+        <!--<include layout="@layout/content_main_colorball"/>-->
 
         <!--店家recycler view-->
         <android.support.v7.widget.RecyclerView
