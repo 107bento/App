@@ -39,7 +39,7 @@ public class GlobalVariable extends Application {
         tmpcart.addProperty("wish_id_1",wish_id_1);
         tmpcart.addProperty("wish_id_2",wish_id_2);
         tmpcart.addProperty("wish_id_3",wish_id_3);
-        tmpcart.addProperty("random_pic",random_pic);
+        tmpcart.addProperty("random_pick",random_pic);
         details.add(tmpcart);
 
     }
@@ -60,15 +60,18 @@ public class GlobalVariable extends Application {
 //                .putString("cart", cartString)
 //                .commit();
 //    }
-    public JsonArray remCart(){
+    public JsonObject sendCart(){
         //先放入最外層的cart
         cart_item.addProperty("total",total);
         //放入array中
-        shopping_cart.add(cart_item);
-        shopping_cart.add(details);
-        return shopping_cart;
+        cart_item.add("details",details);
+        return cart_item;
     }
-    public void editCart(){
+    public void remCart(int index){
+        details.remove(index);
+        ch_details.remove(index);
+    }
+    public void editCart(int index){
 
     }
 }

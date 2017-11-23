@@ -33,7 +33,7 @@ public class meal_purchase extends AppCompatActivity {
         setContentView(R.layout.activity_meal_purchase);
         //找到元件
         value= (TextView) findViewById(R.id.meal_purchase_value);
-        num= (TextView) findViewById(R.id.meal_purchase_num);
+        //num= (TextView) findViewById(R.id.count);
         ImageView img= (ImageView) findViewById(R.id.meal_purchase_img);
         //接收傳過來的東西
         Bundle bundle = getIntent().getExtras();

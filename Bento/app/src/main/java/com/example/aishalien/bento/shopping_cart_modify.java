@@ -18,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.nukc.amountview.AmountView;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -36,6 +37,7 @@ public class shopping_cart_modify extends AppCompatActivity {
     private Toolbar mtoolbar;
     //設定檔 from application
     String mMeal;
+    int counter; //數量
     JsonArray resource;
     JsonObject tmp;
     String[] store;//志願序用設定店家adapter
@@ -113,6 +115,16 @@ public class shopping_cart_modify extends AppCompatActivity {
             random_pick = random_pick%2;
             }
         });
+        // 數量控件
+        AmountView mAmountView = (AmountView) findViewById(R.id.amountView);
+        mAmountView.setGoods_storage(99);  //设置库存数量
+        mAmountView.setListener(new AmountView.OnAmountChangeListener() {
+            @Override
+            public void onAmountChange(View view, int value) {
+                //  紀錄數量
+                counter = value;
+            }
+        });
     }
 
     public void initimgbtn(){
@@ -136,7 +148,6 @@ public class shopping_cart_modify extends AppCompatActivity {
     }
     public int set_store_init(int position,int spin){
         String tmp_id[] = {"swish_id1","swish_id2","swish_id3"};
-        System.out.println(information.get(position).getAsJsonObject().get(tmp_id[spin]).getAsString());
         for(int i=0;i<storeID.length;i++){
             if(information.get(position).getAsJsonObject().get(tmp_id[spin]).getAsString().equals(storeID[i])){
                 return i;
