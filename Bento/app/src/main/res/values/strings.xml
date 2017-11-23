@@ -98,5 +98,6 @@
     <string name="profile_remain">餘額</string>
     <string name="pwd_error">密碼錯誤！</string>
     <string name="pwd_error_check">密碼不相符！</string>
+    <string name="profile_block">未銷帳</string>
 
 </resources>

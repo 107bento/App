@@ -226,7 +226,6 @@ public class profile_modify extends AppCompatActivity {
         user_id = object.get("user_id").getAsString();
         password = object.get("password").getAsString();
         name = object.get("name").getAsString();
-        money = object.get("money").getAsString();
         email = object.get("email").getAsString();
         phone = object.get("phone").getAsString();
 
