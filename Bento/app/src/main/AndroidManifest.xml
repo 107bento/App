@@ -105,7 +105,7 @@
         <activity
             android:name=".goto_add_value"
             android:label="@string/goto_add_value"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:parentActivityName=".main_menu"/>
         <activity
             android:name=".today_meal"
             android:label="@string/myMeal"
