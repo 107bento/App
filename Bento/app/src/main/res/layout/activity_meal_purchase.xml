@@ -66,21 +66,46 @@
                 <TextView
                     android:id="@+id/count"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_margin="@dimen/text_margin"
                     android:text="數量"
-                    android:textSize="34sp" />
+                    android:textSize="34sp"/>
 
-                <com.github.nukc.amountview.AmountView
-                    android:id="@+id/amountView"
+                <!--
+                    AmountView
+                    屬性說明：
+                    btnTextSize：左右按鈕字的大小
+                    tvTextSize：中間字的大小
+                    btnWidth：左右2边+-按钮的宽度
+                    tvWidth：中间TextView的宽度
+                    currentValue：目前顯示的值
+                    maxValue：最大值
+                    minValue：最小值
+                -->
+                <com.example.aishalien.bento.AmountView
+                    android:id="@+id/amountview1"
                     android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:layout_centerInParent="true"
+                    android:layout_height="40dp"
+                    android:layout_margin="@dimen/text_margin"
+                    android:layout_toRightOf="@id/count"
                     app:btnTextSize="20sp"
                     app:btnWidth="36dp"
                     app:tvWidth="50dp"
-                    android:layout_toRightOf="@id/count"
-                    android:layout_margin="@dimen/text_margin"/>
+                    app:currentValue="5"
+                    app:maxValue="99"
+                    app:minValue="3" />
+
+
+                <!--<com.github.nukc.amountview.AmountView-->
+                    <!--android:id="@+id/amountView"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="36dp"-->
+                    <!--android:layout_centerInParent="true"-->
+                    <!--app:btnTextSize="20sp"-->
+                    <!--app:btnWidth="36dp"-->
+                    <!--app:tvWidth="50dp"-->
+                    <!--android:layout_toRightOf="@id/count"-->
+                    <!--android:layout_margin="@dimen/text_margin"/>-->
 
                 <!--<LinearLayout-->
                     <!--android:layout_toRightOf="@id/count"-->
