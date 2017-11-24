@@ -14,14 +14,12 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.github.nukc.amountview.AmountView;
-
+import android.widget.Toast;
 
 public class meal_purchase extends AppCompatActivity {
     TextView value,num;
     String mMeal;
-    int counter = 0; //數量
+    int counter; //數量
     private Toolbar mtoolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +50,15 @@ public class meal_purchase extends AppCompatActivity {
         // 設置啟用toolbar
         setSupportActionBar(mtoolbar);
 
+
         // 數量控件
-        AmountView mAmountView = (AmountView) findViewById(R.id.amountView);
-        mAmountView.setGoods_storage(99);  //设置库存数量
-        mAmountView.setListener(new AmountView.OnAmountChangeListener() {
+        AmountView amountView1 = (AmountView) findViewById(R.id.amountview1);
+        amountView1.setMaxValue(20); // 設置最大數量
+        amountView1.setMinValue(5); // 設置最小值
+        amountView1.setCurrentValue(12); //設置目前要顯示的數量
+        amountView1.setListener(new AmountView.OnAmountChangeListener() {
             @Override
-            public void onAmountChange(View view, int amount) {
+            public void onAmountChange(int amount) {
                 //  紀錄數量
                 counter = amount;
             }

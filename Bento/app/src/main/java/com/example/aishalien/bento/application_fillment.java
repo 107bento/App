@@ -61,6 +61,11 @@ public class application_fillment extends AppCompatActivity {
         // 接收 meal_purchase 過來的資料
         Bundle bundle = getIntent().getExtras();
         mMeal = bundle.getString("meal");
+
+        int count = bundle.getInt("amount");
+        Toast.makeText(this, "安安你傳了數量＝"+ String.valueOf(count), Toast.LENGTH_SHORT).show();
+
+
          // toolbar
         mtoolbar = (Toolbar) findViewById(R.id.tb_toolbar);
         // 設置標題
