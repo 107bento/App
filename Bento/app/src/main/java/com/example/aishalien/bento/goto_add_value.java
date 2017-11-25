@@ -1,7 +1,10 @@
 package com.example.aishalien.bento;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -100,7 +103,7 @@ public class goto_add_value extends AppCompatActivity {
             }
             // post
             try {
-                postStore(x);
+                postStore(x, arg);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -108,7 +111,7 @@ public class goto_add_value extends AppCompatActivity {
     }
 
     // post
-    private void postStore(int value) throws IOException {
+    private void postStore(int value, final View view) throws IOException {
         /*創建一個retrofit*/
         /*OKHTTP*/
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -140,10 +143,19 @@ public class goto_add_value extends AppCompatActivity {
                 //成功接到 response
 
                 if (response.code() == 200) {
-//                    Snackbar.make(view, "儲值成功！", Snackbar.LENGTH_LONG).show();
-                    Toast.makeText(goto_add_value.this, "儲值成功！", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(view, "儲值成功！", Snackbar.LENGTH_LONG)
+                            .setAction("前往查看餘額", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent();
+                                    intent.setClass(goto_add_value.this, profile.class);
+                                    startActivity(intent);
+                                }
+                            }).show();
+
                 } else if (response.code() == 400) {
-                    Toast.makeText(goto_add_value.this, "儲值失敗", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(view, "儲值失敗", Snackbar.LENGTH_LONG).show();
+//                    Toast.makeText(goto_add_value.this, "儲值失敗", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override

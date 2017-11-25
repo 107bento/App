@@ -29,8 +29,8 @@ import retrofit2.http.Header;
 
 public class profile extends AppCompatActivity {
 
-    TextView tv_account,tv_name, tv_remain, tv_email, tv_phone;
-    String user_id, password, name, money, email, phone;
+    TextView tv_account,tv_name, tv_email, tv_phone, tv_remain, tv_block;
+    String user_id, password, name, email, phone, remain, block;
 
     JsonObject resource;
     static String cookie;
@@ -90,7 +90,8 @@ public class profile extends AppCompatActivity {
         tv_name = (TextView) findViewById(R.id.profile_name);
         tv_email = (TextView) findViewById(R.id.profile_email);
         tv_phone = (TextView) findViewById(R.id.profile_phone);
-        tv_remain = (TextView) findViewById(R.id.remain);
+        tv_remain = (TextView) findViewById(R.id.profile_remain);
+        tv_block = (TextView) findViewById(R.id.profile_block);
     }
 
     @Override
@@ -167,16 +168,18 @@ public class profile extends AppCompatActivity {
          user_id = object.get("user_id").getAsString();
          password = object.get("password").getAsString();
          name = object.get("name").getAsString();
-         money = object.get("money").getAsString();
          email = object.get("email").getAsString();
          phone = object.get("phone").getAsString();
+         remain = object.get("remain").getAsString();
+         block = object.get("block").getAsString();
 
          // 設定文字
          tv_account.setText(user_id);
          tv_name.setText(name);
-         tv_remain.setText("$" + money);
          tv_email.setText(email);
          tv_phone.setText(phone);
+         tv_remain.setText("$ " + remain);
+         tv_block.setText("$ " + block);
 
     }
 
