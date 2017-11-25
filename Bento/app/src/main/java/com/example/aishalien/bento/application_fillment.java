@@ -80,7 +80,11 @@ public class application_fillment extends AppCompatActivity {
         meal_id = bundle.getString("meal_id");
         meal_value = bundle.getInt("value");
         amount = bundle.getInt("amount");
-        // toolbar
+
+        int count = bundle.getInt("amount");
+        Toast.makeText(this, "安安你傳了數量＝"+ String.valueOf(count), Toast.LENGTH_SHORT).show();
+
+         // toolbar
         mtoolbar = (Toolbar) findViewById(R.id.tb_toolbar);
         // 設置標題
         mtoolbar.setTitle(mMeal);

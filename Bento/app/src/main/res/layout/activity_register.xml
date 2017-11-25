@@ -35,7 +35,7 @@
                 android:hint="Account">
 
                 <AutoCompleteTextView
-                    android:id="@+id/account"
+                    android:id="@+id/register_account"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:imeOptions="actionNext"
@@ -53,7 +53,7 @@
                 app:passwordToggleEnabled="true">
 
                 <EditText
-                    android:id="@+id/password"
+                    android:id="@+id/register_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:imeOptions="actionNext"
@@ -73,7 +73,7 @@
                 app:passwordToggleEnabled="true">
 
                 <EditText
-                    android:id="@+id/name"
+                    android:id="@+id/register_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:imeOptions="actionNext"
@@ -90,7 +90,7 @@
                 app:passwordToggleEnabled="true">
 
                 <EditText
-                    android:id="@+id/phone"
+                    android:id="@+id/register_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:imeOptions="actionNext"
@@ -108,11 +108,12 @@
                 app:passwordToggleEnabled="true">
 
                 <EditText
-                    android:id="@+id/email"
+                    android:id="@+id/register_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:imeOptions="actionNext"
-                    android:maxLines="1" />
+                    android:maxLines="1"
+                    android:inputType="textEmailAddress"/>
             </android.support.design.widget.TextInputLayout>
 
 

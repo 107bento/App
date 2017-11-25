@@ -22,6 +22,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.JsonArray;
@@ -57,7 +58,6 @@ public class main_menu extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-        Bundle bundle = getIntent().getExtras();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         // 設置狀態欄透明
@@ -93,8 +93,14 @@ public class main_menu extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        // 監聽是否按下nav_header
+        // 接住username
+        String username = getIntent().getStringExtra("username");
+        // username設置
         View navHeaderView = navigationView.inflateHeaderView(R.layout.nav_header_main_menu);
+        TextView navName = (TextView)navHeaderView.findViewById(R.id.nav_user_name);
+        navName.setText(username);
+
+        // 監聽是否按下nav_header
         navHeaderView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

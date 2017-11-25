@@ -30,7 +30,7 @@
     <!--dialog-->
     <string name="want_to_logout">確定要登出？</string>
     <string name="cancel">取消</string>
-    <string name="ok">OK!</string>
+    <string name="ok">OK</string>
     <!--側拉選單-->
     <string name="announcement">公告欄</string>
     <string name="goto_add_value">儲值</string>
@@ -95,5 +95,9 @@
     <string name="meal_detail">餐點詳細</string>
     <string name="deatil">詳細資訊</string>
     <string name="order_deatil">訂單資料</string>
+    <string name="profile_remain">餘額</string>
+    <string name="pwd_error">密碼錯誤！</string>
+    <string name="pwd_error_check">密碼不相符！</string>
+    <string name="profile_block">未銷帳</string>
 
 </resources>
