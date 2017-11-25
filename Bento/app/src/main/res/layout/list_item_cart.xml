@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--購物車 item內容-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/listview_item_height"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/padding_top"
+    android:paddingLeft="@dimen/padding_left_and_right"
+    android:paddingRight="@dimen/padding_left_and_right"
+    android:paddingBottom="@dimen/padding_top">
+    <ImageView
+        android:id="@+id/store_pic"
+        android:layout_width="82dp"
+        android:layout_height="82dp"
+        android:paddingRight="@dimen/padding_left_and_right"
+        android:paddingLeft="@dimen/padding_left_and_right"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"/>
+
+    <LinearLayout
+        android:layout_width="194dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1">
+        <TextView
+            android:id="@+id/store_name"
+            android:layout_weight="0.6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:layout_gravity="center_vertical"/>
+        <TextView
+            android:id="@+id/meal_name"
+            android:layout_weight="0.2"
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_gravity="center_vertical"/>
+        <TextView
+            android:id="@+id/meal_num"
+            android:layout_weight="0.2"
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/ButtonCart"
+        android:layout_width="82dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:focusable="false"
+        android:text=" 刪除 " />
+</LinearLayout>

@@ -13,6 +13,8 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -21,6 +23,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -38,9 +41,13 @@ public class application_fillment extends AppCompatActivity {
     String mMeal;
     JsonArray resource;
     JsonObject tmp;
-    final String[] lunch = {"雞腿飯", "魯肉飯", "排骨飯", "水餃", "陽春麵"};
-    String[] store;//設定店家
-    String[] meal;//設定店家 meal
+    String[] store;//志願序用設定店家adapter
+    String[] storeID;//志願序用設定店家ID
+    String store_name;//哪個店家的餐點
+    String store_name_id;//
+    String[] meal_id1;//設定餐點ID
+    String[] meal_id2;//設定餐點ID
+    String[] meal_id3;//設定餐點ID
     //下拉選項元件宣告(店家)
     Spinner spinnerS1;
     Spinner spinnerS2;
@@ -48,6 +55,13 @@ public class application_fillment extends AppCompatActivity {
     Spinner spinnerM1;
     Spinner spinnerM2;
     Spinner spinnerM3;
+    //放入購物車的元素
+    int random_pick = 0;
+    int amount;
+    int meal_value;
+    String meal_id;
+    String swish_id[] = {"1","1","1"};
+    String wish_id[] = {"1","1","1"};
     public interface Api{
         @GET("shops/all")
         Call<JsonArray> getinfo();
@@ -61,10 +75,14 @@ public class application_fillment extends AppCompatActivity {
         // 接收 meal_purchase 過來的資料
         Bundle bundle = getIntent().getExtras();
         mMeal = bundle.getString("meal");
+        store_name= bundle.getString("store");
+        store_name_id= bundle.getString("store_name_id");
+        meal_id = bundle.getString("meal_id");
+        meal_value = bundle.getInt("value");
+        amount = bundle.getInt("amount");
 
         int count = bundle.getInt("amount");
         Toast.makeText(this, "安安你傳了數量＝"+ String.valueOf(count), Toast.LENGTH_SHORT).show();
-
 
          // toolbar
         mtoolbar = (Toolbar) findViewById(R.id.tb_toolbar);
@@ -81,6 +99,16 @@ public class application_fillment extends AppCompatActivity {
         setSupportActionBar(mtoolbar);
         // 設置返回按鍵作用
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //監聽是否要電腦隨機選擇
+        CheckBox autorandom = (CheckBox)findViewById(R.id.checkBox);
+        autorandom.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+                  random_pick++;
+                  random_pick = random_pick%2;
+              }
+            }
+        );
     }
 
     // 完成按鈕
@@ -89,20 +117,15 @@ public class application_fillment extends AppCompatActivity {
         btn.setOnClickListener(new ImageButton.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                // 建立一個Bundle
-//                Bundle bundle = new Bundle();
-//                bundle.putString("meal",mMeal);
-//                Intent intento = new Intent();
-//                intento.setClass(application_fillment.this, shopping_cart.class);
-//                // 將bundle傳入
-//                intento.putExtras(bundle);
-//                startActivity(intento);
-
                 // 抓取頁面資料，保存到本地端（購物車資料）
-
+                GlobalVariable User = (GlobalVariable)getApplicationContext();
+                User.addCart(meal_id,amount,amount*meal_value,wish_id[0],wish_id[1],wish_id[2],random_pick);
+                User.addInfo(store_name,store_name_id,amount,mMeal,swish_id[0],swish_id[1],swish_id[2],meal_value);
+                System.out.println(mMeal+"志願序"+swish_id[0]+" "+swish_id[1]+" "+swish_id[2]+" ");
                 // 提示訊息
                 Toast toast = Toast.makeText(application_fillment.this,
                         "已加入購物車", Toast.LENGTH_LONG);
+                System.out.println("User : "+User.details);
                 toast.show();
                 onBackPressed();
             }
@@ -117,13 +140,13 @@ public class application_fillment extends AppCompatActivity {
     }
     public void setshopOption(){
         spinnerS1 = (Spinner)findViewById(R.id.store_spinner01);
-        ArrayAdapter<String> shopList = new ArrayAdapter<>(application_fillment.this, android.R.layout.simple_spinner_dropdown_item,store);
+        final ArrayAdapter<String> shopList = new ArrayAdapter<>(application_fillment.this, android.R.layout.simple_spinner_dropdown_item,store);
         spinnerS1.setAdapter(shopList);
         //監聽事件
         spinnerS1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(application_fillment.this, "你選的是" + store[position], Toast.LENGTH_SHORT).show();
+                swish_id[0] = storeID[position];
                 setmealOption(R.id.store_spinner01,position);
             }
             @Override
@@ -132,13 +155,13 @@ public class application_fillment extends AppCompatActivity {
             }
         });
         spinnerS2 = (Spinner)findViewById(R.id.store_spinner02);
-        ArrayAdapter<String> shopList2 = new ArrayAdapter<>(application_fillment.this, android.R.layout.simple_spinner_dropdown_item,store);
+        final ArrayAdapter<String> shopList2 = new ArrayAdapter<>(application_fillment.this, android.R.layout.simple_spinner_dropdown_item,store);
         spinnerS2.setAdapter(shopList2);
         //監聽事件
         spinnerS2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(application_fillment.this, "你選的是" + store[position], Toast.LENGTH_SHORT).show();
+                swish_id[1] = storeID[position];
                 setmealOption(R.id.store_spinner02,position);
             }
             @Override
@@ -147,13 +170,13 @@ public class application_fillment extends AppCompatActivity {
             }
         });
         spinnerS3 = (Spinner)findViewById(R.id.store_spinner03);
-        ArrayAdapter<String> shopList3 = new ArrayAdapter<>(application_fillment.this, android.R.layout.simple_spinner_dropdown_item,store);
+        final ArrayAdapter<String> shopList3 = new ArrayAdapter<>(application_fillment.this, android.R.layout.simple_spinner_dropdown_item,store);
         spinnerS3.setAdapter(shopList3);
         //監聽事件
         spinnerS3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(application_fillment.this, "你選的是" + store[position], Toast.LENGTH_SHORT).show();
+                swish_id[2] =storeID[position];
                 setmealOption(R.id.store_spinner03,position);
             }
             @Override
@@ -168,32 +191,74 @@ public class application_fillment extends AppCompatActivity {
             //第一家店的餐點志願序
             spinnerM1 = (Spinner)findViewById(R.id.meal_spinner01);
             JsonArray tmpmeal1 = resource.get(storeID).getAsJsonObject().get("meals").getAsJsonArray();
-            meal= new String[tmpmeal1.size()];
+            String[] meal= new String[tmpmeal1.size()];
+            meal_id1 = new String[tmpmeal1.size()];
             for(int i=0;i<tmpmeal1.size();i++){
                 meal[i] =tmpmeal1.get(i).getAsJsonObject().get("meal_name").getAsString();
+                meal_id1[i] = tmpmeal1.get(i).getAsJsonObject().get("meal_id").getAsString();
             }
             ArrayAdapter<String> mealList1 = new ArrayAdapter<>(application_fillment.this, android.R.layout.simple_spinner_dropdown_item,meal);
             spinnerM1.setAdapter(mealList1);
+            //監聽事件
+            spinnerM1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    wish_id[0] = meal_id1[position];
+                    setmealOption(R.id.meal_spinner01,position);
+                }
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
         }else if(rid==R.id.store_spinner02||rid == -1){
             //第二家店的第一個餐點志願序
-                    spinnerM2 = (Spinner)findViewById(R.id.meal_spinner02);
+            spinnerM2 = (Spinner)findViewById(R.id.meal_spinner02);
             JsonArray tmpmeal2 = resource.get(storeID).getAsJsonObject().get("meals").getAsJsonArray();
-            meal= new String[tmpmeal2.size()];
+            String[] meal= new String[tmpmeal2.size()];
+            meal_id2 = new String[tmpmeal2.size()];
             for(int i=0;i<tmpmeal2.size();i++){
                 meal[i] =tmpmeal2.get(i).getAsJsonObject().get("meal_name").getAsString();
+                meal_id2[i] = tmpmeal2.get(i).getAsJsonObject().get("meal_id").getAsString();
             }
             ArrayAdapter<String> mealList2 = new ArrayAdapter<>(application_fillment.this, android.R.layout.simple_spinner_dropdown_item,meal);
             spinnerM2.setAdapter(mealList2);
+            //監聽事件
+            spinnerM2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    wish_id[1] = meal_id2[position];
+                    setmealOption(R.id.meal_spinner02,position);
+                }
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
         }else if(rid==R.id.store_spinner03||rid == -1){
             //第三家店的第一個餐點志願序
             spinnerM3 = (Spinner)findViewById(R.id.meal_spinner03);
             JsonArray tmpmeal3 = resource.get(storeID).getAsJsonObject().get("meals").getAsJsonArray();
-            meal= new String[tmpmeal3.size()];
+            String[] meal= new String[tmpmeal3.size()];
+            meal_id3 = new String[tmpmeal3.size()];
             for(int i=0;i<tmpmeal3.size();i++){
                 meal[i] =tmpmeal3.get(i).getAsJsonObject().get("meal_name").getAsString();
+                meal_id3[i] = tmpmeal3.get(i).getAsJsonObject().get("meal_id").getAsString();
             }
             ArrayAdapter<String> mealList3 = new ArrayAdapter<>(application_fillment.this, android.R.layout.simple_spinner_dropdown_item,meal);
             spinnerM3.setAdapter(mealList3);
+            //監聽事件
+            spinnerM3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    wish_id[2] = meal_id3[position];
+                    Toast.makeText(application_fillment.this, "你選的一" +  wish_id[0]+"二."+ wish_id[1]+"三."+ wish_id[2], Toast.LENGTH_SHORT).show();
+                    setmealOption(R.id.meal_spinner03,position);
+                }
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                }
+            });
         }
     }
     public void getJson() throws IOException {
@@ -218,10 +283,12 @@ public class application_fillment extends AppCompatActivity {
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                 resource = response.body().getAsJsonArray();
                 store = new String[resource.size()];
+                storeID = new String[resource.size()];
                 for(int i=0;i<resource.size();i++){
                     tmp = new JsonObject();
                     tmp = resource.get(i).getAsJsonObject();
                     store[i] =tmp.get("shop_name").getAsString();
+                    storeID[i] =tmp.get("shop_id").getAsString();
                 }
                 //設定店家選項
                 setshopOption();
@@ -257,7 +324,6 @@ public class application_fillment extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_normal, menu);
         return true;
