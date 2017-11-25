@@ -38,7 +38,8 @@
             android:name=".main_menu"
             android:label="@string/title_activity_main_menu"
             android:parentActivityName=".Login"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"/>
 
         <!-- Points to searchable activity so the whole app can invoke search. -->
         <meta-data
