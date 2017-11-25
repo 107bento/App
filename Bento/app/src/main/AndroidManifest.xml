@@ -73,9 +73,6 @@
             android:parentActivityName=".profile"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".order_meal"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".content_main_menu"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

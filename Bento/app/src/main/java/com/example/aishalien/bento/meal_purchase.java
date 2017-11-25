@@ -18,7 +18,11 @@ import android.widget.Toast;
 
 public class meal_purchase extends AppCompatActivity {
     TextView value,num;
+    String store;
+    String store_id;
     String mMeal;
+    String meal_id;
+    int meal_value;
     int counter; //數量
     private Toolbar mtoolbar;
     @Override
@@ -27,12 +31,16 @@ public class meal_purchase extends AppCompatActivity {
         setContentView(R.layout.activity_meal_purchase);
         //找到元件
         value= (TextView) findViewById(R.id.meal_purchase_value);
-        num= (TextView) findViewById(R.id.meal_purchase_num);
+        //num= (TextView) findViewById(R.id.count);
         ImageView img= (ImageView) findViewById(R.id.meal_purchase_img);
         //接收傳過來的東西
         Bundle bundle = getIntent().getExtras();
         value.setText("NT."+bundle.getInt("value"));
         mMeal = bundle.getString("meal");
+        store = bundle.getString("store");
+        store_id= bundle.getString("store_name_id");
+        meal_id = bundle.getString("meal_id");
+        meal_value = bundle.getInt("value");
         img.setImageResource(bundle.getInt("pic"));
         initimgbtn();
 
@@ -72,8 +80,15 @@ public class meal_purchase extends AppCompatActivity {
             public void onClick(View view) {
                 // 建立一個Bundle
                 Bundle bundle = new Bundle();
+                bundle.putString("store",store);
+                bundle.putString("store_name_id",store_id);
                 bundle.putString("meal",mMeal);
+                if(counter==0){
+                    counter=1;
+                }
                 bundle.putInt("amount", counter);
+                bundle.putString("meal_id",meal_id);
+                bundle.putInt("value",meal_value);
                 Intent intento = new Intent();
                 intento.setClass(meal_purchase.this, application_fillment.class);
                 // 將bundle傳入

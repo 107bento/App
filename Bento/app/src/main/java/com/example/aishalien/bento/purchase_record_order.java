@@ -114,7 +114,7 @@ public class purchase_record_order extends AppCompatActivity {
             item = new HashMap<String, Object>();
             item.put("date", listDate[i]);
             item.put("store_name",listFromResource[i]);
-            item.put("meal_pic", R.drawable.store2_1);
+            item.put("meal_pic", R.drawable.store0_1);
             item.put("meal_name",listFromMeal[i]);
             item.put("meal_num", listFromNum[i]);
             item.put("status", listStatus[i]);
