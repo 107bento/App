@@ -18,7 +18,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 

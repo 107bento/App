@@ -62,7 +62,7 @@ public class shopping_cart extends AppCompatActivity {
         cartListView=(ListView)findViewById(R.id.activity_shopping_cart);
         Button sendCart = (Button)findViewById(R.id.btn_put_in_cart);
         mList =  new ArrayList<HashMap<String, Object>> ();
-         User = (GlobalVariable)getApplicationContext();
+        User = (GlobalVariable)getApplicationContext();
         JsonArray information = User.ch_details;
         JsonArray cartvalue = User.details;
         System.out.println(information);
