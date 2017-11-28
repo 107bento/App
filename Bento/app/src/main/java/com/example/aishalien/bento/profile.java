@@ -38,7 +38,7 @@ public class profile extends AppCompatActivity {
     /*跟API架接的架構 使用GET後面加上base url後的路徑*/
     public interface Api{
         @GET("user")
-        // Call內部為接的資料格式  以及參數Path
+            // Call內部為接的資料格式  以及參數Path
         Call<JsonObject> getinfo(@Header("Cookie") String userCookie);
     }
 
@@ -164,14 +164,14 @@ public class profile extends AppCompatActivity {
 
     private void initText(JsonObject object) {
 
-         //根據json 架構接入並轉成string
-         user_id = object.get("user_id").getAsString();
-         password = object.get("password").getAsString();
-         name = object.get("name").getAsString();
-         email = object.get("email").getAsString();
-         phone = object.get("phone").getAsString();
-         remain = object.get("remain").getAsString();
-         block = object.get("block").getAsString();
+        //根據json 架構接入並轉成string
+        user_id = object.get("user_id").getAsString();
+        password = object.get("password").getAsString();
+        name = object.get("name").getAsString();
+        email = object.get("email").getAsString();
+        phone = object.get("phone").getAsString();
+        remain = object.get("remain").getAsString();
+        block = object.get("block").getAsString();
 
          // 設定文字
          tv_account.setText(user_id);
