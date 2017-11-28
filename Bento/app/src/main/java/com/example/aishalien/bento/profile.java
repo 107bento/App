@@ -29,8 +29,8 @@ import retrofit2.http.Header;
 
 public class profile extends AppCompatActivity {
 
-    TextView tv_account,tv_name, tv_remain, tv_email, tv_phone;
-    String user_id, password, name, money, email, phone;
+    TextView tv_account,tv_name, tv_email, tv_phone, tv_remain, tv_block;
+    String user_id, password, name, email, phone, remain, block;
 
     JsonObject resource;
     static String cookie;
@@ -38,7 +38,7 @@ public class profile extends AppCompatActivity {
     /*跟API架接的架構 使用GET後面加上base url後的路徑*/
     public interface Api{
         @GET("user")
-        // Call內部為接的資料格式  以及參數Path
+            // Call內部為接的資料格式  以及參數Path
         Call<JsonObject> getinfo(@Header("Cookie") String userCookie);
     }
 
@@ -90,7 +90,8 @@ public class profile extends AppCompatActivity {
         tv_name = (TextView) findViewById(R.id.profile_name);
         tv_email = (TextView) findViewById(R.id.profile_email);
         tv_phone = (TextView) findViewById(R.id.profile_phone);
-//        tv_remain = (TextView) findViewById(R.id.remain);
+        tv_remain = (TextView) findViewById(R.id.profile_remain);
+        tv_block = (TextView) findViewById(R.id.profile_block);
     }
 
     @Override
@@ -163,20 +164,22 @@ public class profile extends AppCompatActivity {
 
     private void initText(JsonObject object) {
 
-         //根據json 架構接入並轉成string
-         user_id = object.get("user_id").getAsString();
-         password = object.get("password").getAsString();
-         name = object.get("name").getAsString();
-         money = object.get("money").getAsString();
-         email = object.get("email").getAsString();
-         phone = object.get("phone").getAsString();
+        //根據json 架構接入並轉成string
+        user_id = object.get("user_id").getAsString();
+        password = object.get("password").getAsString();
+        name = object.get("name").getAsString();
+        email = object.get("email").getAsString();
+        phone = object.get("phone").getAsString();
+        remain = object.get("remain").getAsString();
+        block = object.get("block").getAsString();
 
          // 設定文字
          tv_account.setText(user_id);
          tv_name.setText(name);
-         tv_remain.setText("$" + money);
          tv_email.setText(email);
          tv_phone.setText(phone);
+         tv_remain.setText("$ " + remain);
+         tv_block.setText("$ " + block);
 
     }
 

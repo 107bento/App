@@ -23,7 +23,10 @@ public class meal_purchase extends AppCompatActivity {
     String mMeal;
     String meal_id;
     int meal_value;
-    int counter; //數量
+    int counter; //記錄數量
+    int max = 20; //最大數量
+    int min = 5; //最小數量
+    int current = 12; //要顯示的值
     private Toolbar mtoolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +64,9 @@ public class meal_purchase extends AppCompatActivity {
 
         // 數量控件
         AmountView amountView1 = (AmountView) findViewById(R.id.amountview1);
-        amountView1.setMaxValue(20); // 設置最大數量
-        amountView1.setMinValue(5); // 設置最小值
-        amountView1.setCurrentValue(12); //設置目前要顯示的數量
+        amountView1.setMaxValue(max); // 設置最大數量
+        amountView1.setMinValue(min); // 設置最小值
+        amountView1.setCurrentValue(current); //設置目前要顯示的數量
         amountView1.setListener(new AmountView.OnAmountChangeListener() {
             @Override
             public void onAmountChange(int amount) {
@@ -83,8 +86,8 @@ public class meal_purchase extends AppCompatActivity {
                 bundle.putString("store",store);
                 bundle.putString("store_name_id",store_id);
                 bundle.putString("meal",mMeal);
-                if(counter==0){
-                    counter=1;
+                if (counter == 0) { //沒有按過就用頁面顯示的值
+                    counter = current;
                 }
                 bundle.putInt("amount", counter);
                 bundle.putString("meal_id",meal_id);
