@@ -56,6 +56,7 @@ public class main_menu extends AppCompatActivity
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ApplicationBar.getInstance().addActivity(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
@@ -302,5 +303,6 @@ public class main_menu extends AppCompatActivity
         //顯示Toast
         Toast.makeText(main_menu.this, "已登出", Toast.LENGTH_LONG).show();
         finish();
+        ApplicationBar.getInstance().exit();
     }
 }

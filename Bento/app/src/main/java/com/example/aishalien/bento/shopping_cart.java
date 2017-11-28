@@ -56,6 +56,7 @@ public class shopping_cart extends AppCompatActivity {
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ApplicationBar.getInstance().addActivity(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_cart);
         //listview
@@ -154,7 +155,7 @@ public class shopping_cart extends AppCompatActivity {
         }
         // 設置啟用toolbar
         setSupportActionBar(mtoolbar);
-//        // 設置返回按鍵作用
+//        //不顯示返回符號，在onOptionsItemSelected須設定
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // 设置返回键的点击事件：
@@ -210,6 +211,7 @@ public class shopping_cart extends AppCompatActivity {
             // 按了 Action Bar 的返回鍵
             case android.R.id.home:
                 onBackPressed();
+                finish();
                 return true;
 
             // 按下首頁
@@ -217,6 +219,7 @@ public class shopping_cart extends AppCompatActivity {
                 Intent intento = new Intent();
                 intento.setClass(shopping_cart.this, main_menu.class);
                 startActivity(intento);
+                finish();
                 break;
 
             // 按下說明

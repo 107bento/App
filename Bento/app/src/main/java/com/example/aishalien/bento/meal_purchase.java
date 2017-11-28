@@ -30,6 +30,7 @@ public class meal_purchase extends AppCompatActivity {
     private Toolbar mtoolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ApplicationBar.getInstance().addActivity(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_purchase);
         //找到元件
@@ -117,6 +118,7 @@ public class meal_purchase extends AppCompatActivity {
                 Intent intento = new Intent();
                 intento.setClass(meal_purchase.this, shopping_cart.class);
                 startActivity(intento);
+                finish();
                 break;
 
         }

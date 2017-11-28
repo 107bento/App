@@ -67,6 +67,7 @@ public class shopping_cart_modify extends AppCompatActivity {
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ApplicationBar.getInstance().addActivity(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sub_shopping_car_modify);
         initimgbtn();

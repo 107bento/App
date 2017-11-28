@@ -87,6 +87,7 @@ public class profile_modify extends AppCompatActivity implements Validator.Valid
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ApplicationBar.getInstance().addActivity(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sub_profile_modify);
 

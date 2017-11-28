@@ -58,6 +58,7 @@ public class store_menu extends AppCompatActivity{
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ApplicationBar.getInstance().addActivity(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_menu);
         Bundle bundle = getIntent().getExtras();

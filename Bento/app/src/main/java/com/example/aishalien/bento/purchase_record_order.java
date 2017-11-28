@@ -35,6 +35,7 @@ public class purchase_record_order extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ApplicationBar.getInstance().addActivity(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sub_purchase_record_order);
 
