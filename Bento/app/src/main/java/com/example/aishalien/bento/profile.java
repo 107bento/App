@@ -90,7 +90,7 @@ public class profile extends AppCompatActivity {
         tv_name = (TextView) findViewById(R.id.profile_name);
         tv_email = (TextView) findViewById(R.id.profile_email);
         tv_phone = (TextView) findViewById(R.id.profile_phone);
-        tv_remain = (TextView) findViewById(R.id.remain);
+//        tv_remain = (TextView) findViewById(R.id.remain);
     }
 
     @Override
