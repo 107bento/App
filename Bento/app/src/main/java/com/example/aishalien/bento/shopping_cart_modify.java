@@ -18,7 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.nukc.amountview.AmountView;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -116,15 +116,15 @@ public class shopping_cart_modify extends AppCompatActivity {
             }
         });
         // 數量控件
-        AmountView mAmountView = (AmountView) findViewById(R.id.amountView);
-        mAmountView.setGoods_storage(99);  //设置库存数量
-        mAmountView.setListener(new AmountView.OnAmountChangeListener() {
-            @Override
-            public void onAmountChange(View view, int value) {
-                //  紀錄數量
-                counter = value;
-            }
-        });
+//        AmountView mAmountView = (AmountView) findViewById(R.id.amountView);
+//        mAmountView.setGoods_storage(99);  //设置库存数量
+//        mAmountView.setListener(new AmountView.OnAmountChangeListener() {
+//            @Override
+//            public void onAmountChange(View view, int value) {
+//                //  紀錄數量
+//                counter = value;
+//            }
+//        });
     }
 
     public void initimgbtn(){

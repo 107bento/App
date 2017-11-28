@@ -60,6 +60,11 @@ public class GlobalVariable extends Application {
 //                .putString("cart", cartString)
 //                .commit();
 //    }
+    public void clean_cart(){
+        total = 0;
+        details = new JsonArray();
+        ch_details = new JsonArray();
+    }
     public JsonObject sendCart(){
         //先放入最外層的cart
         cart_item.addProperty("total",total);
@@ -68,6 +73,7 @@ public class GlobalVariable extends Application {
         return cart_item;
     }
     public void remCart(int index){
+        total = total-Integer.valueOf(details.get(index).getAsJsonObject().get("subtotal").getAsString());
         details.remove(index);
         ch_details.remove(index);
     }
