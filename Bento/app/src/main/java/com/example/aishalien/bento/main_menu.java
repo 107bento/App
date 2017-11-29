@@ -41,6 +41,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 
 public class main_menu extends AppCompatActivity
+
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private String[] shop_tittle_list;
@@ -49,11 +50,14 @@ public class main_menu extends AppCompatActivity
     Retrofit retrofit;
     JsonArray resource;
     private List<ShopItemData> itemsData;
+    static String username;
+
     //定義接口
-    public interface StructureApi{
+    public interface StructureApi {
         @GET("shops")
         Call<JsonArray> getinfo();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ApplicationBar.getInstance().addActivity(this);
@@ -78,7 +82,7 @@ public class main_menu extends AppCompatActivity
         httpClient.addInterceptor(logging);
 
         /*連接 OKHTTP 連線*/
-        retrofit= new Retrofit.Builder()
+        retrofit = new Retrofit.Builder()
                 .baseUrl("http://163.22.17.227/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient.build())
@@ -94,11 +98,12 @@ public class main_menu extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        // 接住username
-        String username = getIntent().getStringExtra("username");
+        // username
+        GlobalVariable User = (GlobalVariable)getApplicationContext();
+        username = User.getUsername();
         // username設置
         View navHeaderView = navigationView.inflateHeaderView(R.layout.nav_header_main_menu);
-        TextView navName = (TextView)navHeaderView.findViewById(R.id.nav_user_name);
+        TextView navName = (TextView) navHeaderView.findViewById(R.id.nav_user_name);
         navName.setText(username);
 
         // 監聽是否按下nav_header
@@ -114,17 +119,19 @@ public class main_menu extends AppCompatActivity
         // recycler view 初始化
         getAPI();
     }
-    private void initArray(){
+
+    private void initArray() {
         shop_tittle_ID = new int[resource.size()];
         shop_tittle_list = new String[resource.size()];
-        for(int i=0;i<resource.size();i++){
+        for (int i = 0; i < resource.size(); i++) {
             JsonObject tmp = new JsonObject();
             tmp = resource.get(i).getAsJsonObject();
             shop_tittle_ID[i] = tmp.get("shop_id").getAsInt();
             shop_tittle_list[i] = tmp.get("shop_name").getAsString();
         }
     }
-    private void getAPI(){
+
+    private void getAPI() {
         StructureApi api = retrofit.create(StructureApi.class);
         Call<JsonArray> Model = api.getinfo();
         Model.enqueue(new Callback<JsonArray>() {
@@ -135,11 +142,13 @@ public class main_menu extends AppCompatActivity
                 initData();
                 initView();
             }
+
             @Override
             public void onFailure(Call<JsonArray> call, Throwable t) {
             }
         });
     }
+
     private void initView() {
         // 宣告 recyclerView
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.shops_recycler_view);
@@ -160,10 +169,10 @@ public class main_menu extends AppCompatActivity
         itemsData = new ArrayList<>(); // 店家標題
         shop_img_list = new int[shop_tittle_list.length]; // 店家圖片
         for (int i = 0; i < shop_tittle_list.length; i++) {
-            String imgName = "store"+ Integer.toString(i);
+            String imgName = "store" + Integer.toString(i);
             int imgId = getResources().getIdentifier(imgName, "drawable", getPackageName());
             shop_img_list[i] = imgId;
-            itemsData.add(new ShopItemData(shop_tittle_list[i], imgId,shop_tittle_ID[i]));
+            itemsData.add(new ShopItemData(shop_tittle_list[i], imgId, shop_tittle_ID[i]));
         }
     }
 
@@ -242,13 +251,13 @@ public class main_menu extends AppCompatActivity
         } else if (id == R.id.nav_anno) {
             // 公告欄dialog
             new AlertDialog.Builder(main_menu.this)
-                // 標題
-                .setTitle(R.string.announcement)
-                // 訊息
-                .setMessage(R.string.announcement_content)
-                // 按下ok返回畫面
-                .setPositiveButton(R.string.ok, null)
-                .show();
+                    // 標題
+                    .setTitle(R.string.announcement)
+                    // 訊息
+                    .setMessage(R.string.announcement_content)
+                    // 按下ok返回畫面
+                    .setPositiveButton(R.string.ok, null)
+                    .show();
 
         } else if (id == R.id.nav_info) {
 
@@ -269,26 +278,25 @@ public class main_menu extends AppCompatActivity
         } else if (id == R.id.nav_logout) {
             // 按下登出跳出對話方塊
             new AlertDialog.Builder(main_menu.this)
-                // 標題
-                .setTitle(R.string.logout)
-                // 訊息
-                .setMessage(R.string.want_to_logout)
-                // 按下登出，離開原畫面
-                .setPositiveButton(R.string.logout, new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        memberLogOut();
-                    }
-                })
-                // 按下取消，返回原本畫面
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
-                .show();
+                    // 標題
+                    .setTitle(R.string.logout)
+                    // 訊息
+                    .setMessage(R.string.want_to_logout)
+                    // 按下登出，離開原畫面
+                    .setPositiveButton(R.string.logout, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            memberLogOut();
+                        }
+                    })
+                    // 按下取消，返回原本畫面
+                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -298,7 +306,7 @@ public class main_menu extends AppCompatActivity
 
     //系統登出
     private void memberLogOut() {
-        GlobalVariable User = (GlobalVariable)getApplicationContext();
+        GlobalVariable User = (GlobalVariable) getApplicationContext();
         User.setCookie("");
         //顯示Toast
         Toast.makeText(main_menu.this, "已登出", Toast.LENGTH_LONG).show();

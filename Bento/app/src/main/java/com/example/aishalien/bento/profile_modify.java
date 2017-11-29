@@ -142,9 +142,10 @@ public class profile_modify extends AppCompatActivity implements Validator.Valid
             case R.id.action_ok:
                 // 檢查 > patch > 資料映射回去
                 if (check()) {
+                    finish();
                     Intent intent = new Intent(profile_modify.this, profile.class);
                     intent.putExtra("jsonResult", paramObject.toString());
-                    startActivityForResult(intent, RESULT_OK);
+                    setResult(RESULT_OK, intent);
                 }
                 return true;
         }
@@ -307,5 +308,9 @@ public class profile_modify extends AppCompatActivity implements Validator.Valid
         mName.setText(name);
         mEmail.setText(email);
         mPhone.setText(phone);
+    }
+    @Override
+    public void onBackPressed() {   // 按了 Android 裝置的實體返回鍵
+        super.onBackPressed();
     }
 }

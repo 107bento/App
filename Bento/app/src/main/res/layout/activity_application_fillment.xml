@@ -54,7 +54,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:prompt="@string/meal_option"
                 android:spinnerMode="dialog" />
             <!--志願結束-->
@@ -83,7 +82,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:prompt="@string/meal_option"
                 android:spinnerMode="dialog" />
             <!--志願結束-->
@@ -111,7 +109,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:prompt="@string/meal_option"
                 android:spinnerMode="dialog" />
             <!--志願結束-->
@@ -120,6 +117,7 @@
                 android:id="@+id/checkBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_vertical_margin"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:text="若志願序都落空時，由系統隨機分配"
                 android:textSize="@dimen/text_body_menu_btn" />
@@ -131,16 +129,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:background="#FF7744"
+                android:layout_margin="@dimen/activity_vertical_margin"
+                android:background="@color/colorAccent"
                 android:text="完成"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/text_title" />
+                android:textColor="@color/textColorIcon"
+                android:textSize="@dimen/text_subhead" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>
