@@ -34,6 +34,7 @@ public class profile extends AppCompatActivity {
 
     JsonObject resource;
     static String cookie;
+    static String username;
 
     /*跟API架接的架構 使用GET後面加上base url後的路徑*/
     public interface Api{
@@ -52,6 +53,8 @@ public class profile extends AppCompatActivity {
 
         GlobalVariable User = (GlobalVariable)getApplicationContext();
         cookie = User.getCookie();
+        username = User.getUsername();
+
         try {
             getJson();
         } catch (IOException e) {
@@ -61,7 +64,7 @@ public class profile extends AppCompatActivity {
         // toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_profile);
         // Title
-        toolbar.setTitle(name);
+        toolbar.setTitle(username);
         // nav返回鍵
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
         setSupportActionBar(toolbar);

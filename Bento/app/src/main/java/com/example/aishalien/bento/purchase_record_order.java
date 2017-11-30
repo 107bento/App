@@ -29,7 +29,7 @@ public class purchase_record_order extends AppCompatActivity {
     String[] listDate ;
     String[] listFromMeal;
     String[] listFromNum;
-    String[] codeStatus =  {"訂單確認中","已成單", "已領取", "流單"};
+    String[] codeStatus =  {"訂單確認中,未銷帳","已成單", "已領取", "流單"};
     String[] listStatus;
     JsonArray resource;
 

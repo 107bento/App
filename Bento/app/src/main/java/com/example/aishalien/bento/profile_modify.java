@@ -278,7 +278,7 @@ public class profile_modify extends AppCompatActivity implements Validator.Valid
                 if (response.code() == 200) {
                     Toast.makeText(profile_modify.this, "修改成功！", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(profile_modify.this, "修改失敗", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(profile_modify.this, "修改失敗，請稍後再試", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
