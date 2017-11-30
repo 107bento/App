@@ -79,7 +79,10 @@ public class shopping_cart extends AppCompatActivity {
         String[] listFromvalue = new String[information.size()];
         //拿到店家ID
         String[] listStoreID =  new String[information.size()];
+        //拿到餐點ID
         String[] listMealID =  new String[information.size()];
+        //拿到checkbox狀態
+        int[] listcheck =  new int[information.size()];
         for(int i=0;i<information.size();i++){
             listFromResource[i] = information.get(i).getAsJsonObject().get("store_name").getAsString();
             listFromMeal[i]= information.get(i).getAsJsonObject().get("meal_name").getAsString();
@@ -88,6 +91,7 @@ public class shopping_cart extends AppCompatActivity {
             listStoreID[i] = information.get(i).getAsJsonObject().get("store_id").getAsString();
             String tmpv = information.get(i).getAsJsonObject().get("store_id").getAsString();
             String picName = "store"+ Integer.toString(Integer.valueOf(tmpv)-1)+"_"+cartvalue.get(i).getAsJsonObject().get("meal_id").getAsString();
+            listcheck[i] = cartvalue.get(i).getAsJsonObject().get("random_pick").getAsInt();
             listFromPic[i] =getResources().getIdentifier(picName, "drawable", getPackageName());
             listFromNum[i]= information.get(i).getAsJsonObject().get("amount").getAsString();
             System.out.println(listFromNum[i]);
@@ -100,6 +104,7 @@ public class shopping_cart extends AppCompatActivity {
             item.put("store_name",listFromResource[i]);
             item.put("store_id",listStoreID[i]);
             item.put("meal_id",listMealID[i]);
+            item.put("random_pick",listcheck[i]);
             item.put("meal_name",listFromMeal[i]);
             item.put("meal_num",listFromNum[i]+"份");
             item.put("meal_amount",listFromNum[i]);
@@ -137,17 +142,18 @@ public class shopping_cart extends AppCompatActivity {
                 Object store_id = map.get("store_id");
                 Object meal_num = map.get("meal_amount");
                 Object store_pic = map.get("store_pic");
+                Object check_status = map.get("random_pick");
                 // 建立一個Bundle
                 Bundle bundle = new Bundle();
                 bundle.putString("meal", (String) meal_name);
                 bundle.putString("store_name", (String) store_name);
                 bundle.putInt("meal_value",  Integer.valueOf((String)Omeal_value) );
-                System.out.println("meal_"+meal_num);
                 bundle.putString("meal_id", (String) meal_id);
                 bundle.putInt("amount",Integer.valueOf((String)meal_num));
                 bundle.putInt("position",arg2);
                 bundle.putString("store_id",(String)store_id);
                 bundle.putInt("store_pic",(int)store_pic);
+                bundle.putInt("random_pick",(int)check_status);
                 Intent intento = new Intent();
                 intento.setClass(shopping_cart.this, shopping_cart_modify.class);
                 // 將bundle傳入

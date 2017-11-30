@@ -99,15 +99,18 @@ public class application_fillment extends AppCompatActivity {
         // 設置返回按鍵作用
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //監聽是否要電腦隨機選擇
-        CheckBox autorandom = (CheckBox)findViewById(R.id.checkBox);
-        autorandom.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox);
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
-                  random_pick++;
-                  random_pick = random_pick%2;
-              }
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    random_pick = 1;
+                }
+                else{
+                    random_pick=0;
+                }
             }
-        );
+        });
     }
 
     // 完成按鈕

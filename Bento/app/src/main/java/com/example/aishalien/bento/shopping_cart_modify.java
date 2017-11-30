@@ -52,7 +52,7 @@ public class shopping_cart_modify extends AppCompatActivity {
     Spinner spinnerM2;
     Spinner spinnerM3;
     //放入購物車的元素
-    int random_pick = 0;
+    int random_pick;
     int amount;
     int meal_value;
     int position;
@@ -101,6 +101,7 @@ public class shopping_cart_modify extends AppCompatActivity {
         orign = amount*meal_value;
         store_id = bundle.getString("store_id");
         current = amount;
+        random_pick = bundle.getInt("random_pick");
         // toolbar
         mtoolbar = (Toolbar) findViewById(R.id.tb_toolbar);
         // 設置toolbar標題
@@ -118,12 +119,22 @@ public class shopping_cart_modify extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //監聽是否要電腦隨機選擇
         CheckBox autorandom = (CheckBox)findViewById(R.id.checkBox);
+        if(random_pick==1){//有被勾選的狀態
+            autorandom.setChecked(true);
+        }else{
+            autorandom.setChecked(false);
+        }
+
         //判斷randompick目前的狀況
         autorandom.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {//0為沒有選  1為有選的
-            random_pick++;
-            random_pick = random_pick%2;
+            if(isChecked) {
+                random_pick = 1;
+            }
+            else{
+                random_pick=0;
+            }
             }
         });
         // 數量控件
