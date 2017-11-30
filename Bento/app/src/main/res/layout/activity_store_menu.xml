@@ -13,7 +13,8 @@
     <ImageView
         android:id="@+id/store_img"
         android:layout_width="match_parent"
-        android:layout_height="128dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
         android:scaleType="centerCrop"
         android:elevation="@dimen/card_recycler_elevation"/>
 

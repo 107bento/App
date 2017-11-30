@@ -17,8 +17,17 @@ import android.widget.Toast;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.mobsandgeeks.saripaar.ValidationError;
+import com.mobsandgeeks.saripaar.Validator;
+import com.mobsandgeeks.saripaar.annotation.ConfirmPassword;
+import com.mobsandgeeks.saripaar.annotation.Email;
+import com.mobsandgeeks.saripaar.annotation.NotEmpty;
+import com.mobsandgeeks.saripaar.annotation.Optional;
+import com.mobsandgeeks.saripaar.annotation.Order;
+import com.mobsandgeeks.saripaar.annotation.Password;
 
 import java.io.IOException;
+import java.util.List;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -31,13 +40,45 @@ import retrofit2.http.Body;
 import retrofit2.http.Header;
 import retrofit2.http.PATCH;
 
-public class profile_modify extends AppCompatActivity {
+public class profile_modify extends AppCompatActivity implements Validator.ValidationListener {
     private Toolbar mtoolbar;
-
     String mAccount, modified_name, old_pwd, new_pwd, check_new_pwd, modified_email, modified_phone;
-    String user_id, password, name, money, email, phone;
+    String user_id, password, name, email, phone;
     static String cookie;
     JsonObject paramObject;
+
+    boolean checkForm = false;
+    Validator validator;
+
+    @Order(1)
+    @NotEmpty(sequence = 1, message = "Email不能為空")
+    @Email(sequence = 1, message = "Email地址錯誤")
+    private EditText mEmail;
+//
+//    @Order(2)
+//    @Optional
+//    @Password(min = 6, message = "密碼不能少於6位")
+//    private EditText mNewPwd;
+//    @Order(3)
+//    @Optional
+//    @ConfirmPassword(message = "密碼不相符")
+//    private EditText mCheckPwd;
+
+    // 驗證通過
+    @Override
+    public void onValidationSucceeded() {
+        checkForm = true;
+    }
+    // 驗證失敗
+    @Override
+    public void onValidationFailed(List<ValidationError> errors) {
+        for (ValidationError error : errors) {
+            ((EditText)error.getView())
+                    .setError(error.getFailedRules().get(0)
+                            .getMessage((profile_modify.this))
+                    );
+        }
+    }
 
     public interface PatientInfoAPI{
         @PATCH("user")
@@ -46,11 +87,16 @@ public class profile_modify extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ApplicationBar.getInstance().addActivity(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sub_profile_modify);
 
         GlobalVariable User = (GlobalVariable)getApplicationContext();
         cookie = User.getCookie();
+
+        // 表單驗證
+        validator = new Validator(this);
+        validator.setValidationListener(this);
 
         // toolbar
         mtoolbar = (Toolbar) findViewById(R.id.toolbar_profile_modify);
@@ -96,21 +142,27 @@ public class profile_modify extends AppCompatActivity {
             case R.id.action_ok:
                 // 檢查 > patch > 資料映射回去
                 if (check()) {
+                    finish();
                     Intent intent = new Intent(profile_modify.this, profile.class);
                     intent.putExtra("jsonResult", paramObject.toString());
-                    startActivityForResult(intent, RESULT_OK);
+                    setResult(RESULT_OK, intent);
                 }
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
     /**
      * 修改個人資料：檢查後patch
      * @return
      */
     private boolean check() {
-        boolean flag = false;
+        boolean flag = false; //自己驗證
+
+//        mNewPwd = (EditText) findViewById(R.id.new_password);
+//        mCheckPwd = (EditText) findViewById(R.id.check_new_pwd);
+        mEmail = (EditText) findViewById(R.id.new_email);
+        // 驗證資料
+        validator.validate();
 
         // 取得頁面資料
         mAccount = (((TextView) findViewById(R.id.proMod_account)).getText()).toString();
@@ -151,19 +203,34 @@ public class profile_modify extends AppCompatActivity {
                         .show();
                 return flag;
 
+            // 新密碼長度<6
+            } else if (new_pwd.length() < 6) {
+                // 彈出dialog
+                new AlertDialog.Builder(profile_modify.this)
+                        // 標題
+                        .setTitle(R.string.pwd_error_length)
+                        // 按下ok返回畫面
+                        .setPositiveButton(R.string.ok, null)
+                        .show();
+                return flag;
+
             } else {
+                // 更新密碼
                 password = new_pwd;
             }
         }
 
-        /**
-         * patch回資料庫
-         */
-        try {
-            patchJson();
-            flag = true;
-        } catch (IOException e) {
-            e.printStackTrace();
+        // 表單驗證過了再嘗試patch
+        if (checkForm) {
+            /**
+             * patch回資料庫
+             */
+            try {
+                patchJson();
+                flag = true;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         return flag;
@@ -206,10 +273,11 @@ public class profile_modify extends AppCompatActivity {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 //成功接到 response
+                JsonObject res = response.body();
 
-                if (response.code() == 200){
+                if (response.code() == 200) {
                     Toast.makeText(profile_modify.this, "修改成功！", Toast.LENGTH_SHORT).show();
-                } else if (response.code() == 400){
+                } else {
                     Toast.makeText(profile_modify.this, "修改失敗", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -240,5 +308,9 @@ public class profile_modify extends AppCompatActivity {
         mName.setText(name);
         mEmail.setText(email);
         mPhone.setText(phone);
+    }
+    @Override
+    public void onBackPressed() {   // 按了 Android 裝置的實體返回鍵
+        super.onBackPressed();
     }
 }

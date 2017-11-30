@@ -32,7 +32,7 @@
         <Button
             android:id="@+id/add_100"
             android:text="儲值 100元"
-            android:background="@color/orange"
+            android:background="@color/colorAccent"
             android:textColor="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
         <Button
             android:id="@+id/add_250"
             android:text="儲值 250元"
-            android:background="@color/orange"
+            android:background="@color/colorAccent"
             android:textColor="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
         <Button
             android:id="@+id/add_400"
             android:text="儲值 400元"
-            android:background="@color/orange"
+            android:background="@color/colorAccent"
             android:textColor="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
         <Button
             android:id="@+id/add_900"
             android:text="儲值 900元"
-            android:background="@color/orange"
+            android:background="@color/colorAccent"
             android:textColor="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
         <Button
             android:id="@+id/add_1000"
             android:text="儲值 1000元"
-            android:background="@color/orange"
+            android:background="@color/colorAccent"
             android:textColor="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

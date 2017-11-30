@@ -24,7 +24,8 @@
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
-                android:layout_height="128dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center_horizontal"
                 android:elevation="@dimen/card_recycler_elevation"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/store0_1" />
@@ -39,6 +40,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/text_margin"
                     android:layout_gravity="center">
 
                     <TextView
@@ -46,37 +48,45 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="單價"
-                        android:textSize="35sp"
-                        android:layout_marginLeft="13dp"
+                        android:textSize="@dimen/text_display_34"
+                        android:layout_marginLeft="14dp"
                         android:layout_centerVertical="true"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:layout_marginStart="13dp" />
+                        android:layout_marginStart="14dp" />
 
                     <TextView
                         android:id="@+id/meal_purchase_value"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignBaseline="@id/textView9"
-                        android:layout_alignBottom="@id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/text_margin"
+                        android:layout_marginRight="@dimen/text_margin"
                         android:layout_centerHorizontal="true"
-                        android:layout_margin="@dimen/text_margin"
                         android:layout_toRightOf="@id/textView9"
+                        android:layout_alignTop="@+id/textView9"
                         android:text="NT.90元"
-                        android:textSize="35sp" />
+                        android:textSize="@dimen/text_display_34"
+                        />
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/text_margin"
                     android:layout_gravity="center">
-                        <TextView
-                            android:id="@+id/count"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/text_margin"
-                            android:text="數量"
-                            android:textSize="35sp" />
+
+                    <TextView
+                        android:id="@+id/count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="數量"
+                        android:textSize="@dimen/text_display_34"
+                        android:layout_marginLeft="14dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="14dp" />
 
                     <!--
                         AmountView
@@ -88,21 +98,23 @@
                         currentValue：目前顯示的值
                         maxValue：最大值
                         minValue：最小值
-                     -->
+                    -->
                     <com.example.aishalien.bento.AmountView
                         android:id="@+id/amountView"
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:layout_margin="@dimen/text_margin"
+                        android:layout_height="@dimen/text_display_34"
                         android:layout_toRightOf="@id/count"
-                        app:btnTextSize="20sp"
+                        app:btnTextSize="@dimen/text_caption"
                         app:btnWidth="36dp"
                         app:tvWidth="50dp"
                         app:currentValue="5"
                         app:maxValue="99"
-                        app:minValue="3" />
+                        app:minValue="3"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="@dimen/text_margin"
+                        android:layout_marginRight="@dimen/text_margin"
+                        android:layout_alignTop="@id/count" />
                 </RelativeLayout>
-
             </LinearLayout>
 
             <!--志願序開始-->
@@ -113,6 +125,12 @@
                 android:paddingLeft="@dimen/padding_left_and_right"
                 android:paddingRight="@dimen/padding_left_and_right"
                 android:paddingTop="@dimen/padding_top">
+
+                <View
+                    android:layout_columnSpan="2"
+                    android:background="@color/gray"
+                    android:layout_height="0.5dp"
+                    android:layout_width="fill_parent"/>
 
                 <!--志願起始-->
                 <TextView
@@ -130,7 +148,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="@dimen/activity_horizontal_margin"
-                    android:entries="@array/store_list"
                     android:prompt="@string/store_option"
                     android:spinnerMode="dialog" />
 
@@ -139,11 +156,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="@dimen/activity_horizontal_margin"
-                    android:entries="@array/meal_list"
                     android:prompt="@string/meal_option"
                     android:spinnerMode="dialog" />
                 <!--志願結束-->
+
                 <!--志願起始-->
                 <TextView
                     android:id="@+id/app_02"
@@ -160,7 +176,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="@dimen/activity_horizontal_margin"
-                    android:entries="@array/store_list"
                     android:prompt="@string/store_option"
                     android:spinnerMode="dialog" />
 
@@ -169,8 +184,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="@dimen/activity_horizontal_margin"
-                    android:entries="@array/meal_list"
                     android:prompt="@string/meal_option"
                     android:spinnerMode="dialog" />
                 <!--志願結束-->
@@ -190,7 +203,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="@dimen/activity_horizontal_margin"
-                    android:entries="@array/store_list"
                     android:prompt="@string/store_option"
                     android:spinnerMode="dialog" />
 
@@ -199,8 +211,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="@dimen/activity_horizontal_margin"
-                    android:entries="@array/meal_list"
                     android:prompt="@string/meal_option"
                     android:spinnerMode="dialog" />
                 <!--志願結束-->
@@ -209,7 +219,7 @@
                     android:id="@+id/checkBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_margin="@dimen/activity_vertical_margin"
                     android:text="若志願序都落空時，由系統隨機分配"
                     android:textSize="@dimen/text_body_menu_btn" />
 
@@ -220,12 +230,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/activity_vertical_margin"
-                    android:background="#FF7744"
+                    android:background="@color/colorAccent"
                     android:text="確認修改"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/text_title" />
+                    android:textColor="@color/textColorIcon"
+                    android:textSize="@dimen/text_subhead" />
 
             </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

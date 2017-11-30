@@ -67,6 +67,7 @@ public class shopping_cart_modify extends AppCompatActivity {
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ApplicationBar.getInstance().addActivity(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sub_shopping_car_modify);
         initimgbtn();
@@ -84,7 +85,7 @@ public class shopping_cart_modify extends AppCompatActivity {
         //設定相關文字
         TextView meal_valueT = (TextView)findViewById(R.id.meal_purchase_value);
         meal_value = bundle.getInt("meal_value");
-        meal_valueT.setText(Integer.toString(bundle.getInt("meal_value"))+"元");
+        meal_valueT.setText("NT." + Integer.toString(bundle.getInt("meal_value"))+"元");
         //接相關資料
         meal_id = bundle.getString("meal_id");
         //

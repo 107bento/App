@@ -44,6 +44,7 @@ public class profile extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ApplicationBar.getInstance().addActivity(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
@@ -119,7 +120,8 @@ public class profile extends AppCompatActivity {
             Intent intent = new Intent();
             intent.setClass(profile.this, profile_modify.class);
             intent.putExtra("json", resource.toString());
-            startActivity(intent);
+            startActivityForResult(intent, 0);// 呼叫 child activity，並要求回傳資料
+//            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -180,25 +182,27 @@ public class profile extends AppCompatActivity {
          tv_phone.setText(phone);
          tv_remain.setText("$ " + remain);
          tv_block.setText("$ " + block);
-
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
-        switch (requestCode)
-        {
-            case RESULT_OK:
-                // 接收 profile_modify 的資料
-                Intent intent = getIntent();
-                String jsonString = intent.getStringExtra("jsonResult");
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null && resultCode == RESULT_OK && requestCode == 0) {
+            // 接收 profile_modify 的資料
+            Intent intent = getIntent();
+            String jsonString = intent.getStringExtra("jsonResult");
 
-                // 重新serialize 傳進來的 json.toString
-                JsonParser jsonParser = new JsonParser();
-                JsonObject gsonObject = (JsonObject)jsonParser.parse(jsonString);
-                initText(gsonObject);
-                break;
+            // 重新serialize 傳進來的 json.toString
+            JsonParser jsonParser = new JsonParser();
+            JsonObject gsonObject = (JsonObject)jsonParser.parse(jsonString);
+
+            initText(gsonObject);
         }
+    }
+    @Override
+    public void onBackPressed() {   // 按了 Android 裝置的實體返回鍵
+        super.onBackPressed();
     }
 }
 

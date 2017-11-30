@@ -11,6 +11,7 @@ import com.google.gson.JsonObject;
  */
 
 public class GlobalVariable extends Application {
+    public String username;
     public String UserCookie = "";
     //SharedPreferences cart;
     public int total=0;
@@ -24,9 +25,15 @@ public class GlobalVariable extends Application {
     public void setCookie(String UserCookie){
         this.UserCookie = UserCookie;
     }
+    public void setUsename(String username) {
+        this.username = username;
+    }
     //顯示 變數字串
     public String getCookie() {
         return UserCookie;
+    }
+    public String getUsername(){
+        return username;
     }
     public void addCart(String meal_id,int amount,int subtotal,String wish_id_1,String wish_id_2,String wish_id_3,int random_pic){
         JsonObject tmpcart = new JsonObject();

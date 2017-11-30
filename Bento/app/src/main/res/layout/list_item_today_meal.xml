@@ -29,8 +29,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="left|center_vertical"
-            android:textSize="@dimen/text_title"
-            />
+            android:textSize="@dimen/text_body_menu_btn"
+            android:text="store"
+            android:textColor="@color/textColorPrimary"/>
 
         <!--餐點名-->
         <TextView
@@ -38,8 +39,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="left|center_vertical"
-            android:textSize="@dimen/text_title"
-            />
+            android:textSize="@dimen/text_body_menu_btn"
+            android:text="meal"
+            android:textColor="@color/textColorPrimary"/>
 
         <!--數量-->
         <TextView
@@ -47,8 +49,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="left|center_vertical"
-            android:textSize="@dimen/text_subhead"
-             />
+            android:textSize="@dimen/text_body_menu_btn"
+            android:text="number"
+            android:textColor="@color/textColorPrimary"/>
     </LinearLayout>
 
     <!--狀態-->
@@ -59,6 +62,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:textSize="@dimen/text_body_menu_btn"
-        android:textColor="@color/bule_light"/>
+        android:text="status"
+        android:textColor="@color/colorAccent"/>
 
 </RelativeLayout>

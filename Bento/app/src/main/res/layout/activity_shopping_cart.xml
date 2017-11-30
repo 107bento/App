@@ -18,22 +18,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/padding_left_and_right"
-            android:paddingRight="@dimen/padding_left_and_right"
-            android:paddingTop="@dimen/padding_top">
-
-            <TextView
-                android:id="@+id/textResult"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/padding_left_and_right"
-                android:paddingRight="@dimen/padding_left_and_right" />
+            android:orientation="vertical">
 
             <ListView
                 android:id="@+id/activity_shopping_cart"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/padding_left_and_right"
+                android:paddingRight="@dimen/padding_left_and_right" />
 
             <!--購買-->
             <android.support.v7.widget.AppCompatButton
@@ -41,12 +33,11 @@
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:background="#FF7744"
+                android:layout_margin="@dimen/activity_vertical_margin"
+                android:background="@color/colorAccent"
                 android:text="結帳"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/text_title" />
+                android:textSize="@dimen/text_subhead" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

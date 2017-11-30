@@ -3,7 +3,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/listview_item_height">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/purchase_record_order"
@@ -22,7 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="left|center_vertical"
-            android:textSize="@dimen/text_title"
+            android:textSize="@dimen/text_body_menu_btn"
+            android:textColor="@color/textColorPrimary"
             android:text="日期"/>
 
         <!--時間-->
@@ -31,7 +32,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="left|center_vertical"
-            android:textSize="@dimen/text_title"
+            android:textSize="@dimen/text_body_menu_btn"
+            android:textColor="@color/textColorPrimary"
             android:text="時間"/>
     </LinearLayout>
 </RelativeLayout>

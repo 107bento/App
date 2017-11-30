@@ -21,7 +21,8 @@
         <ImageView
             android:id="@+id/meal_purchase_img"
             android:layout_width="match_parent"
-            android:layout_height="128dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
             android:scaleType="centerCrop"
             android:elevation="@dimen/card_recycler_elevation" />
 
@@ -35,41 +36,48 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
                 android:layout_gravity="center">
 
                 <TextView
                     android:id="@+id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/text_margin"
                     android:text="單價"
-                    android:textSize="34sp" />
+                    android:textSize="@dimen/text_display_34"
+                    android:layout_marginLeft="14dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="14dp" />
 
                 <TextView
                     android:id="@+id/meal_purchase_value"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="NT.90元"
-                    android:textSize="34sp"
-                    android:layout_alignBaseline="@id/textView9"
-                    android:layout_alignBottom="@id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/text_margin"
+                    android:layout_marginRight="@dimen/text_margin"
                     android:layout_centerHorizontal="true"
-                    android:layout_margin="@dimen/text_margin"
-                    android:layout_toRightOf="@id/textView9"/>
+                    android:layout_toRightOf="@id/textView9"
+                    android:layout_alignTop="@+id/textView9"
+                    android:text="NT.90元"
+                    android:textSize="@dimen/text_display_34"
+                    />
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
                 android:layout_gravity="center">
 
                 <TextView
                     android:id="@+id/count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/text_margin"
                     android:text="數量"
-                    android:textSize="34sp"
+                    android:textSize="@dimen/text_display_34"
                     android:layout_marginLeft="14dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
@@ -90,69 +98,19 @@
                 <com.example.aishalien.bento.AmountView
                     android:id="@+id/amountview1"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_margin="@dimen/text_margin"
+                    android:layout_height="@dimen/text_display_34"
                     android:layout_toRightOf="@id/count"
-                    app:btnTextSize="20sp"
+                    app:btnTextSize="@dimen/text_caption"
                     app:btnWidth="36dp"
                     app:tvWidth="50dp"
                     app:currentValue="5"
                     app:maxValue="99"
-                    app:minValue="3" />
-
-
-                <!--<com.github.nukc.amountview.AmountView-->
-                    <!--android:id="@+id/amountView"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="36dp"-->
-                    <!--android:layout_centerInParent="true"-->
-                    <!--app:btnTextSize="20sp"-->
-                    <!--app:btnWidth="36dp"-->
-                    <!--app:tvWidth="50dp"-->
-                    <!--android:layout_toRightOf="@id/count"-->
-                    <!--android:layout_margin="@dimen/text_margin"/>-->
-
-                <!--<LinearLayout-->
-                <!--android:layout_toRightOf="@id/count"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_margin="@dimen/text_margin">-->
-
-                <!--<Button-->
-                <!--android:id="@+id/subtraction_btn"-->
-                <!--android:layout_width="40dp"-->
-                <!--android:layout_height="40dp"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:background="@drawable/round"-->
-                <!--android:backgroundTint="#00FF99"-->
-                <!--android:text="-"-->
-                <!--android:textSize="20sp" />-->
-
-                <!--<TextView-->
-                <!--android:id="@+id/meal_purchase_num"-->
-                <!--android:layout_marginLeft="@dimen/main_card_margin_horizontal"-->
-                <!--android:layout_toRightOf="@id/subtraction_btn"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:paddingLeft="@dimen/padding_left_and_right"-->
-                <!--android:paddingRight="@dimen/padding_left_and_right"-->
-                <!--android:text="2"-->
-                <!--android:textSize="35sp" />-->
-
-                <!--<Button-->
-                <!--android:id="@+id/Addition_btn"-->
-                <!--android:layout_marginLeft="@dimen/main_card_margin_horizontal"-->
-                <!--android:layout_toRightOf="@id/meal_purchase_num"-->
-                <!--android:layout_width="40dp"-->
-                <!--android:layout_height="40dp"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:background="@drawable/round"-->
-                <!--android:backgroundTint="#00FF99"-->
-                <!--android:text="+"-->
-                <!--android:textSize="20sp" />-->
-                <!--</LinearLayout>-->
+                    app:minValue="3"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="@dimen/text_margin"
+                    android:layout_marginRight="@dimen/text_margin"
+                    android:layout_alignTop="@id/count" />
             </RelativeLayout>
-
         </LinearLayout>
 
         <LinearLayout
@@ -167,12 +125,11 @@
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:background="#FF7744"
+                android:layout_margin="16dp"
+                android:background="@color/colorAccent"
                 android:text="加入購物車"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/text_title" />
+                android:textColor="@color/textColorIcon"
+                android:textSize="@dimen/text_subhead" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

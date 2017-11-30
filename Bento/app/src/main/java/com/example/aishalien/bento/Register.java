@@ -44,7 +44,7 @@ public class Register extends AppCompatActivity implements Validator.ValidationL
     private EditText mUsername;
 
     @NotEmpty(sequence = 1, message = "密碼不能為空")
-    @Password(sequence = 2, min = 6, message = "密碼不能少於6位")
+    @Password(sequence = 2, min = 6, message = "密碼長度不能少於6位")
     @Order(2)
     private EditText mPassward;
 

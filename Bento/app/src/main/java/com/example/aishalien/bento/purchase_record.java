@@ -55,6 +55,7 @@ public class purchase_record extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ApplicationBar.getInstance().addActivity(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchase_record);
         GlobalVariable User = (GlobalVariable)getApplicationContext();

@@ -127,12 +127,6 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                 etEmail = (EditText) findViewById(R.id.login_email);
                 etPassword = (EditText) findViewById(R.id.login_password);
 
-                /*開發用 之後請刪除*/
-                //Intent intent = new Intent();
-                //intent.setClass(Login.this, main_menu.class);
-                //startActivity(intent);
-                 /*開發用 之後請刪除*/
-
                 /*產生要POST的東西*/
                 JsonObject paramObject = new JsonObject();
                 System.out.println(etEmail.getEditableText().toString());
@@ -152,10 +146,9 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                                 GlobalVariable User = (GlobalVariable)getApplicationContext();
                                 User.setCookie(cookie);
                                 //User.cart = getSharedPreferences("cart", Activity.MODE_PRIVATE);
+                                User.setUsename(etEmail.getEditableText().toString());
                                 Intent intent = new Intent();
                                 intent.setClass(Login.this, main_menu.class);
-                                //傳個username
-                                intent.putExtra("username", etEmail.getEditableText().toString());
                                 startActivity(intent);
                             }
                             else {

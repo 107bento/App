@@ -68,6 +68,7 @@ public class application_fillment extends AppCompatActivity {
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ApplicationBar.getInstance().addActivity(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_application_fillment);
         initspinner();
@@ -97,7 +98,7 @@ public class application_fillment extends AppCompatActivity {
         }
         // 設置啟用toolbar
         setSupportActionBar(mtoolbar);
-        // 設置返回按鍵作用
+        // 不顯示返回符號，在onOptionsItemSelected須設定
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //監聽是否要電腦隨機選擇
         CheckBox autorandom = (CheckBox)findViewById(R.id.checkBox);
@@ -317,15 +318,16 @@ public class application_fillment extends AppCompatActivity {
                 Intent intento = new Intent();
                 intento.setClass(application_fillment.this, shopping_cart.class);
                 startActivity(intento);
+                finish();
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_normal, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.menu_normal, menu);
+//        return true;
+//    }
 }
