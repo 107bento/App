@@ -65,6 +65,7 @@ public class shopping_cart extends AppCompatActivity {
         User = (GlobalVariable)getApplicationContext();
         JsonArray information = User.ch_details;
         JsonArray cartvalue = User.details;
+        System.out.println("Car"+cartvalue);
         System.out.println(information);
         //拿到店家名稱
         String[] listFromResource = new String[information.size()];
@@ -76,14 +77,19 @@ public class shopping_cart extends AppCompatActivity {
         String[] listFromNum = new String[information.size()];
         //拿到餐點價格
         String[] listFromvalue = new String[information.size()];
+        //拿到店家ID
+        String[] listStoreID =  new String[information.size()];
+        String[] listMealID =  new String[information.size()];
         for(int i=0;i<information.size();i++){
             listFromResource[i] = information.get(i).getAsJsonObject().get("store_name").getAsString();
             listFromMeal[i]= information.get(i).getAsJsonObject().get("meal_name").getAsString();
             listFromvalue[i]= information.get(i).getAsJsonObject().get("meal_value").getAsString();
-            String tmpv = information.get(i).getAsJsonObject().get("store_name_id").getAsString();
+            listMealID[i] = cartvalue.get(i).getAsJsonObject().get("meal_id").getAsString();
+            listStoreID[i] = information.get(i).getAsJsonObject().get("store_id").getAsString();
+            String tmpv = information.get(i).getAsJsonObject().get("store_id").getAsString();
             String picName = "store"+ Integer.toString(Integer.valueOf(tmpv)-1)+"_"+cartvalue.get(i).getAsJsonObject().get("meal_id").getAsString();
             listFromPic[i] =getResources().getIdentifier(picName, "drawable", getPackageName());
-            listFromNum[i]= information.get(i).getAsJsonObject().get("amount").getAsString()+"份";
+            listFromNum[i]= information.get(i).getAsJsonObject().get("amount").getAsString();
             System.out.println(listFromNum[i]);
         }
 
@@ -92,7 +98,11 @@ public class shopping_cart extends AppCompatActivity {
             item = new HashMap<String, Object>();
             item.put("store_pic", listFromPic[i]);
             item.put("store_name",listFromResource[i]);
+            item.put("store_id",listStoreID[i]);
+            item.put("meal_id",listMealID[i]);
             item.put("meal_name",listFromMeal[i]);
+            item.put("meal_num",listFromNum[i]+"份");
+            item.put("meal_amount",listFromNum[i]);
             item.put("meal_value",listFromvalue[i]);
             item.put("cart_button", R.id.ButtonCart);
             mList.add(item);
@@ -122,14 +132,21 @@ public class shopping_cart extends AppCompatActivity {
                 HashMap<String,Object> map=(HashMap<String,Object>)cartListView.getItemAtPosition(arg2);
                 Object Omeal_value = map.get("meal_value");
                 Object meal_name = map.get("meal_name");
-                Object meal_num = map.get("meal_num");
+                Object meal_id = map.get("meal_id");
+                Object store_name = map.get("store_name");
+                Object store_id = map.get("store_id");
+                Object meal_num = map.get("meal_amount");
                 Object store_pic = map.get("store_pic");
                 // 建立一個Bundle
                 Bundle bundle = new Bundle();
                 bundle.putString("meal", (String) meal_name);
+                bundle.putString("store_name", (String) store_name);
                 bundle.putInt("meal_value",  Integer.valueOf((String)Omeal_value) );
-                bundle.putString("amount",(String)meal_num);
+                System.out.println("meal_"+meal_num);
+                bundle.putString("meal_id", (String) meal_id);
+                bundle.putInt("amount",Integer.valueOf((String)meal_num));
                 bundle.putInt("position",arg2);
+                bundle.putString("store_id",(String)store_id);
                 bundle.putInt("store_pic",(int)store_pic);
                 Intent intento = new Intent();
                 intento.setClass(shopping_cart.this, shopping_cart_modify.class);

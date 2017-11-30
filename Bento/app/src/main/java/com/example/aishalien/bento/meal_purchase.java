@@ -24,9 +24,9 @@ public class meal_purchase extends AppCompatActivity {
     String meal_id;
     int meal_value;
     int counter; //記錄數量
-    int max = 20; //最大數量
-    int min = 5; //最小數量
-    int current = 12; //要顯示的值
+    int max = 99; //最大數量
+    int min = 1; //最小數量
+    int current = 1; //要顯示的值
     private Toolbar mtoolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
