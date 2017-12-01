@@ -160,9 +160,9 @@ public class shopping_cart_modify extends AppCompatActivity {
                 User.editCart(position,orign,meal_id,counter*meal_value,counter,wish_id[0],wish_id[1],wish_id[2],random_pick);
                 User.editInfo(position,store_name,store_id,counter,mMeal,swish_id[0],swish_id[1],swish_id[2],meal_value);
                 //更改jsononbject 回寫到shopping cart
-                Intent intento = new Intent();
-                intento.setClass(shopping_cart_modify.this,shopping_cart.class);
-                startActivity(intento);
+//                Intent intento = new Intent();
+//                intento.setClass(shopping_cart_modify.this,shopping_cart.class);
+//                startActivity(intento);
                 // 提示訊息
                 Toast toast = Toast.makeText(shopping_cart_modify.this,
                         "已修改", Toast.LENGTH_LONG);

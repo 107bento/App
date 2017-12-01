@@ -48,6 +48,9 @@ public class shopping_cart extends AppCompatActivity {
     GlobalVariable User ;
     private Toolbar mtoolbar;
     shopCart service;
+    //更新該頁面使用的參數
+    ViewGroup shop_cart_view;
+    final int  modifyCart=0;
     //定義接口
     public interface shopCart{
         @Headers("Content-Type: application/json")
@@ -58,6 +61,7 @@ public class shopping_cart extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_cart);
+        shop_cart_view = findViewById(R.id.activity_shopping_cart);
         //listview
         cartListView=(ListView)findViewById(R.id.activity_shopping_cart);
         Button sendCart = (Button)findViewById(R.id.btn_put_in_cart);
@@ -158,7 +162,12 @@ public class shopping_cart extends AppCompatActivity {
                 intento.setClass(shopping_cart.this, shopping_cart_modify.class);
                 // 將bundle傳入
                 intento.putExtras(bundle);
-                startActivity(intento);
+                //startActivity(intento,"Mar");
+
+                //從modify回來的
+                String passString = "FromCart";
+                intento.putExtra("FromCart", passString);
+                startActivityForResult(intento, modifyCart);
             }
         });
 
@@ -266,30 +275,7 @@ public class shopping_cart extends AppCompatActivity {
         inflater.inflate(R.menu.menu_shopping_cart, menu);
         return true;
     }
-    /** 彈出對話框 */
-    public void myDialog(final int id) {
-        Log.d("按鈕刪除", "myDialog = " + id);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("確定刪除")
-                .setPositiveButton("是", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Log.d("按鈕刪除", "刪除成功 " + id);
-                    }
-                })
-                .setNegativeButton("否", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Log.d("按鈕刪除", "不要刪除 " + id);
-                    }
-                });
-
-        AlertDialog ad = builder.create();
-        ad.show();
-    }
     public void callJson(){
         /*創建一個retrofit*/
         /*OKHTTP*/
@@ -329,5 +315,16 @@ public class shopping_cart extends AppCompatActivity {
             });
         }
 
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        switch (requestCode)
+        {
+            case  modifyCart://是從modify_cart那邊返回
+                finish();
+                startActivity(getIntent());
+                break;
+        }
     }
 }
