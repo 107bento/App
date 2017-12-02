@@ -9,7 +9,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,13 +28,17 @@ public class purchase_record_order extends AppCompatActivity {
     // 目標放入的MAP
     List<Map<String,Object>> mList;
     ListView recordListView;
+    String[] timeSplit = new String [2];
     String[] listFromResource ;
+    String[] listTime ;
     String[] listDate ;
     String[] listFromMeal;
     String[] listFromNum;
+    //目標JsonArr 並要傳到下一頁(當天的餐點)
+    JsonArray Jarr;
     String[] codeStatus =  {"訂單確認中,未銷帳","已成單", "已領取", "流單"};
     String[] listStatus;
-    JsonArray resource;
+    JsonObject resource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,26 +54,15 @@ public class purchase_record_order extends AppCompatActivity {
          */
         Bundle bundle = getIntent().getExtras();
         String jsonArray = bundle.getString("jsonArray");
-        try {
-            JSONArray array = new JSONArray(jsonArray);
-            System.out.println(array.toString(2));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-//        接收hashMap
-//        HashMap<String, Object> hashMap = null;
-//        Bundle bundle = getIntent().getExtras();
-//        if (bundle != null) {
-//            hashMap = (HashMap<String, Object>) bundle.getSerializable("HashMap");
-//            String date = (String) hashMap.get("date");
-//            String store = (String) hashMap.get("store_name");
-//            Integer mealPic = (Integer) hashMap.get("meal_pic");
-//            String meal = (String) hashMap.get("meal_name");
-//            String counts = (String) hashMap.get("meal_num");
-//            String status = (String) hashMap.get("status");
-//
-//        }
+        int Order = bundle.getInt("position");
+        //轉換String to JsonArray
+        Gson gson = new Gson();
+        JsonParser parser = new JsonParser();
+        //找到目標訂單
+        JsonArray rArr = parser.parse(jsonArray).getAsJsonArray();
+        resource = rArr.get(Order).getAsJsonObject();
+        //設置listview 的內容
+        setData();
         setlist();
 
         // 添加點擊事件
@@ -74,22 +70,19 @@ public class purchase_record_order extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                     long arg3) {
-                // 获得选中项的HashMap对象
-                HashMap<String,Object> map = (HashMap<String,Object>) recordListView.getItemAtPosition(arg2);
-                Object orderDate = map.get("date");
-
-                /**
-                 *  傳遞 HashMap 物件:
-                 *  由於Bundle是可以帶Serializable的，而HashMap實作了Serializable
-                 */
+                //跳頁設定
                 Intent intent = new Intent(purchase_record_order.this, purchase_record_order_detail.class);
+                //傳給下一頁的資料設定
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("HashMap", map);
+                JsonObject Jobj = Jarr.get(arg2).getAsJsonObject();
+                bundle.putString("jsonObj", Jobj.toString());
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
     }
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -104,13 +97,6 @@ public class purchase_record_order extends AppCompatActivity {
     }
 
     public void setlist(){
-
-        // json Array 資料
-
-        /**
-         * 目前還沒有把志願序的資料放進map
-         */
-
         Map<String, Object> item ;
         for (int i = 0; i < listFromResource.length; i++) {
             item = new HashMap<String, Object>();
@@ -138,5 +124,42 @@ public class purchase_record_order extends AppCompatActivity {
                 });
 
         recordListView.setAdapter(adapter);
+    }
+    /*把接回來的DATA放入array中 方便後面使用*/
+    public void setData(){
+        Jarr = resource.getAsJsonObject().get("details").getAsJsonArray();
+        listDate = new String[Jarr.size()];
+        listTime= new String[Jarr.size()];
+        listFromResource = new String[Jarr.size()];
+        listFromMeal = new String[Jarr.size()];
+        listFromNum= new String[Jarr.size()];
+        listStatus= new String[Jarr.size()];
+        for(int i=0;i<Jarr.size();i++){
+            JsonObject tmp;
+            tmp = Jarr.get(i).getAsJsonObject();
+            //設定日期
+            setTime(resource.get("order_time").getAsString());
+            listDate[i] = timeSplit[0];
+            listTime[i] = timeSplit[1];
+            listFromMeal[i] = tmp.get("meal").getAsJsonObject().get("meal_name").getAsString();
+            listFromResource[i]=  tmp.get("meal").getAsJsonObject().get("shop_name").getAsString();
+            listFromNum[i]= tmp.get("amount").getAsString();
+            //配合陣列位置getAsInt()-1
+            int tmpcode = tmp.get("state").getAsInt()-1;
+            listStatus[i] = codeStatus[tmpcode];
+        }
+    }
+    /*將時間切割成天 跟  時*/
+    public void setTime(String time){
+        System.out.println(time);
+        //欲切割的字串
+        String splitString = time;
+        //使用" "(空白)進行切割
+        String[] cmds = splitString.split(" ");
+        int i=0;
+        for(String cmd:cmds){
+            timeSplit[i] = cmd;
+            i++;
+        }
     }
 }

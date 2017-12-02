@@ -37,16 +37,11 @@ public class purchase_record extends AppCompatActivity {
     // 目標放入的MAP
     List<Map<String,Object>> mList;
     ListView recordListView;
-    String[] listFromResource ;
     String[] timeSplit = new String [2];
     String[] listDate ;
     String[] listTime ;
-    String[] listFromMeal;
-    String[] listFromNum;
-    String[] codeStatus =  {"訂單確認中,未銷帳", "已成單", "已領取", "流單"};
-    String[] listStatus;
+    String[] listFromOrder;
     JsonArray resource;
-    JsonArray mJsonArray;//要傳到下一頁的array資料
     static String cookie;
 
     public interface Api{
@@ -77,14 +72,10 @@ public class purchase_record extends AppCompatActivity {
                 // 获得选中项的HashMap对象
                 HashMap<String,Object> map = (HashMap<String,Object>) recordListView.getItemAtPosition(arg2);
                 // 取得被點擊的 order項目底下的 detail
-
-                /**
-                 *  傳遞 json Array
-                 *  把 jsonArray.toString()
-                 */
                 Intent intent = new Intent(purchase_record.this, purchase_record_order.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("jsonArray", resource.toString());
+                bundle.putInt("position",arg2);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -93,16 +84,15 @@ public class purchase_record extends AppCompatActivity {
 
 
     public void getJson() throws IOException {
-
         /*創建一個retrofit*/
-        /*OKHTTP*/
+
+        /*OKHTTP 監視網路*/
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        // set your desired log level
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-        // add your other interceptors …
-        // add logging as last interceptor
-        httpClient.addInterceptor(logging);  // <-- this is the important line!
+        httpClient.addInterceptor(logging);
+        /*OKHTTP 監視網路*/
+
         Retrofit retrofit= new Retrofit.Builder()
                 .baseUrl("http://163.22.17.227/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -114,13 +104,9 @@ public class purchase_record extends AppCompatActivity {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                 resource = response.body().getAsJsonArray();
-                System.out.println(resource);
                 listDate = new String[resource.size()];
                 listTime= new String[resource.size()];
-                listFromResource = new String[resource.size()];
-                listFromMeal = new String[resource.size()];
-                listFromNum= new String[resource.size()];
-                listStatus= new String[resource.size()];
+                listFromOrder = new String[resource.size()];
                 for(int i=0;i<resource.size();i++){
                     JsonObject tmp = new JsonObject();
                     tmp = resource.get(i).getAsJsonObject();
@@ -128,11 +114,7 @@ public class purchase_record extends AppCompatActivity {
                     setTime(tmp.get("order_time").getAsString());
                     listDate[i] = timeSplit[0];
                     listTime[i] = timeSplit[1];
-                    listFromMeal[i] = tmp.getAsJsonArray("details").get(0).getAsJsonObject().get("meal").getAsJsonObject().get("meal_name").getAsString();
-                    listFromResource[i]= tmp.getAsJsonArray("details").get(0).getAsJsonObject().get("meal").getAsJsonObject().get("shop_name").getAsString();
-                    listFromNum[i]= tmp.getAsJsonArray("details").get(0).getAsJsonObject().get("amount").getAsString();
-                    int tmpcode = tmp.getAsJsonArray("details").get(0).getAsJsonObject().get("state").getAsInt()-1;
-                    listStatus[i] = codeStatus[tmpcode];
+                    listFromOrder[i]= tmp.get("order_id").getAsString();
                 }
                 setlist();
 
@@ -175,15 +157,12 @@ public class purchase_record extends AppCompatActivity {
     /*要傳入下一頁的資料*/
     public void setlist(){
         Map<String, Object> item ;
-        for (int i = 0; i < listFromResource.length; i++) {
+        for (int i = 0; i < listFromOrder.length; i++) {
             item = new HashMap<String, Object>();
             item.put("date", listDate[i]);
             item.put("time", listTime[i]);
-            item.put("store_name",listFromResource[i]);
-            item.put("meal_pic", R.drawable.store2_6);
-            item.put("meal_name",listFromMeal[i]);
-            item.put("meal_num", listFromNum[i]);
-            item.put("status", listStatus[i]);
+            item.put("meal_Order",listFromOrder[i]);
+            //放入要擺入Listview的容器中
             mList.add(item);
         }
 
@@ -201,6 +180,7 @@ public class purchase_record extends AppCompatActivity {
 
         recordListView.setAdapter(adapter);
     }
+    /*將時間切割成天 跟  時*/
     public void setTime(String time){
         System.out.println(time);
         //欲切割的字串
