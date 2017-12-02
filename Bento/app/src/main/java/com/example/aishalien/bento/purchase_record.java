@@ -161,7 +161,7 @@ public class purchase_record extends AppCompatActivity {
             item = new HashMap<String, Object>();
             item.put("date", listDate[i]);
             item.put("time", listTime[i]);
-            item.put("meal_Order",listFromOrder[i]);
+            item.put("order_id","單號  "+listFromOrder[i]);
             //放入要擺入Listview的容器中
             mList.add(item);
         }
@@ -172,10 +172,12 @@ public class purchase_record extends AppCompatActivity {
                 mList,
                 R.layout.list_item_purchase_record_list,
                 new String[] {  "date",
-                                "time"
+                                "time",
+                                "order_id"
                 },
                 new int[] { R.id.purchase_record_list_date,
                             R.id.purchase_record_list_time,
+                            R.id.purchase_record_list_ID
                 });
 
         recordListView.setAdapter(adapter);
