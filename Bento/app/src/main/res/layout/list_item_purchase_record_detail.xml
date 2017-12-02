@@ -25,8 +25,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="left|center_vertical"
-            android:textSize="@dimen/text_body_menu_btn"
-            android:text="日期" />
+            android:textSize="@dimen/text_subhead"
+            android:text="日期"
+            android:textColor="@color/textColorPrimary" />
 
         <!--餐點名-->
         <TextView
@@ -34,8 +35,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="left|center_vertical"
-            android:textSize="@dimen/text_body_menu_btn"
-            android:text="成單的餐點名稱"/>
+            android:textSize="@dimen/text_subhead"
+            android:text="成單的餐點名稱"
+            android:textColor="@color/textColorPrimary"/>
     </LinearLayout>
 
     <!--狀態-->
