@@ -128,7 +128,7 @@
 
                 <View
                     android:layout_columnSpan="2"
-                    android:background="@color/gray"
+                    android:background="@color/divider"
                     android:layout_height="0.5dp"
                     android:layout_width="fill_parent"/>
 
