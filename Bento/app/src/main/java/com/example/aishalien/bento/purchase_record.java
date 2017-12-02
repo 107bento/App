@@ -38,6 +38,7 @@ public class purchase_record extends AppCompatActivity {
     List<Map<String,Object>> mList;
     ListView recordListView;
     String[] listFromResource ;
+    String[] timeSplit = new String [2];
     String[] listDate ;
     String[] listTime ;
     String[] listFromMeal;
@@ -49,7 +50,7 @@ public class purchase_record extends AppCompatActivity {
     static String cookie;
 
     public interface Api{
-        @GET("user/orders")
+        @GET("user/orders/all")
         Call<JsonArray> getinfo(@Header("Cookie") String userCookie);
     }
 
@@ -75,10 +76,7 @@ public class purchase_record extends AppCompatActivity {
                                     long arg3) {
                 // 获得选中项的HashMap对象
                 HashMap<String,Object> map = (HashMap<String,Object>) recordListView.getItemAtPosition(arg2);
-
-
                 // 取得被點擊的 order項目底下的 detail
-
 
                 /**
                  *  傳遞 json Array
@@ -86,7 +84,7 @@ public class purchase_record extends AppCompatActivity {
                  */
                 Intent intent = new Intent(purchase_record.this, purchase_record_order.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("jsonArray", mJsonArray.toString());
+                bundle.putString("jsonArray", resource.toString());
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -116,7 +114,9 @@ public class purchase_record extends AppCompatActivity {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                 resource = response.body().getAsJsonArray();
+                System.out.println(resource);
                 listDate = new String[resource.size()];
+                listTime= new String[resource.size()];
                 listFromResource = new String[resource.size()];
                 listFromMeal = new String[resource.size()];
                 listFromNum= new String[resource.size()];
@@ -125,16 +125,9 @@ public class purchase_record extends AppCompatActivity {
                     JsonObject tmp = new JsonObject();
                     tmp = resource.get(i).getAsJsonObject();
                     //設定日期
-                    try {
-                        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
-                        int year = f.parse(tmp.get("order_time").getAsString()).getYear()+1900;
-                        int month = f.parse(tmp.get("order_time").getAsString()).getMonth()+1;
-                        int date = f.parse(tmp.get("order_time").getAsString()).getDate();
-                        listDate[i] = Integer.toString(year)+"/"+Integer.toString(month)+"/"+Integer.toString(date);
-
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
+                    setTime(tmp.get("order_time").getAsString());
+                    listDate[i] = timeSplit[0];
+                    listTime[i] = timeSplit[1];
                     listFromMeal[i] = tmp.getAsJsonArray("details").get(0).getAsJsonObject().get("meal").getAsJsonObject().get("meal_name").getAsString();
                     listFromResource[i]= tmp.getAsJsonArray("details").get(0).getAsJsonObject().get("meal").getAsJsonObject().get("shop_name").getAsString();
                     listFromNum[i]= tmp.getAsJsonArray("details").get(0).getAsJsonObject().get("amount").getAsString();
@@ -179,23 +172,18 @@ public class purchase_record extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+    /*要傳入下一頁的資料*/
     public void setlist(){
-        /**
-         * 目前還沒有把志願序的資料放進map
-         */
         Map<String, Object> item ;
         for (int i = 0; i < listFromResource.length; i++) {
             item = new HashMap<String, Object>();
             item.put("date", listDate[i]);
             item.put("time", listTime[i]);
-
-//            it123em.put("store_name",listFromResource[i]);
-//            item.put("meal_pic", R.drawable.store2_1);
-//            item.put("meal_name",listFromMeal[i]);
-//            item.put("meal_num", listFromNum[i]);
-//            item.put("status", listStatus[i]);
-
+            item.put("store_name",listFromResource[i]);
+            item.put("meal_pic", R.drawable.store2_6);
+            item.put("meal_name",listFromMeal[i]);
+            item.put("meal_num", listFromNum[i]);
+            item.put("status", listStatus[i]);
             mList.add(item);
         }
 
@@ -212,5 +200,17 @@ public class purchase_record extends AppCompatActivity {
                 });
 
         recordListView.setAdapter(adapter);
+    }
+    public void setTime(String time){
+        System.out.println(time);
+        //欲切割的字串
+        String splitString = time;
+        //使用" "(空白)進行切割
+        String[] cmds = splitString.split(" ");
+        int i=0;
+        for(String cmd:cmds){
+            timeSplit[i] = cmd;
+            i++;
+        }
     }
 }

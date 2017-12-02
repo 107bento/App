@@ -48,6 +48,9 @@ public class shopping_cart extends AppCompatActivity {
     GlobalVariable User ;
     private Toolbar mtoolbar;
     shopCart service;
+    //更新該頁面使用的參數
+    ViewGroup shop_cart_view;
+    final int  modifyCart=0;
     //定義接口
     public interface shopCart{
         @Headers("Content-Type: application/json")
@@ -59,6 +62,7 @@ public class shopping_cart extends AppCompatActivity {
         ApplicationBar.getInstance().addActivity(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_cart);
+        shop_cart_view = findViewById(R.id.activity_shopping_cart);
         //listview
         cartListView=(ListView)findViewById(R.id.activity_shopping_cart);
         Button sendCart = (Button)findViewById(R.id.btn_put_in_cart);
@@ -66,6 +70,7 @@ public class shopping_cart extends AppCompatActivity {
         User = (GlobalVariable)getApplicationContext();
         JsonArray information = User.ch_details;
         JsonArray cartvalue = User.details;
+        System.out.println("Car"+cartvalue);
         System.out.println(information);
         //拿到店家名稱
         String[] listFromResource = new String[information.size()];
@@ -77,14 +82,23 @@ public class shopping_cart extends AppCompatActivity {
         String[] listFromNum = new String[information.size()];
         //拿到餐點價格
         String[] listFromvalue = new String[information.size()];
+        //拿到店家ID
+        String[] listStoreID =  new String[information.size()];
+        //拿到餐點ID
+        String[] listMealID =  new String[information.size()];
+        //拿到checkbox狀態
+        int[] listcheck =  new int[information.size()];
         for(int i=0;i<information.size();i++){
             listFromResource[i] = information.get(i).getAsJsonObject().get("store_name").getAsString();
             listFromMeal[i]= information.get(i).getAsJsonObject().get("meal_name").getAsString();
             listFromvalue[i]= information.get(i).getAsJsonObject().get("meal_value").getAsString();
-            String tmpv = information.get(i).getAsJsonObject().get("store_name_id").getAsString();
+            listMealID[i] = cartvalue.get(i).getAsJsonObject().get("meal_id").getAsString();
+            listStoreID[i] = information.get(i).getAsJsonObject().get("store_id").getAsString();
+            String tmpv = information.get(i).getAsJsonObject().get("store_id").getAsString();
             String picName = "store"+ Integer.toString(Integer.valueOf(tmpv)-1)+"_"+cartvalue.get(i).getAsJsonObject().get("meal_id").getAsString();
+            listcheck[i] = cartvalue.get(i).getAsJsonObject().get("random_pick").getAsInt();
             listFromPic[i] =getResources().getIdentifier(picName, "drawable", getPackageName());
-            listFromNum[i]= information.get(i).getAsJsonObject().get("amount").getAsString()+"份";
+            listFromNum[i]= information.get(i).getAsJsonObject().get("amount").getAsString();
             System.out.println(listFromNum[i]);
         }
 
@@ -93,7 +107,12 @@ public class shopping_cart extends AppCompatActivity {
             item = new HashMap<String, Object>();
             item.put("store_pic", listFromPic[i]);
             item.put("store_name",listFromResource[i]);
+            item.put("store_id",listStoreID[i]);
+            item.put("meal_id",listMealID[i]);
+            item.put("random_pick",listcheck[i]);
             item.put("meal_name",listFromMeal[i]);
+            item.put("meal_num",listFromNum[i]+"份");
+            item.put("meal_amount",listFromNum[i]);
             item.put("meal_value",listFromvalue[i]);
             item.put("cart_button", R.id.ButtonCart);
             mList.add(item);
@@ -123,20 +142,33 @@ public class shopping_cart extends AppCompatActivity {
                 HashMap<String,Object> map=(HashMap<String,Object>)cartListView.getItemAtPosition(arg2);
                 Object Omeal_value = map.get("meal_value");
                 Object meal_name = map.get("meal_name");
-                Object meal_num = map.get("meal_num");
+                Object meal_id = map.get("meal_id");
+                Object store_name = map.get("store_name");
+                Object store_id = map.get("store_id");
+                Object meal_num = map.get("meal_amount");
                 Object store_pic = map.get("store_pic");
+                Object check_status = map.get("random_pick");
                 // 建立一個Bundle
                 Bundle bundle = new Bundle();
                 bundle.putString("meal", (String) meal_name);
+                bundle.putString("store_name", (String) store_name);
                 bundle.putInt("meal_value",  Integer.valueOf((String)Omeal_value) );
-                bundle.putString("amount",(String)meal_num);
+                bundle.putString("meal_id", (String) meal_id);
+                bundle.putInt("amount",Integer.valueOf((String)meal_num));
                 bundle.putInt("position",arg2);
+                bundle.putString("store_id",(String)store_id);
                 bundle.putInt("store_pic",(int)store_pic);
+                bundle.putInt("random_pick",(int)check_status);
                 Intent intento = new Intent();
                 intento.setClass(shopping_cart.this, shopping_cart_modify.class);
                 // 將bundle傳入
                 intento.putExtras(bundle);
-                startActivity(intento);
+                //startActivity(intento,"Mar");
+
+                //從modify回來的
+                String passString = "FromCart";
+                intento.putExtra("FromCart", passString);
+                startActivityForResult(intento, modifyCart);
             }
         });
 
@@ -246,30 +278,7 @@ public class shopping_cart extends AppCompatActivity {
         inflater.inflate(R.menu.menu_shopping_cart, menu);
         return true;
     }
-    /** 彈出對話框 */
-    public void myDialog(final int id) {
-        Log.d("按鈕刪除", "myDialog = " + id);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("確定刪除")
-                .setPositiveButton("是", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Log.d("按鈕刪除", "刪除成功 " + id);
-                    }
-                })
-                .setNegativeButton("否", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Log.d("按鈕刪除", "不要刪除 " + id);
-                    }
-                });
-
-        AlertDialog ad = builder.create();
-        ad.show();
-    }
     public void callJson(){
         /*創建一個retrofit*/
         /*OKHTTP*/
@@ -289,17 +298,36 @@ public class shopping_cart extends AppCompatActivity {
                 .build();
         service = retrofit.create(shopCart.class);
         System.out.println("SPCART "+User.sendCart());
-        Call<JsonObject> Model = service.repo(User.getCookie(),User.sendCart());
-        Model.enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                JsonObject resource = response.body();
-                System.out.println("send or not "+resource );
-            }
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                System.out.println("error");
-            }
-        });
+        if(User.total==0){
+            Toast.makeText(this, "購物車是空的", Toast.LENGTH_SHORT).show();
+        }else{
+            Call<JsonObject> Model = service.repo(User.getCookie(),User.sendCart());
+            Model.enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    JsonObject resource = response.body();
+                    System.out.println("send or not "+resource );
+                    User.clean_cart();
+                    finish();
+                    startActivity(getIntent());
+                }
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+                    System.out.println("error");
+                }
+            });
+        }
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        switch (requestCode)
+        {
+            case  modifyCart://是從modify_cart那邊返回
+                finish();
+                startActivity(getIntent());
+                break;
+        }
     }
 }

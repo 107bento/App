@@ -83,7 +83,6 @@ public class application_fillment extends AppCompatActivity {
         amount = bundle.getInt("amount");
 
         int count = bundle.getInt("amount");
-        Toast.makeText(this, "安安你傳了數量＝"+ String.valueOf(count), Toast.LENGTH_SHORT).show();
 
          // toolbar
         mtoolbar = (Toolbar) findViewById(R.id.tb_toolbar);
@@ -101,15 +100,18 @@ public class application_fillment extends AppCompatActivity {
         // 不顯示返回符號，在onOptionsItemSelected須設定
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //監聽是否要電腦隨機選擇
-        CheckBox autorandom = (CheckBox)findViewById(R.id.checkBox);
-        autorandom.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox);
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
-                  random_pick++;
-                  random_pick = random_pick%2;
-              }
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    random_pick = 1;
+                }
+                else{
+                    random_pick=0;
+                }
             }
-        );
+        });
     }
 
     // 完成按鈕

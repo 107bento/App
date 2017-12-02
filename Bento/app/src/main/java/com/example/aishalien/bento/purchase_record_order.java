@@ -110,6 +110,7 @@ public class purchase_record_order extends AppCompatActivity {
         /**
          * 目前還沒有把志願序的資料放進map
          */
+
         Map<String, Object> item ;
         for (int i = 0; i < listFromResource.length; i++) {
             item = new HashMap<String, Object>();

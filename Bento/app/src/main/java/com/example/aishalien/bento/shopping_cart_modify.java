@@ -52,15 +52,23 @@ public class shopping_cart_modify extends AppCompatActivity {
     Spinner spinnerM2;
     Spinner spinnerM3;
     //放入購物車的元素
-    int random_pick = 0;
+    int random_pick;
     int amount;
     int meal_value;
     int position;
+    String store_id;
+    GlobalVariable User;
     String meal_id;
+    String store_name;
     JsonArray cartvalue;
     JsonArray information;
     String swish_id[] = {"1","1","1"};
     String wish_id[] = {"1","1","1"};
+    //控制數量
+    int max = 99; //最大數量
+    int min = 1; //最小數量
+    int current = 1; //要顯示的值
+    int orign;//原本該筆項目的總額
     public interface Api{
         @GET("shops/all")
         Call<JsonArray> getinfo();
@@ -71,7 +79,7 @@ public class shopping_cart_modify extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sub_shopping_car_modify);
         initimgbtn();
-        GlobalVariable User = (GlobalVariable)getApplicationContext();
+        User = (GlobalVariable)getApplicationContext();
         cartvalue = User.details;
         information = User.ch_details;
         initspinner();
@@ -88,9 +96,13 @@ public class shopping_cart_modify extends AppCompatActivity {
         meal_valueT.setText("NT." + Integer.toString(bundle.getInt("meal_value"))+"元");
         //接相關資料
         meal_id = bundle.getString("meal_id");
-        //
+        store_name = bundle.getString("store_name");
         position = bundle.getInt("position");
         amount = bundle.getInt("amount");
+        orign = amount*meal_value;
+        store_id = bundle.getString("store_id");
+        current = amount;
+        random_pick = bundle.getInt("random_pick");
         // toolbar
         mtoolbar = (Toolbar) findViewById(R.id.tb_toolbar);
         // 設置toolbar標題
@@ -108,21 +120,35 @@ public class shopping_cart_modify extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //監聽是否要電腦隨機選擇
         CheckBox autorandom = (CheckBox)findViewById(R.id.checkBox);
+        if(random_pick==1){//有被勾選的狀態
+            autorandom.setChecked(true);
+        }else{
+            autorandom.setChecked(false);
+        }
+
+        //判斷randompick目前的狀況
         autorandom.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
         @Override
-        public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
-            random_pick++;
-            random_pick = random_pick%2;
+        public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {//0為沒有選  1為有選的
+            if(isChecked) {
+                random_pick = 1;
+            }
+            else{
+                random_pick=0;
+            }
             }
         });
         // 數量控件
         AmountView mAmountView = (AmountView) findViewById(R.id.amountView);
-        mAmountView.setMaxValue(99);  // 設置最大數量
+        mAmountView.setMaxValue(max); // 設置最大數量
+        mAmountView.setMinValue(min); // 設置最小值
+        mAmountView.setCurrentValue(current); //設置目前要顯示的數量
+        counter = current;
         mAmountView.setListener(new AmountView.OnAmountChangeListener() {
             @Override
-            public void onAmountChange(int value) {
+            public void onAmountChange(int amount) {
                 //  紀錄數量
-                counter = value;
+                counter = amount;
             }
         });
     }
@@ -132,13 +158,22 @@ public class shopping_cart_modify extends AppCompatActivity {
         btn.setOnClickListener(new ImageButton.OnClickListener() {
             @Override
             public void onClick(View view) {
+                User.editCart(position,orign,meal_id,counter*meal_value,counter,wish_id[0],wish_id[1],wish_id[2],random_pick);
+                User.editInfo(position,store_name,store_id,counter,mMeal,swish_id[0],swish_id[1],swish_id[2],meal_value);
                 //更改jsononbject 回寫到shopping cart
-                Intent intento = new Intent();
-                intento.setClass(shopping_cart_modify.this,shopping_cart.class);
-                startActivity(intento);
+//                Intent intento = new Intent();
+//                intento.setClass(shopping_cart_modify.this,shopping_cart.class);
+//                startActivity(intento);
+                // 提示訊息
+                Toast toast = Toast.makeText(shopping_cart_modify.this,
+                        "已修改", Toast.LENGTH_LONG);
+                System.out.println("User : "+User.details);
+                toast.show();
+                onBackPressed();
             }
         });
     }
+
     public void initspinner(){
         try {
             getJson();
@@ -146,7 +181,8 @@ public class shopping_cart_modify extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-    public int set_store_init(int position,int spin){
+    //找到目前adapter中該店家的擺放編號 並回傳是adpter內的第幾個 回傳的為要擺入陣列的第i個
+    public int set_store_init(int position,int spin){//spin為第幾項 志願序
         String tmp_id[] = {"swish_id1","swish_id2","swish_id3"};
         for(int i=0;i<storeID.length;i++){
             if(information.get(position).getAsJsonObject().get(tmp_id[spin]).getAsString().equals(storeID[i])){
@@ -155,6 +191,7 @@ public class shopping_cart_modify extends AppCompatActivity {
         }
         return 0;
     }
+    //三個志願序的餐點志願序紀錄 回傳的為要擺入陣列的第i個
     public int set_meal_init(int position,String[] meal,int spin){
         String tmp_id[] = {"wish_id_1","wish_id_2","wish_id_3"};
         for(int i=0;i<meal.length;i++){
@@ -164,11 +201,15 @@ public class shopping_cart_modify extends AppCompatActivity {
         }
         return 0;
     }
+    //設定有甚麼店家是可以選擇的
     public void setshopOption(){
         spinnerS1 = (Spinner)findViewById(R.id.store_spinner01);
         final ArrayAdapter<String> shopList = new ArrayAdapter<>(shopping_cart_modify.this, android.R.layout.simple_spinner_dropdown_item,store);
         spinnerS1.setAdapter(shopList);
+        //設定預設值
         spinnerS1.setSelection(set_store_init(position,0));
+        //設定預設的store是哪家店
+        swish_id[0] = storeID[set_store_init(position,0)];
         //監聽事件
         spinnerS1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -184,7 +225,10 @@ public class shopping_cart_modify extends AppCompatActivity {
         spinnerS2 = (Spinner)findViewById(R.id.store_spinner02);
         final ArrayAdapter<String> shopList2 = new ArrayAdapter<>(shopping_cart_modify.this, android.R.layout.simple_spinner_dropdown_item,store);
         spinnerS2.setAdapter(shopList2);
+        //設定預設值
         spinnerS2.setSelection(set_store_init(position,1));
+        //設定預設的store是哪家店
+        swish_id[1] = storeID[set_store_init(position,1)];
         //監聽事件
         spinnerS2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -201,6 +245,7 @@ public class shopping_cart_modify extends AppCompatActivity {
         final ArrayAdapter<String> shopList3 = new ArrayAdapter<>(shopping_cart_modify.this, android.R.layout.simple_spinner_dropdown_item,store);
         spinnerS3.setAdapter(shopList3);
         spinnerS3.setSelection(set_store_init(position,2));
+        swish_id[2] = storeID[set_store_init(position,2)];
         //監聽事件
         spinnerS3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -228,7 +273,9 @@ public class shopping_cart_modify extends AppCompatActivity {
             }
             ArrayAdapter<String> mealList1 = new ArrayAdapter<>(shopping_cart_modify.this, android.R.layout.simple_spinner_dropdown_item,meal);
             spinnerM1.setAdapter(mealList1);
+            //設定初始值
             spinnerM1.setSelection(set_meal_init(position,meal_id1,0));
+            wish_id[0] = meal_id1[set_meal_init(position,meal_id1,0)];
             //監聽事件
             spinnerM1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -254,6 +301,7 @@ public class shopping_cart_modify extends AppCompatActivity {
             ArrayAdapter<String> mealList2 = new ArrayAdapter<>(shopping_cart_modify.this, android.R.layout.simple_spinner_dropdown_item,meal);
             spinnerM2.setAdapter(mealList2);
             spinnerM2.setSelection(set_meal_init(position,meal_id2,1));
+            wish_id[1] = meal_id2[set_meal_init(position,meal_id2,1)];
             //監聽事件
             spinnerM2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -279,6 +327,7 @@ public class shopping_cart_modify extends AppCompatActivity {
             ArrayAdapter<String> mealList3 = new ArrayAdapter<>(shopping_cart_modify.this, android.R.layout.simple_spinner_dropdown_item,meal);
             spinnerM3.setAdapter(mealList3);
             spinnerM3.setSelection(set_meal_init(position,meal_id3,2));
+            wish_id[1] = meal_id3[set_meal_init(position,meal_id3,2)];
             //監聽事件
             spinnerM3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
