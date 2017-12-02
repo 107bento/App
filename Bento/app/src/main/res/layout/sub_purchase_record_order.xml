@@ -9,11 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:paddingLeft="@dimen/padding_left_and_right"
-        android:paddingRight="@dimen/padding_left_and_right"
-        android:paddingTop="@dimen/padding_top"
         android:choiceMode="singleChoice"
-        android:divider="@color/gray"
-        android:dividerHeight="1dp"/>
+        android:divider="@color/divider"
+        android:dividerHeight="0.5dp"/>
 
 </LinearLayout>

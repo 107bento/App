@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -65,7 +67,6 @@ public class shopping_cart extends AppCompatActivity {
         shop_cart_view = findViewById(R.id.activity_shopping_cart);
         //listview
         cartListView=(ListView)findViewById(R.id.activity_shopping_cart);
-        Button sendCart = (Button)findViewById(R.id.btn_put_in_cart);
         mList =  new ArrayList<HashMap<String, Object>> ();
         User = (GlobalVariable)getApplicationContext();
         JsonArray information = User.ch_details;
@@ -132,7 +133,16 @@ public class shopping_cart extends AppCompatActivity {
                 new int[] {R.id.store_pic,R.id.store_name,R.id.meal_name,R.id.meal_num,R.id.ButtonCart}
         ,User);
 
+        // 加入購物車footer
+        View footerView = ((LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE)).inflate(R.layout.view_shopping_cart_footer, null, false);
+        cartListView.addFooterView(footerView);
+        Button sendCart = (Button)findViewById(R.id.btn_put_in_cart);
+
         cartListView.setAdapter(adapter);
+
+        // 避免footer的監聽事件被item内的button搶走，
+        cartListView.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
+
         //添加點擊事件
         cartListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -173,7 +183,7 @@ public class shopping_cart extends AppCompatActivity {
         });
 
         //設置listview高度
-        setListViewHeightBasedOnChildren(cartListView);
+//        setListViewHeightBasedOnChildren(cartListView);
 
 
         //  toolbar
@@ -214,17 +224,20 @@ public class shopping_cart extends AppCompatActivity {
      * 解決listview與scrollview衝突而無法設定以其內容作為其高度
      */
     public static void setListViewHeightBasedOnChildren(ListView listView) {
-        if(listView == null) return;
-
         ListAdapter listAdapter = listView.getAdapter();
         if (listAdapter == null) {
             // pre-condition
             return;
         }
 
-        int totalHeight = 0;
+        int totalHeight = listView.getPaddingTop() + listView.getPaddingBottom();
+
         for (int i = 0; i < listAdapter.getCount(); i++) {
             View listItem = listAdapter.getView(i, null, listView);
+            if (listItem instanceof ViewGroup) {
+                listItem.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            }
+
             listItem.measure(0, 0);
             totalHeight += listItem.getMeasuredHeight();
         }
