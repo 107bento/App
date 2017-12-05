@@ -34,6 +34,8 @@ import retrofit2.http.GET;
 
 public class shopping_cart_modify extends AppCompatActivity {
     private Toolbar mtoolbar;
+    CheckBox ignoreBox;
+    int ignoreIndex=0;
     //設定檔 from application
     String mMeal;
     int counter; //數量
@@ -82,6 +84,7 @@ public class shopping_cart_modify extends AppCompatActivity {
         User = (GlobalVariable)getApplicationContext();
         cartvalue = User.details;
         information = User.ch_details;
+
         initspinner();
         // 接收 shopping_cart 過來的資料
         Bundle bundle = getIntent().getExtras();
@@ -103,6 +106,8 @@ public class shopping_cart_modify extends AppCompatActivity {
         store_id = bundle.getString("store_id");
         current = amount;
         random_pick = bundle.getInt("random_pick");
+        //判斷是不是不要wish
+        String Jignore = cartvalue.get(position).getAsJsonObject().get("wish_id_1").getAsString();
         // toolbar
         mtoolbar = (Toolbar) findViewById(R.id.tb_toolbar);
         // 設置toolbar標題
@@ -120,6 +125,7 @@ public class shopping_cart_modify extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //監聽是否要電腦隨機選擇
         CheckBox autorandom = (CheckBox)findViewById(R.id.checkBox);
+        System.out.println("random_pick"+random_pick);
         if(random_pick==1){//有被勾選的狀態
             autorandom.setChecked(true);
         }else{
@@ -151,6 +157,24 @@ public class shopping_cart_modify extends AppCompatActivity {
                 counter = amount;
             }
         });
+        //監聽是否要跳過志願序
+        ignoreBox = (CheckBox) findViewById(R.id.ignore);
+        if(Jignore.equals("0")){
+            ignoreBox.setChecked(true);
+        }else{
+            ignoreBox.setChecked(false);
+        }
+        ignoreBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    ignoreIndex=1;
+                }
+                else{
+                    ignoreIndex=0;
+                }
+            }
+        });
     }
 
     public void initimgbtn(){
@@ -158,12 +182,14 @@ public class shopping_cart_modify extends AppCompatActivity {
         btn.setOnClickListener(new ImageButton.OnClickListener() {
             @Override
             public void onClick(View view) {
-                User.editCart(position,orign,meal_id,counter*meal_value,counter,wish_id[0],wish_id[1],wish_id[2],random_pick);
-                User.editInfo(position,store_name,store_id,counter,mMeal,swish_id[0],swish_id[1],swish_id[2],meal_value);
-                //更改jsononbject 回寫到shopping cart
-//                Intent intento = new Intent();
-//                intento.setClass(shopping_cart_modify.this,shopping_cart.class);
-//                startActivity(intento);
+                if(ignoreIndex==1){
+                    User.editCart(position,orign,meal_id,counter*meal_value,counter,"0","0","0",random_pick);
+                    User.editInfo(position,store_name,store_id,counter,mMeal,"0","0","0",meal_value);
+                }else{
+                    // 抓取頁面資料，保存到本地端（購物車資料）
+                    User.editCart(position,orign,meal_id,counter*meal_value,counter,wish_id[0],wish_id[1],wish_id[2],random_pick);
+                    User.editInfo(position,store_name,store_id,counter,mMeal,swish_id[0],swish_id[1],swish_id[2],meal_value);
+                }
                 // 提示訊息
                 Toast toast = Toast.makeText(shopping_cart_modify.this,
                         "已修改", Toast.LENGTH_LONG);

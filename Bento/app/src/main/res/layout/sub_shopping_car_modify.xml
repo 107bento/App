@@ -214,7 +214,14 @@
                     android:prompt="@string/meal_option"
                     android:spinnerMode="dialog" />
                 <!--志願結束-->
-
+                <CheckBox
+                    android:id="@+id/ignore"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_vertical_margin"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:text="跳過志願序(該店家沒有成單時，放棄餐點)"
+                    android:textSize="@dimen/text_body_menu_btn" />
                 <CheckBox
                     android:id="@+id/checkBox"
                     android:layout_width="match_parent"

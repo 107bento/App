@@ -38,6 +38,8 @@ import retrofit2.http.Header;
 public class application_fillment extends AppCompatActivity {
 
     private Toolbar mtoolbar;
+    CheckBox ignoreBox;
+    int ignoreIndex=0;
     String mMeal;
     JsonArray resource;
     JsonObject tmp;
@@ -112,6 +114,19 @@ public class application_fillment extends AppCompatActivity {
                 }
             }
         });
+        //監聽是否要跳過志願序
+        ignoreBox = (CheckBox) findViewById(R.id.ignore);
+        ignoreBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    ignoreIndex=1;
+                }
+                else{
+                    ignoreIndex=0;
+                }
+            }
+        });
     }
 
     // 完成按鈕
@@ -120,15 +135,24 @@ public class application_fillment extends AppCompatActivity {
         btn.setOnClickListener(new ImageButton.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 抓取頁面資料，保存到本地端（購物車資料）
-                GlobalVariable User = (GlobalVariable)getApplicationContext();
-                User.addCart(meal_id,amount,amount*meal_value,wish_id[0],wish_id[1],wish_id[2],random_pick);
-                User.addInfo(store_name,store_name_id,amount,mMeal,swish_id[0],swish_id[1],swish_id[2],meal_value);
-                System.out.println(mMeal+"志願序"+swish_id[0]+" "+swish_id[1]+" "+swish_id[2]+" ");
+                if(ignoreIndex==1){
+                    // 抓取頁面資料，保存到本地端（購物車資料）
+                    GlobalVariable User = (GlobalVariable)getApplicationContext();
+                    User.addCart(meal_id,amount,amount*meal_value,"0","0","0",random_pick);
+                    User.addInfo(store_name,store_name_id,amount,mMeal,"0","0","0",meal_value);
+                    System.out.println(mMeal+"志願序"+"0"+" "+"0"+" "+"0"+" ");
+                }else{
+                    // 抓取頁面資料，保存到本地端（購物車資料）
+                    GlobalVariable User = (GlobalVariable)getApplicationContext();
+                    User.addCart(meal_id,amount,amount*meal_value,wish_id[0],wish_id[1],wish_id[2],random_pick);
+                    User.addInfo(store_name,store_name_id,amount,mMeal,swish_id[0],swish_id[1],swish_id[2],meal_value);
+                    System.out.println(mMeal+"志願序"+swish_id[0]+" "+swish_id[1]+" "+swish_id[2]+" ");
+                }
+
                 // 提示訊息
                 Toast toast = Toast.makeText(application_fillment.this,
                         "已加入購物車", Toast.LENGTH_LONG);
-                System.out.println("User : "+User.details);
+               //System.out.println("User : "+User.details);
                 toast.show();
                 onBackPressed();
             }
