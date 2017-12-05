@@ -119,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_vertical_margin"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="跳過志願序(該店家沒有成單時，放棄餐點)"
+                android:text="略過，我不需要填志願序，沒有就算了"
                 android:textSize="@dimen/text_body_menu_btn" />
             <CheckBox
                 android:id="@+id/checkBox"

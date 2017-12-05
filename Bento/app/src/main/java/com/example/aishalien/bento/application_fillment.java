@@ -1,7 +1,9 @@
 package com.example.aishalien.bento;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -136,25 +138,44 @@ public class application_fillment extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(ignoreIndex==1){
-                    // 抓取頁面資料，保存到本地端（購物車資料）
-                    GlobalVariable User = (GlobalVariable)getApplicationContext();
-                    User.addCart(meal_id,amount,amount*meal_value,"0","0","0",random_pick);
-                    User.addInfo(store_name,store_name_id,amount,mMeal,"0","0","0",meal_value);
-                    System.out.println(mMeal+"志願序"+"0"+" "+"0"+" "+"0"+" ");
+                    if(random_pick == 1){
+                        new AlertDialog.Builder(application_fillment.this)
+                                .setTitle("請選擇")
+                                .setMessage("請選擇略過志願序 或是 隨機志願序")
+                                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                    }
+                                })
+                                .show();
+                    }else{
+                        // 抓取頁面資料，保存到本地端（購物車資料）
+                        GlobalVariable User = (GlobalVariable)getApplicationContext();
+                        User.addCart(meal_id,amount,amount*meal_value,"0","0","0",random_pick);
+                        User.addInfo(store_name,store_name_id,amount,mMeal,"0","0","0",meal_value);
+                        System.out.println(mMeal+"志願序"+"0"+" "+"0"+" "+"0"+" ");
+                        // 提示訊息
+                        Toast toast = Toast.makeText(application_fillment.this,
+                                "已加入購物車", Toast.LENGTH_LONG);
+                        //System.out.println("User : "+User.details);
+                        toast.show();
+                        onBackPressed();
+                    }
                 }else{
                     // 抓取頁面資料，保存到本地端（購物車資料）
                     GlobalVariable User = (GlobalVariable)getApplicationContext();
                     User.addCart(meal_id,amount,amount*meal_value,wish_id[0],wish_id[1],wish_id[2],random_pick);
                     User.addInfo(store_name,store_name_id,amount,mMeal,swish_id[0],swish_id[1],swish_id[2],meal_value);
                     System.out.println(mMeal+"志願序"+swish_id[0]+" "+swish_id[1]+" "+swish_id[2]+" ");
+                    // 提示訊息
+                    Toast toast = Toast.makeText(application_fillment.this,
+                            "已加入購物車", Toast.LENGTH_LONG);
+                    //System.out.println("User : "+User.details);
+                    toast.show();
+                    onBackPressed();
                 }
 
-                // 提示訊息
-                Toast toast = Toast.makeText(application_fillment.this,
-                        "已加入購物車", Toast.LENGTH_LONG);
-               //System.out.println("User : "+User.details);
-                toast.show();
-                onBackPressed();
+
             }
         });
     }

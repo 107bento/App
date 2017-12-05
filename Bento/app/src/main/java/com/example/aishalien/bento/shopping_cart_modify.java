@@ -1,7 +1,9 @@
 package com.example.aishalien.bento;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -161,6 +163,7 @@ public class shopping_cart_modify extends AppCompatActivity {
         ignoreBox = (CheckBox) findViewById(R.id.ignore);
         if(Jignore.equals("0")){
             ignoreBox.setChecked(true);
+            ignoreIndex = 1;
         }else{
             ignoreBox.setChecked(false);
         }
@@ -183,19 +186,38 @@ public class shopping_cart_modify extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(ignoreIndex==1){
-                    User.editCart(position,orign,meal_id,counter*meal_value,counter,"0","0","0",random_pick);
-                    User.editInfo(position,store_name,store_id,counter,mMeal,"0","0","0",meal_value);
+                    if(random_pick == 1){
+                        new AlertDialog.Builder(shopping_cart_modify.this)
+                                .setTitle("請選擇")
+                                .setMessage("請選擇略過志願序 或是 隨機志願序")
+                                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                    }
+                                })
+                                .show();
+                    }else{
+                        User.editCart(position,orign,meal_id,counter*meal_value,counter,"0","0","0",random_pick);
+                        User.editInfo(position,store_name,store_id,counter,mMeal,"0","0","0",meal_value);
+                        // 提示訊息
+                        Toast toast = Toast.makeText(shopping_cart_modify.this,
+                                "已修改", Toast.LENGTH_LONG);
+                        System.out.println("User : "+User.details);
+                        toast.show();
+                        onBackPressed();
+                    }
                 }else{
                     // 抓取頁面資料，保存到本地端（購物車資料）
                     User.editCart(position,orign,meal_id,counter*meal_value,counter,wish_id[0],wish_id[1],wish_id[2],random_pick);
                     User.editInfo(position,store_name,store_id,counter,mMeal,swish_id[0],swish_id[1],swish_id[2],meal_value);
+                    // 提示訊息
+                    Toast toast = Toast.makeText(shopping_cart_modify.this,
+                            "已修改", Toast.LENGTH_LONG);
+                    System.out.println("User : "+User.details);
+                    toast.show();
+                    onBackPressed();
                 }
-                // 提示訊息
-                Toast toast = Toast.makeText(shopping_cart_modify.this,
-                        "已修改", Toast.LENGTH_LONG);
-                System.out.println("User : "+User.details);
-                toast.show();
-                onBackPressed();
+
             }
         });
     }

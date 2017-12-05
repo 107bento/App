@@ -124,8 +124,7 @@ public class cartAdapter  extends BaseAdapter {
         public void onClick(View v) {
             int vid=v.getId();
             if (vid == itemView.ItemButton.getId()) {
-
-                Log.v("ola_log", String.valueOf(position));
+//                Log.v("ola_log", String.valueOf(position));
                 //產生視窗物件
                 AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
                 dialog.setTitle("Title"); //設定dialog 的title顯示內容
