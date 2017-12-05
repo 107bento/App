@@ -18,7 +18,7 @@ public class purchase_record_order_detail extends AppCompatActivity {
     String  store, meal, counts, status, sstore_1, sstore_2, sstore_3, sswish_1, sswish_2, sswish_3;
     TextView storeText, mealText, countsText, statusText,swish_1,swish_2,swish_3, wish_1, wish_2, wish_3;
     ImageView mealImg;
-    String[] codeStatus =  {"訂單確認中,未銷帳","已成單", "已領取", "流單"};
+    String[] codeStatus =  {"訂單確認中，未銷帳","已成單，待領取", "已領取", "流單"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

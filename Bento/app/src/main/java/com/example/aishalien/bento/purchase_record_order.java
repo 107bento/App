@@ -36,7 +36,7 @@ public class purchase_record_order extends AppCompatActivity {
     String[] listFromNum;
     //目標JsonArr 並要傳到下一頁(當天的餐點)
     JsonArray Jarr;
-    String[] codeStatus =  {"訂單確認中,未銷帳","已成單", "已領取", "流單"};
+    String[] codeStatus =  {"訂單確認中，未銷帳","已成單，待領取", "已領取", "流單"};
     String[] listStatus;
     JsonObject resource;
 

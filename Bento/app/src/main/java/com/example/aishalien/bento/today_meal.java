@@ -42,7 +42,8 @@ public class today_meal extends AppCompatActivity {
     String[] listFromMeal ;
     String[] listFromNum;
     String[] listStatus;
-    String[] codeStatus =  {"訂單確認中，未銷帳", "訂單確認中", "已領取", "流單"};
+    String[] codeStatus =  {"訂單確認中，未銷帳", "已成單，待領取", "已領取", "流單"};
+
     int[] listPic;
     static String cookie;
 
@@ -177,7 +178,7 @@ public class today_meal extends AppCompatActivity {
             item.put("meal_pic", listPic[i]);
             item.put("store_name", listFromResource[i]);
             item.put("meal_name", listFromMeal[i]);
-            item.put("meal_num", listFromNum[i]);
+            item.put("meal_num", "x" + listFromNum[i]);
             item.put("status", listStatus[i]);
             mList.add(item);
         }
@@ -203,7 +204,7 @@ public class today_meal extends AppCompatActivity {
     private int setpic(JsonObject tmp){
         String shop_id = tmp.get("meal").getAsJsonObject().get("shop_id").getAsString();
         String meal_id = tmp.get("meal").getAsJsonObject().get("meal_id").getAsString();
-        String picName =   "store"+String.valueOf(Integer.valueOf(shop_id)-1)+"_"+meal_id;
+        String picName = "store"+String.valueOf(Integer.valueOf(shop_id)-1)+"_"+meal_id;
         int picId = getResources().getIdentifier(picName, "drawable", getPackageName());
         return picId;
     }
