@@ -41,8 +41,8 @@ public class today_meal extends AppCompatActivity {
     String[] listFromResource;
     String[] listFromMeal ;
     String[] listFromNum;
-    String[] listStatus; //=  {"待領取", "訂單確認中", "已領取", "流單"};
-    String[] codeStatus =  {"待領取", "訂單確認中", "已領取", "流單"};
+    String[] listStatus;
+    String[] codeStatus =  {"訂單確認中，未銷帳", "訂單確認中", "已領取", "流單"};
     int[] listPic;
     static String cookie;
 
