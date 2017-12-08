@@ -341,6 +341,8 @@ public class application_fillment extends AppCompatActivity {
                     setshopOption();
                     //哪一家店的菜單 初始必為第一家店，-1表示初始狀態
                     setmealOption(-1,0);
+                }else{
+                    Toast.makeText(application_fillment.this, "系統錯誤", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
