@@ -17,6 +17,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.io.IOException;
@@ -141,14 +143,20 @@ public class store_menu extends AppCompatActivity{
         Model.enqueue(new Callback<JsonArray>() {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
-                //成功接到 response
-                resource = response.body();
-                //初始化
-                initList();
-                initListView();
+                if(response.code()==200){
+                    //成功接到 response
+                    resource = response.body();
+                    //初始化
+                    initList();
+                    initListView();
+                }else{
+                    Toast.makeText(store_menu.this, "系統錯誤", Toast.LENGTH_SHORT).show();
+                }
+
             }
             @Override
             public void onFailure(Call<JsonArray> call, Throwable t) {
+                Toast.makeText(store_menu.this, "系統錯誤", Toast.LENGTH_SHORT).show();
             }
         });
     }

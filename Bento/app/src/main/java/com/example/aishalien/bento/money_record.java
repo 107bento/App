@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -149,26 +150,31 @@ public class money_record extends AppCompatActivity {
         Model.enqueue(new Callback<JsonArray>() {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
-                resource = response.body().getAsJsonArray();
-                listFromRecordId= new String[resource.size()];
-                listDate = new String[resource.size()];
-                listTime= new String[resource.size()];
-                listDetail = new String[resource.size()];
-                listValue = new String[resource.size()];
-                listRemain = new String[resource.size()];
-                for(int i=0;i<resource.size();i++){
-                    JsonObject tmp = new JsonObject();
-                    tmp = resource.get(i).getAsJsonObject();
-                    listFromRecordId[i] = tmp.get("record_id").getAsString();
-                    //設定日期
-                    setTime(tmp.get("time").getAsString());
-                    listDate[i] = timeSplit[0];
-                    listTime[i] = timeSplit[1];
-                    listDetail[i] = tmp.get("record_detail").getAsString();
-                    listValue[i] = tmp.get("value").getAsString();
-                    listRemain[i] = tmp.get("remain").getAsString();
+                if(response.code()==200){
+                    resource = response.body().getAsJsonArray();
+                    listFromRecordId= new String[resource.size()];
+                    listDate = new String[resource.size()];
+                    listTime= new String[resource.size()];
+                    listDetail = new String[resource.size()];
+                    listValue = new String[resource.size()];
+                    listRemain = new String[resource.size()];
+                    for(int i=0;i<resource.size();i++){
+                        JsonObject tmp = new JsonObject();
+                        tmp = resource.get(i).getAsJsonObject();
+                        listFromRecordId[i] = tmp.get("record_id").getAsString();
+                        //設定日期
+                        setTime(tmp.get("time").getAsString());
+                        listDate[i] = timeSplit[0];
+                        listTime[i] = timeSplit[1];
+                        listDetail[i] = tmp.get("record_detail").getAsString();
+                        listValue[i] = tmp.get("value").getAsString();
+                        listRemain[i] = tmp.get("remain").getAsString();
+                    }
+                        setlist();
                 }
-                setlist();
+                else{
+                    Toast.makeText(money_record.this, "系統錯誤", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

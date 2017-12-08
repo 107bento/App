@@ -7,8 +7,11 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
+import org.json.JSONObject;
 
 import java.util.HashMap;
 
@@ -41,12 +44,23 @@ public class purchase_record_order_detail extends AppCompatActivity {
         //配合陣列位置getAsInt()-1
         int tmpcode = JsonObj.get("state").getAsInt()-1;
         status = codeStatus[tmpcode];
-        sstore_1= JsonObj.get("wish_1").getAsJsonObject().get("shop_name").getAsString();
-        sstore_2= JsonObj.get("wish_2").getAsJsonObject().get("shop_name").getAsString();
-        sstore_3= JsonObj.get("wish_3").getAsJsonObject().get("shop_name").getAsString();
-        sswish_1= JsonObj.get("wish_1").getAsJsonObject().get("meal_name").getAsString();
-        sswish_2 = JsonObj.get("wish_2").getAsJsonObject().get("meal_name").getAsString();
-        sswish_3 = JsonObj.get("wish_3").getAsJsonObject().get("meal_name").getAsString();
+
+        if( JsonObj.get("wish_1").isJsonNull()){
+            sstore_1= "空";
+            sstore_2= "空";
+            sstore_3= "空";
+            sswish_1= "空";
+            sswish_2 = "空";
+            sswish_3 = "空";
+        }else{
+            sstore_1= JsonObj.get("wish_1").getAsJsonObject().get("shop_name").getAsString();
+            sstore_2= JsonObj.get("wish_2").getAsJsonObject().get("shop_name").getAsString();
+            sstore_3= JsonObj.get("wish_3").getAsJsonObject().get("shop_name").getAsString();
+            sswish_1= JsonObj.get("wish_1").getAsJsonObject().get("meal_name").getAsString();
+            sswish_2 = JsonObj.get("wish_2").getAsJsonObject().get("meal_name").getAsString();
+            sswish_3 = JsonObj.get("wish_3").getAsJsonObject().get("meal_name").getAsString();
+        }
+
 
 
         mealImg = (ImageView) findViewById(R.id.purchase_record_detail_img);
