@@ -274,7 +274,6 @@ public class profile_modify extends AppCompatActivity implements Validator.Valid
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 //成功接到 response
                 JsonObject res = response.body();
-
                 if (response.code() == 200) {
                     Toast.makeText(profile_modify.this, "修改成功！", Toast.LENGTH_SHORT).show();
                 } else {

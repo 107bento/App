@@ -189,7 +189,7 @@ public class shopping_cart_modify extends AppCompatActivity {
                     if(random_pick == 1){
                         new AlertDialog.Builder(shopping_cart_modify.this)
                                 .setTitle("請選擇")
-                                .setMessage("請選擇略過志願序 或是 隨機志願序")
+                                .setMessage("你給我選一個ヽ(#ﾟДﾟ)ﾉ┌┛)`Дﾟ)･;")
                                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {

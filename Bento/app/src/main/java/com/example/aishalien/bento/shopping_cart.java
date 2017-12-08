@@ -310,7 +310,6 @@ public class shopping_cart extends AppCompatActivity {
                 .client(httpClient.build())
                 .build();
         service = retrofit.create(shopCart.class);
-        System.out.println("SPCART "+User.sendCart());
         if(User.total==0){
             Toast.makeText(this, "購物車是空的", Toast.LENGTH_SHORT).show();
         }else{
