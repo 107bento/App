@@ -310,19 +310,26 @@ public class shopping_cart extends AppCompatActivity {
                 .client(httpClient.build())
                 .build();
         service = retrofit.create(shopCart.class);
-        System.out.println("SPCART "+User.sendCart());
         if(User.total==0){
             Toast.makeText(this, "購物車是空的", Toast.LENGTH_SHORT).show();
         }else{
             Call<JsonObject> Model = service.repo(User.getCookie(),User.sendCart());
             Model.enqueue(new Callback<JsonObject>() {
+
                 @Override
                 public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                    JsonObject resource = response.body();
-                    System.out.println("send or not "+resource );
-                    User.clean_cart();
-                    finish();
-                    startActivity(getIntent());
+                    if (response.code()==200) {
+                        JsonObject resource = response.body();
+                        User.clean_cart();
+                        finish();
+                        startActivity(getIntent());
+                    }
+                    else if(response.code()==400){
+                        Toast.makeText(shopping_cart.this, "目前帳戶金額不足", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(shopping_cart.this, "系統錯誤", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
                 @Override
                 public void onFailure(Call<JsonObject> call, Throwable t) {

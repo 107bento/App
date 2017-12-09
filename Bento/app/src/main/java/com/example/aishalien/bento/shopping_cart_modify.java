@@ -189,7 +189,7 @@ public class shopping_cart_modify extends AppCompatActivity {
                     if(random_pick == 1){
                         new AlertDialog.Builder(shopping_cart_modify.this)
                                 .setTitle("請選擇")
-                                .setMessage("請選擇略過志願序 或是 隨機志願序")
+                                .setMessage("你給我選一個ヽ(#ﾟДﾟ)ﾉ┌┛)`Дﾟ)･;")
                                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
@@ -410,23 +410,28 @@ public class shopping_cart_modify extends AppCompatActivity {
         Model.enqueue(new Callback<JsonArray>() {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
-                resource = response.body().getAsJsonArray();
-                store = new String[resource.size()];
-                storeID = new String[resource.size()];
-                for(int i=0;i<resource.size();i++){
-                    tmp = new JsonObject();
-                    tmp = resource.get(i).getAsJsonObject();
-                    store[i] =tmp.get("shop_name").getAsString();
-                    storeID[i] =tmp.get("shop_id").getAsString();
+                if(response.code()==200){
+                    resource = response.body().getAsJsonArray();
+                    store = new String[resource.size()];
+                    storeID = new String[resource.size()];
+                    for(int i=0;i<resource.size();i++){
+                        tmp = new JsonObject();
+                        tmp = resource.get(i).getAsJsonObject();
+                        store[i] =tmp.get("shop_name").getAsString();
+                        storeID[i] =tmp.get("shop_id").getAsString();
+                    }
+                    //設定店家選項
+                    setshopOption();
+                    //哪一家店的菜單 初始必為第一家店，-1表示初始狀態
+                    setmealOption(-1,0);
+                }else{
+                    Toast.makeText(shopping_cart_modify.this, "系統錯誤", Toast.LENGTH_SHORT).show();
                 }
-                //設定店家選項
-                setshopOption();
-                //哪一家店的菜單 初始必為第一家店，-1表示初始狀態
-                setmealOption(-1,0);
+
             }
             @Override
             public void onFailure(Call<JsonArray> call, Throwable t) {
-                System.out.println("error");
+                Toast.makeText(shopping_cart_modify.this, "系統錯誤", Toast.LENGTH_SHORT).show();
             }
         });
     }
