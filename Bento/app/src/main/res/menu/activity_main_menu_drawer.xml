@@ -4,23 +4,23 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_food"
-            android:icon="@drawable/main_tofood"
+            android:icon="@drawable/main_ic_tofood"
             android:title="@string/myMeal" />
         <item
             android:id="@+id/nav_purchase_record"
-            android:icon="@drawable/purchase_record"
+            android:icon="@drawable/main_ic_purchase_record"
             android:title="@string/purchase_record" />
         <item
             android:id="@+id/nav_addValue"
-            android:icon="@drawable/add_value_3"
+            android:icon="@drawable/main_ic_add_value_3"
             android:title="@string/goto_add_value" />
         <item
             android:id="@+id/nav_money_record"
-            android:icon="@drawable/money_record"
+            android:icon="@drawable/main_ic_money_record"
             android:title="金錢紀錄" />
         <item
             android:id="@+id/nav_logout"
-            android:icon="@drawable/main_logout"
+            android:icon="@drawable/main_ic_logout"
             android:title="@string/logout" />
         <!--<item-->
             <!--android:id="@+id/nav_anno"-->

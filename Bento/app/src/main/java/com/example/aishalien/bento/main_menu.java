@@ -214,17 +214,17 @@ public class main_menu extends AppCompatActivity
                 break;
 
             // 按下說明
-            case R.id.question_btn:
-                // 彈出dialog
-                new AlertDialog.Builder(main_menu.this)
-                        // 標題
-                        .setTitle(R.string.explanation)
-                        // 訊息
-                        .setMessage(R.string.explanation_content)
-                        // 按下ok返回畫面
-                        .setPositiveButton(R.string.ok, null)
-                        .show();
-                break;
+//            case R.id.question_btn:
+//                // 彈出dialog
+//                new AlertDialog.Builder(main_menu.this)
+//                        // 標題
+//                        .setTitle(R.string.explanation)
+//                        // 訊息
+//                        .setMessage(R.string.explanation_content)
+//                        // 按下ok返回畫面
+//                        .setPositiveButton(R.string.ok, null)
+//                        .show();
+//                break;
         }
 
         return super.onOptionsItemSelected(item);

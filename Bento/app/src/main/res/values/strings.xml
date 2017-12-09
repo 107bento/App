@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Bento</string>
+    <string name="app_name">BENTO</string>
 
     <!-- Strings related to login -->
     <string name="action_sign_in">Login</string>

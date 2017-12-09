@@ -7,9 +7,9 @@
         android:title="首頁"
         android:icon="@drawable/ic_home"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/question_btn"
-        android:title="@string/explanation"
-        android:icon="@drawable/ic_help_black_24dp"
-        app:showAsAction="never" />
+    <!--<item-->
+        <!--android:id="@+id/question_btn"-->
+        <!--android:title="@string/explanation"-->
+        <!--android:icon="@drawable/ic_help_black_24dp"-->
+        <!--app:showAsAction="never" />-->
 </menu>

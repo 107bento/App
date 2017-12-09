@@ -1,7 +1,9 @@
 package com.example.aishalien.bento;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -38,6 +40,8 @@ import retrofit2.http.Header;
 public class application_fillment extends AppCompatActivity {
 
     private Toolbar mtoolbar;
+    CheckBox ignoreBox;
+    int ignoreIndex=0;
     String mMeal;
     JsonArray resource;
     JsonObject tmp;
@@ -83,7 +87,6 @@ public class application_fillment extends AppCompatActivity {
         amount = bundle.getInt("amount");
 
         int count = bundle.getInt("amount");
-        Toast.makeText(this, "安安你傳了數量＝"+ String.valueOf(count), Toast.LENGTH_SHORT).show();
 
          // toolbar
         mtoolbar = (Toolbar) findViewById(R.id.tb_toolbar);
@@ -101,15 +104,31 @@ public class application_fillment extends AppCompatActivity {
         // 不顯示返回符號，在onOptionsItemSelected須設定
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //監聽是否要電腦隨機選擇
-        CheckBox autorandom = (CheckBox)findViewById(R.id.checkBox);
-        autorandom.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox);
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
-                  random_pick++;
-                  random_pick = random_pick%2;
-              }
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    random_pick = 1;
+                }
+                else{
+                    random_pick=0;
+                }
             }
-        );
+        });
+        //監聽是否要跳過志願序
+        ignoreBox = (CheckBox) findViewById(R.id.ignore);
+        ignoreBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    ignoreIndex=1;
+                }
+                else{
+                    ignoreIndex=0;
+                }
+            }
+        });
     }
 
     // 完成按鈕
@@ -118,17 +137,45 @@ public class application_fillment extends AppCompatActivity {
         btn.setOnClickListener(new ImageButton.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 抓取頁面資料，保存到本地端（購物車資料）
-                GlobalVariable User = (GlobalVariable)getApplicationContext();
-                User.addCart(meal_id,amount,amount*meal_value,wish_id[0],wish_id[1],wish_id[2],random_pick);
-                User.addInfo(store_name,store_name_id,amount,mMeal,swish_id[0],swish_id[1],swish_id[2],meal_value);
-                System.out.println(mMeal+"志願序"+swish_id[0]+" "+swish_id[1]+" "+swish_id[2]+" ");
-                // 提示訊息
-                Toast toast = Toast.makeText(application_fillment.this,
-                        "已加入購物車", Toast.LENGTH_LONG);
-                System.out.println("User : "+User.details);
-                toast.show();
-                onBackPressed();
+                if(ignoreIndex==1){
+                    if(random_pick == 1){
+                        new AlertDialog.Builder(application_fillment.this)
+                                .setTitle("請選擇")
+                                .setMessage("請選擇略過志願序 或是 隨機志願序")
+                                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                    }
+                                })
+                                .show();
+                    }else{
+                        // 抓取頁面資料，保存到本地端（購物車資料）
+                        GlobalVariable User = (GlobalVariable)getApplicationContext();
+                        User.addCart(meal_id,amount,amount*meal_value,"0","0","0",random_pick);
+                        User.addInfo(store_name,store_name_id,amount,mMeal,"0","0","0",meal_value);
+                        System.out.println(mMeal+"志願序"+"0"+" "+"0"+" "+"0"+" ");
+                        // 提示訊息
+                        Toast toast = Toast.makeText(application_fillment.this,
+                                "已加入購物車", Toast.LENGTH_LONG);
+                        //System.out.println("User : "+User.details);
+                        toast.show();
+                        onBackPressed();
+                    }
+                }else{
+                    // 抓取頁面資料，保存到本地端（購物車資料）
+                    GlobalVariable User = (GlobalVariable)getApplicationContext();
+                    User.addCart(meal_id,amount,amount*meal_value,wish_id[0],wish_id[1],wish_id[2],random_pick);
+                    User.addInfo(store_name,store_name_id,amount,mMeal,swish_id[0],swish_id[1],swish_id[2],meal_value);
+                    System.out.println(mMeal+"志願序"+swish_id[0]+" "+swish_id[1]+" "+swish_id[2]+" ");
+                    // 提示訊息
+                    Toast toast = Toast.makeText(application_fillment.this,
+                            "已加入購物車", Toast.LENGTH_LONG);
+                    //System.out.println("User : "+User.details);
+                    toast.show();
+                    onBackPressed();
+                }
+
+
             }
         });
     }

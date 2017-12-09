@@ -45,11 +45,11 @@
                     android:layout_height="wrap_content"
                     android:text="單價"
                     android:textSize="@dimen/text_display_34"
-                    android:layout_marginLeft="14dp"
+                    android:layout_marginLeft="17dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:layout_marginStart="14dp" />
+                    android:layout_marginStart="17dp" />
 
                 <TextView
                     android:id="@+id/meal_purchase_value"
@@ -74,15 +74,15 @@
 
                 <TextView
                     android:id="@+id/count"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     android:text="數量"
                     android:textSize="@dimen/text_display_34"
-                    android:layout_marginLeft="14dp"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginStart="17dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="14dp" />
+                    android:layout_alignParentStart="true" />
 
                 <!--
                     AmountView

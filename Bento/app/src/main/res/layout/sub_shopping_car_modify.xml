@@ -128,7 +128,7 @@
 
                 <View
                     android:layout_columnSpan="2"
-                    android:background="@color/gray"
+                    android:background="@color/divider"
                     android:layout_height="0.5dp"
                     android:layout_width="fill_parent"/>
 
@@ -214,7 +214,14 @@
                     android:prompt="@string/meal_option"
                     android:spinnerMode="dialog" />
                 <!--志願結束-->
-
+                <CheckBox
+                    android:id="@+id/ignore"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_vertical_margin"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:text="略過，我不需要填志願序，沒有就算了"
+                    android:textSize="@dimen/text_body_menu_btn" />
                 <CheckBox
                     android:id="@+id/checkBox"
                     android:layout_width="match_parent"

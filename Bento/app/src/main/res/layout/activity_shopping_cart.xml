@@ -11,33 +11,11 @@
 
     <include layout="@layout/toolbar"/>
 
-    <ScrollView
+    <ListView
+        android:id="@+id/activity_shopping_cart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:divider="@color/divider"
+        android:dividerHeight="0.5dp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <ListView
-                android:id="@+id/activity_shopping_cart"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/padding_left_and_right"
-                android:paddingRight="@dimen/padding_left_and_right" />
-
-            <!--購買-->
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_put_in_cart"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_vertical_margin"
-                android:background="@color/colorAccent"
-                android:text="結帳"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/text_subhead" />
-        </LinearLayout>
-    </ScrollView>
 </LinearLayout>

@@ -10,12 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingLeft="@dimen/padding_left_and_right"
-        android:paddingRight="@dimen/padding_left_and_right">
+        android:paddingRight="@dimen/padding_left_and_right"
+        android:paddingBottom="@dimen/padding_top">
 
         <ImageView
             android:id="@+id/purchase_record_detail_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="centerCrop"
+            android:elevation="@dimen/card_recycler_elevation" />
 
         <TextView
             android:id="@+id/purchase_record_detail_store"
@@ -24,6 +28,7 @@
             android:layout_margin="@dimen/main_card_margin_horizontal"
             android:text="店家名稱"
             android:textSize="@dimen/text_headline"
+            android:textColor="@color/textColorPrimary"
             />
 
         <LinearLayout
@@ -37,6 +42,7 @@
                 android:layout_margin="@dimen/main_card_margin_horizontal"
                 android:text="餐點名稱"
                 android:textSize="@dimen/text_title"
+                android:textColor="@color/textColorPrimary"
                 />
             <TextView
                 android:id="@+id/purchase_record_detail_count"
@@ -45,7 +51,7 @@
                 android:layout_margin="@dimen/main_card_margin_horizontal"
                 android:text="餐點數量"
                 android:textSize="@dimen/text_title"
-
+                android:textColor="@color/textColorPrimary"
                 />
             <TextView
                 android:id="@+id/purchase_record_detail_status"
@@ -53,15 +59,17 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/main_card_margin_horizontal"
                 android:text="領餐狀態"
-                android:textSize="@dimen/text_title"
+                android:textSize="@dimen/text_subhead"
+                android:textColor="@color/colorAccent"
                 />
         </LinearLayout>
 
         <View
-            android:background="@color/gray_very_light"
-            android:layout_height="1dp"
+            android:background="@color/divider"
+            android:layout_height="0.5dp"
             android:layout_width="fill_parent"
-            android:layout_margin="@dimen/main_card_margin_horizontal"/>
+            android:layout_marginTop="@dimen/main_card_margin_horizontal"
+            android:layout_marginBottom="@dimen/main_card_margin_horizontal"/>
 
         <TextView
             android:id="@+id/purchase_record_detail_application_1"

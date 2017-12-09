@@ -9,8 +9,8 @@ import java.util.HashMap;
 
 public class money_record_content extends AppCompatActivity {
 
-    TextView tv_Time, tv_Value, tv_Remain;
-    String recordID, time, value, remain;
+    TextView tv_Date, tv_Value, tv_Remain;
+    String recordID, date, value, remain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,19 +26,19 @@ public class money_record_content extends AppCompatActivity {
         if (bundle != null) {
             hashMap = (HashMap<String, Object>) bundle.getSerializable("HashMap");
             recordID = (String) hashMap.get("record_id");
-            time = (String) hashMap.get("time");
+            date = (String) hashMap.get("date");
             value = (String) hashMap.get("value");
             remain = (String) hashMap.get("remain");
 
         }
 
         // 找到元件
-        tv_Time = (TextView) findViewById(R.id.money_record_content_time);
+        tv_Date = (TextView) findViewById(R.id.money_record_content_time);
         tv_Value = (TextView) findViewById(R.id.money_record_content_value);
         tv_Remain = (TextView) findViewById(R.id.money_record_content_remain);
 
         // 設定頁面資料
-        tv_Time.setText(time);
+        tv_Date.setText(date);
         tv_Value.setText(value);
         tv_Remain.setText(remain);
     }
