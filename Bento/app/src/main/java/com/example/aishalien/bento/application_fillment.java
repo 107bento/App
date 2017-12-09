@@ -253,7 +253,7 @@ public class application_fillment extends AppCompatActivity {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     wish_id[2] = meal_id3[position];
-                    Toast.makeText(application_fillment.this, "你選的一" +  wish_id[0]+"二."+ wish_id[1]+"三."+ wish_id[2], Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(application_fillment.this, "你選的一" +  wish_id[0]+"二."+ wish_id[1]+"三."+ wish_id[2], Toast.LENGTH_SHORT).show();
                     setmealOption(R.id.meal_spinner03,position);
                 }
                 @Override
