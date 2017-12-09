@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:choiceMode="singleChoice"
-        android:divider="@android:color/darker_gray"
+        android:divider="@color/divider"
         android:dividerHeight="0.5dp"/>
 
 </LinearLayout>
