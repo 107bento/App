@@ -31,7 +31,7 @@
                 android:id="@+id/imagePhoto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/user_2"
+                app:srcCompat="@mipmap/bento_icon"
                 android:layout_gravity="center"/>
 
             <android.support.v7.widget.Toolbar

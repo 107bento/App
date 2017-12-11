@@ -1,116 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--我的餐點 詳細資料-->
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/padding_top"
-    android:paddingLeft="@dimen/padding_left_and_right"
-    android:paddingRight="@dimen/padding_left_and_right"
-    android:columnCount="2"
-    android:layout_gravity="center">
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal">
 
     <ImageView
         android:layout_columnSpan="2"
         android:layout_column="0"
         android:id="@+id/today_detail_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:maxHeight="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="@dimen/main_card_margin_horizontal"/>
+        android:scaleType="centerCrop"
+        android:elevation="@dimen/card_recycler_elevation"/>
 
-    <TextView
-        android:layout_column="0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/main_card_margin_horizontal"
-        android:text="店家"
-        android:textSize="@dimen/text_headline" />
-    <TextView
-        android:layout_column="1"
-        android:id="@+id/today_detail_store"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/main_card_margin_horizontal"
-        android:text="店家名稱"
-        android:textSize="@dimen/text_headline" />
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="@dimen/padding_top"
+            android:paddingLeft="@dimen/padding_left_and_right"
+            android:paddingRight="@dimen/padding_left_and_right"
+            android:columnCount="2"
+            android:layout_gravity="center">
 
-    <TextView
-        android:layout_column="0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/main_card_margin_horizontal"
-        android:text="餐點"
-        android:textSize="@dimen/text_headline" />
-    <TextView
-        android:layout_column="1"
-        android:id="@+id/today_detail_meal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/main_card_margin_horizontal"
-        android:text="餐點名稱"
-        android:textSize="@dimen/text_headline" />
+        <TextView
+            android:layout_column="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/main_card_margin_horizontal"
+            android:text="店家"
+            android:textSize="@dimen/text_title" />
+        <TextView
+            android:layout_column="1"
+            android:id="@+id/today_detail_store"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/main_card_margin_horizontal"
+            android:text="店家名稱"
+            android:textSize="@dimen/text_title"
+            android:textColor="@color/textColorPrimary"/>
 
-
-    <TextView
-        android:layout_column="0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/main_card_margin_horizontal"
-        android:text="數量"
-        android:textSize="@dimen/text_headline" />
-    <TextView
-        android:layout_column="1"
-        android:id="@+id/today_detail_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/main_card_margin_horizontal"
-        android:text="餐點數量"
-        android:textSize="@dimen/text_headline" />
+        <TextView
+            android:layout_column="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/main_card_margin_horizontal"
+            android:text="餐點"
+            android:textSize="@dimen/text_title" />
+        <TextView
+            android:layout_column="1"
+            android:id="@+id/today_detail_meal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/main_card_margin_horizontal"
+            android:text="餐點名稱"
+            android:textSize="@dimen/text_title"
+            android:textColor="@color/textColorPrimary"/>
 
 
-    <TextView
-        android:layout_column="0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/main_card_margin_horizontal"
-        android:text="狀態"
-        android:textSize="@dimen/text_headline" />
-    <TextView
-        android:layout_column="1"
-        android:id="@+id/today_detail_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/main_card_margin_horizontal"
-        android:text="領餐狀態"
-        android:textSize="@dimen/text_headline" />
+        <TextView
+            android:layout_column="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/main_card_margin_horizontal"
+            android:text="數量"
+            android:textSize="@dimen/text_title" />
+        <TextView
+            android:layout_column="1"
+            android:id="@+id/today_detail_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/main_card_margin_horizontal"
+            android:text="餐點數量"
+            android:textSize="@dimen/text_title"
+            android:textColor="@color/textColorPrimary"/>
 
-    <!--領餐確認用的條碼-->
-    <ImageView
-        android:layout_columnSpan="2"
-        android:id="@+id/today_deatil_barcode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/main_card_margin_horizontal"
-        android:layout_marginRight="@dimen/main_card_margin_horizontal"
-        android:layout_marginTop="@dimen/main_card_margin_vertical"
-        android:src="@drawable/qrcode"/>
-    <TextView
-        android:layout_columnSpan="2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="領餐請攜帶本條碼！"
-        android:textColor="@color/orange"/>
 
-</GridLayout>
+        <TextView
+            android:layout_column="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/main_card_margin_horizontal"
+            android:text="狀態"
+            android:textSize="@dimen/text_title" />
+        <TextView
+            android:layout_column="1"
+            android:id="@+id/today_detail_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/main_card_margin_horizontal"
+            android:text="領餐狀態"
+            android:textSize="@dimen/text_title"
+            android:textColor="@color/textColorPrimary"/>
+        </GridLayout>
+
+        <!--領餐確認用的條碼-->
+        <ImageView
+            android:layout_columnSpan="2"
+            android:id="@+id/today_deatil_barcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/main_card_margin_horizontal"
+            android:layout_marginRight="@dimen/main_card_margin_horizontal"
+            android:layout_marginTop="@dimen/main_card_margin_vertical"
+            android:src="@drawable/qrcode"/>
+        <TextView
+            android:layout_columnSpan="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="領餐請攜帶本條碼！"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/text_body_menu_btn"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+
+    </LinearLayout>
+</ScrollView>
