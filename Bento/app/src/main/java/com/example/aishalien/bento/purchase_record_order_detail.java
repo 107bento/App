@@ -46,12 +46,12 @@ public class purchase_record_order_detail extends AppCompatActivity {
         status = codeStatus[tmpcode];
 
         if( JsonObj.get("wish_1").isJsonNull()){
-            sstore_1= "空";
-            sstore_2= "空";
-            sstore_3= "空";
-            sswish_1= "空";
-            sswish_2 = "空";
-            sswish_3 = "空";
+            sstore_1= " ";
+            sstore_2= " ";
+            sstore_3= " ";
+            sswish_1= " ";
+            sswish_2 = " ";
+            sswish_3 = " ";
         }else{
             sstore_1= JsonObj.get("wish_1").getAsJsonObject().get("shop_name").getAsString();
             sstore_2= JsonObj.get("wish_2").getAsJsonObject().get("shop_name").getAsString();

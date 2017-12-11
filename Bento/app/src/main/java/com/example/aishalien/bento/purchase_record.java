@@ -130,7 +130,7 @@ public class purchase_record extends AppCompatActivity {
                                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        onBackPressed();
+
                                     }
                                 })
                                 .show();
