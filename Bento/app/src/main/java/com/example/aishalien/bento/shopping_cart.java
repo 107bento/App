@@ -50,7 +50,7 @@ public class shopping_cart extends AppCompatActivity {
     GlobalVariable User ;
     JsonArray information;
     private Toolbar mtoolbar;
-    String alert = " ";
+    String alert = "";
     shopCart service;
     //更新該頁面使用的參數
     ViewGroup shop_cart_view;
@@ -311,7 +311,7 @@ public class shopping_cart extends AppCompatActivity {
                         }
                         new AlertDialog.Builder(shopping_cart.this)
                                 .setTitle("已送出訂單")
-                                .setMessage("請至我的餐點確認\n"+"下單商品:\n"+alert)
+                                .setMessage("請至我的餐點確認\n\n"+"下單商品:\n"+alert)
                                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {

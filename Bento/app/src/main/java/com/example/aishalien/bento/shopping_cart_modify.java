@@ -186,7 +186,7 @@ public class shopping_cart_modify extends AppCompatActivity {
         btn.setOnClickListener(new ImageButton.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if((swish_id[0].equals(swish_id[1])||swish_id[1].equals(swish_id[2])||swish_id[2].equals(swish_id[0]))&& (!swish_id[0].equals("0")|| !swish_id[1].equals("0")|| !swish_id[2].equals("0"))){
+                if((swish_id[0].equals(swish_id[1])||swish_id[1].equals(swish_id[2])||swish_id[2].equals(swish_id[0]))&& (!swish_id[0].equals("0")&&!swish_id[1].equals("0")|| !swish_id[1].equals("0")&& !swish_id[2].equals("0")|| !swish_id[2].equals("0")&&!swish_id[0].equals("0"))){
                     new AlertDialog.Builder(shopping_cart_modify.this)
                             .setTitle("請不要選擇相同店家")
                             .setMessage("志願序考量各店家營業狀況不同，希望使用者選擇其他店家以防無法成單")
