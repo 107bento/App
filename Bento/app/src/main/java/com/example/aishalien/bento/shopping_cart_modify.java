@@ -127,7 +127,6 @@ public class shopping_cart_modify extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //監聽是否要電腦隨機選擇
         CheckBox autorandom = (CheckBox)findViewById(R.id.checkBox);
-        System.out.println("random_pick"+random_pick);
         if(random_pick==1){//有被勾選的狀態
             autorandom.setChecked(true);
         }else{
@@ -188,7 +187,7 @@ public class shopping_cart_modify extends AppCompatActivity {
                 if(ignoreIndex==1){
                     if(random_pick == 1){
                         new AlertDialog.Builder(shopping_cart_modify.this)
-                                .setTitle("請選擇")
+                                .setTitle("請選擇 隨機 或是 放棄志願序")
                                 .setMessage("你給我選一個ヽ(#ﾟДﾟ)ﾉ┌┛)`Дﾟ)･;")
                                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                                     @Override
@@ -202,7 +201,6 @@ public class shopping_cart_modify extends AppCompatActivity {
                         // 提示訊息
                         Toast toast = Toast.makeText(shopping_cart_modify.this,
                                 "已修改", Toast.LENGTH_LONG);
-                        System.out.println("User : "+User.details);
                         toast.show();
                         onBackPressed();
                     }
@@ -213,7 +211,6 @@ public class shopping_cart_modify extends AppCompatActivity {
                     // 提示訊息
                     Toast toast = Toast.makeText(shopping_cart_modify.this,
                             "已修改", Toast.LENGTH_LONG);
-                    System.out.println("User : "+User.details);
                     toast.show();
                     onBackPressed();
                 }
@@ -309,15 +306,26 @@ public class shopping_cart_modify extends AppCompatActivity {
     }
     //哪一個志願(rid)的哪家店菜單storeID,是否為初始(0=>不是,1=>是)
     public void setmealOption(int rid,int storeID){
+        //扣掉預設空白值
+        int nowStore = storeID-1;
         if(rid==R.id.store_spinner01||rid == -1){
+            String[] meal;
             //第一家店的餐點志願序
             spinnerM1 = (Spinner)findViewById(R.id.meal_spinner01);
-            JsonArray tmpmeal1 = resource.get(storeID).getAsJsonObject().get("meals").getAsJsonArray();
-            String[] meal= new String[tmpmeal1.size()];
-            meal_id1 = new String[tmpmeal1.size()];
-            for(int i=0;i<tmpmeal1.size();i++){
-                meal[i] =tmpmeal1.get(i).getAsJsonObject().get("meal_name").getAsString();
-                meal_id1[i] = tmpmeal1.get(i).getAsJsonObject().get("meal_id").getAsString();
+            if(storeID == 0){
+                meal = new String[1];
+                meal_id1 = new String[1];
+                meal[0]="   ";
+                meal_id1[0] = "0";
+            }else{
+                //第一家店的餐點志願序
+                JsonArray tmpmeal1 = resource.get(storeID).getAsJsonObject().get("meals").getAsJsonArray();
+                meal= new String[tmpmeal1.size()];
+                meal_id1 = new String[tmpmeal1.size()];
+                for(int i=0;i<tmpmeal1.size();i++){
+                    meal[i] =tmpmeal1.get(i).getAsJsonObject().get("meal_name").getAsString();
+                    meal_id1[i] = tmpmeal1.get(i).getAsJsonObject().get("meal_id").getAsString();
+                }
             }
             ArrayAdapter<String> mealList1 = new ArrayAdapter<>(shopping_cart_modify.this, android.R.layout.simple_spinner_dropdown_item,meal);
             spinnerM1.setAdapter(mealList1);
@@ -337,14 +345,22 @@ public class shopping_cart_modify extends AppCompatActivity {
                 }
             });
         }else if(rid==R.id.store_spinner02||rid == -1){
-            //第二家店的第一個餐點志願序
             spinnerM2 = (Spinner)findViewById(R.id.meal_spinner02);
-            JsonArray tmpmeal2 = resource.get(storeID).getAsJsonObject().get("meals").getAsJsonArray();
-            String[] meal= new String[tmpmeal2.size()];
-            meal_id2 = new String[tmpmeal2.size()];
-            for(int i=0;i<tmpmeal2.size();i++){
-                meal[i] =tmpmeal2.get(i).getAsJsonObject().get("meal_name").getAsString();
-                meal_id2[i] = tmpmeal2.get(i).getAsJsonObject().get("meal_id").getAsString();
+            String[] meal;
+            if(storeID == 0){
+                meal = new String[1];
+                meal_id2 = new String[1];
+                meal[0]="    ";
+                meal_id2[0] = "0";
+            }else{
+                //第二家店的第一個餐點志願序
+                JsonArray tmpmeal2 = resource.get(storeID).getAsJsonObject().get("meals").getAsJsonArray();
+                meal= new String[tmpmeal2.size()];
+                meal_id2 = new String[tmpmeal2.size()];
+                for(int i=0;i<tmpmeal2.size();i++){
+                    meal[i] =tmpmeal2.get(i).getAsJsonObject().get("meal_name").getAsString();
+                    meal_id2[i] = tmpmeal2.get(i).getAsJsonObject().get("meal_id").getAsString();
+                }
             }
             ArrayAdapter<String> mealList2 = new ArrayAdapter<>(shopping_cart_modify.this, android.R.layout.simple_spinner_dropdown_item,meal);
             spinnerM2.setAdapter(mealList2);
@@ -363,14 +379,23 @@ public class shopping_cart_modify extends AppCompatActivity {
                 }
             });
         }else if(rid==R.id.store_spinner03||rid == -1){
+            String[] meal;
             //第三家店的第一個餐點志願序
             spinnerM3 = (Spinner)findViewById(R.id.meal_spinner03);
-            JsonArray tmpmeal3 = resource.get(storeID).getAsJsonObject().get("meals").getAsJsonArray();
-            String[] meal= new String[tmpmeal3.size()];
-            meal_id3 = new String[tmpmeal3.size()];
-            for(int i=0;i<tmpmeal3.size();i++){
-                meal[i] =tmpmeal3.get(i).getAsJsonObject().get("meal_name").getAsString();
-                meal_id3[i] = tmpmeal3.get(i).getAsJsonObject().get("meal_id").getAsString();
+            if(storeID == 0){
+                meal = new String[1];
+                meal_id3 = new String[1];
+                meal[0]="    ";
+                meal_id3[0] = "0";
+            }else{
+                //第三家店的第一個餐點志願序
+                JsonArray tmpmeal3 = resource.get(storeID).getAsJsonObject().get("meals").getAsJsonArray();
+                meal= new String[tmpmeal3.size()];
+                meal_id3 = new String[tmpmeal3.size()];
+                for(int i=0;i<tmpmeal3.size();i++){
+                    meal[i] =tmpmeal3.get(i).getAsJsonObject().get("meal_name").getAsString();
+                    meal_id3[i] = tmpmeal3.get(i).getAsJsonObject().get("meal_id").getAsString();
+                }
             }
             ArrayAdapter<String> mealList3 = new ArrayAdapter<>(shopping_cart_modify.this, android.R.layout.simple_spinner_dropdown_item,meal);
             spinnerM3.setAdapter(mealList3);
@@ -414,11 +439,17 @@ public class shopping_cart_modify extends AppCompatActivity {
                     resource = response.body().getAsJsonArray();
                     store = new String[resource.size()];
                     storeID = new String[resource.size()];
+                    //加一個為最前方預設的空白值
+                    store = new String[resource.size()+1];
+                    storeID = new String[resource.size()+1];
+                    //設定預設選項
+                    store[0] = " 請選擇店家";
+                    storeID[0]="0";
                     for(int i=0;i<resource.size();i++){
                         tmp = new JsonObject();
                         tmp = resource.get(i).getAsJsonObject();
-                        store[i] =tmp.get("shop_name").getAsString();
-                        storeID[i] =tmp.get("shop_id").getAsString();
+                        store[i+1] =tmp.get("shop_name").getAsString();
+                        storeID[i+1] =tmp.get("shop_id").getAsString();
                     }
                     //設定店家選項
                     setshopOption();

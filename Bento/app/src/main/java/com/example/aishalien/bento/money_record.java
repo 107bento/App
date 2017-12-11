@@ -152,25 +152,42 @@ public class money_record extends AppCompatActivity {
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
                 if(response.code()==200){
                     resource = response.body().getAsJsonArray();
-                    listFromRecordId= new String[resource.size()];
-                    listDate = new String[resource.size()];
-                    listTime= new String[resource.size()];
-                    listDetail = new String[resource.size()];
-                    listValue = new String[resource.size()];
-                    listRemain = new String[resource.size()];
-                    for(int i=0;i<resource.size();i++){
-                        JsonObject tmp = new JsonObject();
-                        tmp = resource.get(i).getAsJsonObject();
-                        listFromRecordId[i] = tmp.get("record_id").getAsString();
-                        //設定日期
-                        setTime(tmp.get("time").getAsString());
-                        listDate[i] = timeSplit[0];
-                        listTime[i] = timeSplit[1];
-                        listDetail[i] = tmp.get("record_detail").getAsString();
-                        listValue[i] = tmp.get("value").getAsString();
-                        listRemain[i] = tmp.get("remain").getAsString();
+                    if(resource.size() == 0){
+                        new AlertDialog.Builder(money_record.this)
+                                // 標題
+                                .setTitle("提示")
+                                // 訊息
+                                .setMessage("尚未有交易紀錄！")
+                                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                })
+                                .show();
                     }
+                    else{
+                        listFromRecordId= new String[resource.size()];
+                        listDate = new String[resource.size()];
+                        listTime= new String[resource.size()];
+                        listDetail = new String[resource.size()];
+                        listValue = new String[resource.size()];
+                        listRemain = new String[resource.size()];
+                        for(int i=0;i<resource.size();i++){
+                            JsonObject tmp = new JsonObject();
+                            tmp = resource.get(i).getAsJsonObject();
+                            listFromRecordId[i] = tmp.get("record_id").getAsString();
+                            //設定日期
+                            setTime(tmp.get("time").getAsString());
+                            listDate[i] = timeSplit[0];
+                            listTime[i] = timeSplit[1];
+                            listDetail[i] = tmp.get("record_detail").getAsString();
+                            listValue[i] = tmp.get("value").getAsString();
+                            listRemain[i] = tmp.get("remain").getAsString();
+                        }
                         setlist();
+                    }
+
                 }
                 else{
                     Toast.makeText(money_record.this, "系統錯誤", Toast.LENGTH_SHORT).show();

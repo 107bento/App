@@ -127,7 +127,7 @@ public class cartAdapter  extends BaseAdapter {
 //                Log.v("ola_log", String.valueOf(position));
                 //產生視窗物件
                 AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
-                dialog.setTitle("Title"); //設定dialog 的title顯示內容
+                dialog.setTitle("確定要刪除嗎?"); //設定dialog 的title顯示內容
                 dialog.setIcon(android.R.drawable.ic_dialog_alert);//設定dialog 的ICON
                 dialog.setCancelable(false); //關閉 Android 系統的主要功能鍵(menu,home等...)
                 dialog.setPositiveButton("是", new DialogInterface.OnClickListener() {
