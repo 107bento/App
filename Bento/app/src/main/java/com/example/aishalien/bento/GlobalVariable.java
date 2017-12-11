@@ -114,7 +114,5 @@ public class GlobalVariable extends Application {
         ch_tmpcart.addProperty("swish_id3",swish_id3);
         //ch_details.remove(index);
         ch_details.set(index,ch_tmpcart);//最後要拿出來給shopping_cart show listview用的
-
-
     }
 }

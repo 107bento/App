@@ -48,7 +48,9 @@ public class shopping_cart extends AppCompatActivity {
     ArrayList<HashMap<String, Object>>  mList;
     ListView cartListView;
     GlobalVariable User ;
+    JsonArray information;
     private Toolbar mtoolbar;
+    String alert = " ";
     shopCart service;
     //更新該頁面使用的參數
     ViewGroup shop_cart_view;
@@ -69,7 +71,7 @@ public class shopping_cart extends AppCompatActivity {
         cartListView=(ListView)findViewById(R.id.activity_shopping_cart);
         mList =  new ArrayList<HashMap<String, Object>> ();
         User = (GlobalVariable)getApplicationContext();
-        JsonArray information = User.ch_details;
+        information = User.ch_details;
         JsonArray cartvalue = User.details;
         System.out.println("Car"+cartvalue);
         System.out.println(information);
@@ -209,7 +211,6 @@ public class shopping_cart extends AppCompatActivity {
         });
         /*購物車確定購買*/
         sendCart.setOnClickListener(new Button.OnClickListener(){
-
             @Override
             public void onClick(View v) {
                 callJson();
@@ -266,21 +267,6 @@ public class shopping_cart extends AppCompatActivity {
                 startActivity(intento);
                 finish();
                 break;
-
-            // 按下說明
-            /*
-            case R.id.question_btn:
-                // 彈出dialog
-                new AlertDialog.Builder(shopping_cart.this)
-                        // 標題
-                        .setTitle(R.string.explanation)
-                        // 訊息
-                        .setMessage(R.string.explanation_content)
-                        // 按下ok返回畫面
-                        .setPositiveButton(R.string.ok, null)
-                        .show();
-                break;
-            */
         }
         return super.onOptionsItemSelected(item);
     }
@@ -310,7 +296,6 @@ public class shopping_cart extends AppCompatActivity {
                 .client(httpClient.build())
                 .build();
         service = retrofit.create(shopCart.class);
-        System.out.println("SPCART "+User.sendCart());
         if(User.total==0){
             Toast.makeText(this, "購物車是空的", Toast.LENGTH_SHORT).show();
         }else{
@@ -318,11 +303,40 @@ public class shopping_cart extends AppCompatActivity {
             Model.enqueue(new Callback<JsonObject>() {
                 @Override
                 public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                    JsonObject resource = response.body();
-                    System.out.println("send or not "+resource );
-                    User.clean_cart();
-                    finish();
-                    startActivity(getIntent());
+                    if (response.code()==200) {
+
+                        JsonObject resource = response.body();
+                        for(int i=0;i<User.ch_details.size();i++){
+                            alert = alert+information.get(i).getAsJsonObject().get("meal_name").getAsString()+"\n";
+                        }
+                        new AlertDialog.Builder(shopping_cart.this)
+                                .setTitle("已送出訂單")
+                                .setMessage("請至我的餐點確認\n"+"下單商品:\n"+alert)
+                                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        User.clean_cart();
+                                        finish();
+                                        startActivity(getIntent());
+                                    }
+                                }) .show();
+
+
+                    }
+                    else if(response.code()==400){
+                        new AlertDialog.Builder(shopping_cart.this)
+                                .setTitle("沒錢啦ლ(ﾟдﾟლ)")
+                                .setMessage("請至儲值頁面儲值")
+                                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Toast.makeText(shopping_cart.this, "請儲值ε٩(๑> ₃ <)۶з", Toast.LENGTH_SHORT).show();
+                                    }
+                                }) .show();
+                    }else{
+                        Toast.makeText(shopping_cart.this, "系統錯誤", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
                 @Override
                 public void onFailure(Call<JsonObject> call, Throwable t) {

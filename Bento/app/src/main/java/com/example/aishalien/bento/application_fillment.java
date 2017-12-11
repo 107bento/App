@@ -137,11 +137,35 @@ public class application_fillment extends AppCompatActivity {
         btn.setOnClickListener(new ImageButton.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(ignoreIndex==1){
+                //檢查是否有相同店家
+                if((swish_id[0].equals(swish_id[1])||swish_id[1].equals(swish_id[2])||swish_id[2].equals(swish_id[0]))&& !swish_id[0].equals("0")){
+                    new AlertDialog.Builder(application_fillment.this)
+                            .setTitle("請不要選擇相同店家")
+                            .setMessage("志願序考量各店家營業狀況不同，希望使用者選擇其他店家以防無法成單")
+                            .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                }
+                            })
+                            .show();
+                }
+                else if(random_pick == 1&&(swish_id[0].equals(swish_id[1])&&swish_id[1].equals(swish_id[2])&&swish_id[2].equals(swish_id[0])&&swish_id[0].equals("0"))){
+                    new AlertDialog.Builder(application_fillment.this)
+                            .setTitle("請選擇志願序")
+                            .setMessage("請選擇志願序至少一個志願序")
+                            .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                }
+                            })
+                            .show();
+                }
+                //檢查是否有隨機 跟 放棄 的選項同時勾選的
+                else if(ignoreIndex==1){
                     if(random_pick == 1){
                         new AlertDialog.Builder(application_fillment.this)
-                                .setTitle("請選擇")
-                                .setMessage("請選擇略過志願序 或是 隨機志願序")
+                                .setTitle("請選擇 隨機 或是 放棄志願序")
+                                .setMessage("你給我選一個ヽ(#ﾟДﾟ)ﾉ┌┛)`Дﾟ)･;")
                                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
@@ -153,7 +177,6 @@ public class application_fillment extends AppCompatActivity {
                         GlobalVariable User = (GlobalVariable)getApplicationContext();
                         User.addCart(meal_id,amount,amount*meal_value,"0","0","0",random_pick);
                         User.addInfo(store_name,store_name_id,amount,mMeal,"0","0","0",meal_value);
-                        System.out.println(mMeal+"志願序"+"0"+" "+"0"+" "+"0"+" ");
                         // 提示訊息
                         Toast toast = Toast.makeText(application_fillment.this,
                                 "已加入購物車", Toast.LENGTH_LONG);
@@ -174,8 +197,6 @@ public class application_fillment extends AppCompatActivity {
                     toast.show();
                     onBackPressed();
                 }
-
-
             }
         });
     }
@@ -235,15 +256,25 @@ public class application_fillment extends AppCompatActivity {
     }
     //哪一個志願(rid)的哪家店菜單storeID,是否為初始(0=>不是,1=>是)
     public void setmealOption(int rid,int storeID){
+        //扣掉預設空白值
+        int nowStore = storeID-1;
         if(rid==R.id.store_spinner01||rid == -1){
+            String[] meal;
             //第一家店的餐點志願序
             spinnerM1 = (Spinner)findViewById(R.id.meal_spinner01);
-            JsonArray tmpmeal1 = resource.get(storeID).getAsJsonObject().get("meals").getAsJsonArray();
-            String[] meal= new String[tmpmeal1.size()];
-            meal_id1 = new String[tmpmeal1.size()];
-            for(int i=0;i<tmpmeal1.size();i++){
-                meal[i] =tmpmeal1.get(i).getAsJsonObject().get("meal_name").getAsString();
-                meal_id1[i] = tmpmeal1.get(i).getAsJsonObject().get("meal_id").getAsString();
+            if(storeID == 0){
+                meal = new String[1];
+                meal_id1 = new String[1];
+                meal[0]="   ";
+                meal_id1[0] = "0";
+            }else{
+                JsonArray tmpmeal1 = resource.get(nowStore).getAsJsonObject().get("meals").getAsJsonArray();
+                 meal= new String[tmpmeal1.size()];
+                meal_id1 = new String[tmpmeal1.size()];
+                for(int i=0;i<tmpmeal1.size();i++){
+                    meal[i] =tmpmeal1.get(i).getAsJsonObject().get("meal_name").getAsString();
+                    meal_id1[i] = tmpmeal1.get(i).getAsJsonObject().get("meal_id").getAsString();
+                }
             }
             ArrayAdapter<String> mealList1 = new ArrayAdapter<>(application_fillment.this, android.R.layout.simple_spinner_dropdown_item,meal);
             spinnerM1.setAdapter(mealList1);
@@ -262,12 +293,20 @@ public class application_fillment extends AppCompatActivity {
         }else if(rid==R.id.store_spinner02||rid == -1){
             //第二家店的第一個餐點志願序
             spinnerM2 = (Spinner)findViewById(R.id.meal_spinner02);
-            JsonArray tmpmeal2 = resource.get(storeID).getAsJsonObject().get("meals").getAsJsonArray();
-            String[] meal= new String[tmpmeal2.size()];
-            meal_id2 = new String[tmpmeal2.size()];
-            for(int i=0;i<tmpmeal2.size();i++){
-                meal[i] =tmpmeal2.get(i).getAsJsonObject().get("meal_name").getAsString();
-                meal_id2[i] = tmpmeal2.get(i).getAsJsonObject().get("meal_id").getAsString();
+            String[] meal;
+            if(storeID == 0){
+                meal = new String[1];
+                meal_id2 = new String[1];
+                meal[0]="    ";
+                meal_id2[0] = "0";
+            }else{
+                JsonArray tmpmeal2 = resource.get(nowStore).getAsJsonObject().get("meals").getAsJsonArray();
+                meal= new String[tmpmeal2.size()];
+                meal_id2 = new String[tmpmeal2.size()];
+                for(int i=0;i<tmpmeal2.size();i++){
+                    meal[i] =tmpmeal2.get(i).getAsJsonObject().get("meal_name").getAsString();
+                    meal_id2[i] = tmpmeal2.get(i).getAsJsonObject().get("meal_id").getAsString();
+                }
             }
             ArrayAdapter<String> mealList2 = new ArrayAdapter<>(application_fillment.this, android.R.layout.simple_spinner_dropdown_item,meal);
             spinnerM2.setAdapter(mealList2);
@@ -284,14 +323,22 @@ public class application_fillment extends AppCompatActivity {
                 }
             });
         }else if(rid==R.id.store_spinner03||rid == -1){
+            String[] meal;
             //第三家店的第一個餐點志願序
             spinnerM3 = (Spinner)findViewById(R.id.meal_spinner03);
-            JsonArray tmpmeal3 = resource.get(storeID).getAsJsonObject().get("meals").getAsJsonArray();
-            String[] meal= new String[tmpmeal3.size()];
-            meal_id3 = new String[tmpmeal3.size()];
-            for(int i=0;i<tmpmeal3.size();i++){
-                meal[i] =tmpmeal3.get(i).getAsJsonObject().get("meal_name").getAsString();
-                meal_id3[i] = tmpmeal3.get(i).getAsJsonObject().get("meal_id").getAsString();
+            if(storeID == 0){
+                meal = new String[1];
+                meal_id3 = new String[1];
+                meal[0]="    ";
+                meal_id3[0] = "0";
+            }else{
+                JsonArray tmpmeal3 = resource.get(nowStore).getAsJsonObject().get("meals").getAsJsonArray();
+                meal= new String[tmpmeal3.size()];
+                meal_id3 = new String[tmpmeal3.size()];
+                for(int i=0;i<tmpmeal3.size();i++){
+                    meal[i] =tmpmeal3.get(i).getAsJsonObject().get("meal_name").getAsString();
+                    meal_id3[i] = tmpmeal3.get(i).getAsJsonObject().get("meal_id").getAsString();
+                }
             }
             ArrayAdapter<String> mealList3 = new ArrayAdapter<>(application_fillment.this, android.R.layout.simple_spinner_dropdown_item,meal);
             spinnerM3.setAdapter(mealList3);
@@ -329,23 +376,31 @@ public class application_fillment extends AppCompatActivity {
         Model.enqueue(new Callback<JsonArray>() {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
-                resource = response.body().getAsJsonArray();
-                store = new String[resource.size()];
-                storeID = new String[resource.size()];
-                for(int i=0;i<resource.size();i++){
-                    tmp = new JsonObject();
-                    tmp = resource.get(i).getAsJsonObject();
-                    store[i] =tmp.get("shop_name").getAsString();
-                    storeID[i] =tmp.get("shop_id").getAsString();
+                if (response.code()==200) {
+                    resource = response.body().getAsJsonArray();
+                    //加一個為最前方預設的空白值
+                    store = new String[resource.size()+1];
+                    storeID = new String[resource.size()+1];
+                    //設定預設選項
+                    store[0] = " 請選擇店家";
+                    storeID[0]="0";
+                    for(int i=0;i<resource.size();i++){
+                        tmp = new JsonObject();
+                        tmp = resource.get(i).getAsJsonObject();
+                        store[i+1] =tmp.get("shop_name").getAsString();
+                        storeID[i+1] =tmp.get("shop_id").getAsString();
+                    }
+                    //設定店家選項
+                    setshopOption();
+                    //哪一家店的菜單 初始必為第一家店，-1表示初始狀態
+                    setmealOption(-1,0);
+                }else{
+                    Toast.makeText(application_fillment.this, "系統錯誤", Toast.LENGTH_SHORT).show();
                 }
-                //設定店家選項
-                setshopOption();
-                //哪一家店的菜單 初始必為第一家店，-1表示初始狀態
-                setmealOption(-1,0);
             }
             @Override
             public void onFailure(Call<JsonArray> call, Throwable t) {
-                System.out.println("error");
+
             }
         });
     }
@@ -371,10 +426,4 @@ public class application_fillment extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.menu_normal, menu);
-//        return true;
-//    }
 }

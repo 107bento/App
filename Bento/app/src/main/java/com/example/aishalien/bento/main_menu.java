@@ -137,10 +137,15 @@ public class main_menu extends AppCompatActivity
         Model.enqueue(new Callback<JsonArray>() {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
-                resource = response.body();
-                initArray();
-                initData();
-                initView();
+                if(response.code()==200){
+                    resource = response.body();
+                    initArray();
+                    initData();
+                    initView();
+                }else{
+                    Toast.makeText(main_menu.this, "系統錯誤", Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override

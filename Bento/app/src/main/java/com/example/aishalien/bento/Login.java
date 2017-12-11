@@ -129,7 +129,6 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
 
                 /*產生要POST的東西*/
                 JsonObject paramObject = new JsonObject();
-                System.out.println(etEmail.getEditableText().toString());
                 paramObject.addProperty("username", etEmail.getEditableText().toString());
                 paramObject.addProperty("password",etPassword.getEditableText().toString());
                 if(etEmail.getEditableText().toString().equals("")||etPassword.getEditableText().toString().equals("")){
@@ -154,7 +153,8 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                             else {
                                 try {
                                     LoginError loginError = gson.fromJson(response.errorBody().string(),  LoginError.class);
-                                    Toast.makeText(view.getContext(), loginError.getError(), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(view.getContext(), "帳號密碼不正確", Toast.LENGTH_LONG).show();
+                                    //Toast.makeText(view.getContext(), loginError.getError(), Toast.LENGTH_LONG).show();
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
@@ -163,7 +163,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
 
                         @Override
                         public void onFailure(Call<LoginAPI> call, Throwable t) {
-
+                            Toast.makeText(view.getContext(), "登入失敗請稍後再試", Toast.LENGTH_LONG).show();
                         }
 
                     });
@@ -181,10 +181,6 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                 startActivity(intent);
             }
         });
-
-
-        //mLoginFormView = findViewById(R.id.login_form);
-        //mProgressView = findViewById(R.id.login_progress);
 
     }
 

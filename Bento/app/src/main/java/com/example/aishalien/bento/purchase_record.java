@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -103,42 +104,44 @@ public class purchase_record extends AppCompatActivity {
         Model.enqueue(new Callback<JsonArray>() {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
-                resource = response.body().getAsJsonArray();
-                listDate = new String[resource.size()];
-                listTime= new String[resource.size()];
-                listFromOrder = new String[resource.size()];
-                for(int i=0;i<resource.size();i++){
-                    JsonObject tmp = new JsonObject();
-                    tmp = resource.get(i).getAsJsonObject();
-                    //設定日期
-                    setTime(tmp.get("order_time").getAsString());
-                    listDate[i] = timeSplit[0];
-                    listTime[i] = timeSplit[1];
-                    listFromOrder[i]= tmp.get("order_id").getAsString();
-                }
-                setlist();
+                if(response.code()==200){
+                    resource = response.body().getAsJsonArray();
+                    listDate = new String[resource.size()];
+                    listTime= new String[resource.size()];
+                    listFromOrder = new String[resource.size()];
+                    for(int i=0;i<resource.size();i++){
+                        JsonObject tmp = new JsonObject();
+                        tmp = resource.get(i).getAsJsonObject();
+                        //設定日期
+                        setTime(tmp.get("order_time").getAsString());
+                        listDate[i] = timeSplit[0];
+                        listTime[i] = timeSplit[1];
+                        listFromOrder[i]= tmp.get("order_id").getAsString();
+                    }
+                    setlist();
+                    // 購買紀錄為空
+                    if (resource.size() == 0) {
+                        // 提示訊息
+                        new AlertDialog.Builder(purchase_record.this)
+                                // 標題
+                                .setTitle("提示")
+                                // 訊息
+                                .setMessage("你還沒有購買過商品喔！")
+                                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
 
-                // 購買紀錄為空
-                if (resource.size() == 0) {
-                    // 提示訊息
-                    new AlertDialog.Builder(purchase_record.this)
-                            // 標題
-                            .setTitle("提示")
-                            // 訊息
-                            .setMessage("你還沒有購買過商品喔！")
-                            .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    onBackPressed();
-                                }
-                            })
-                            .show();
+                                    }
+                                })
+                                .show();
+                    }
+                }else{
+                    Toast.makeText(purchase_record.this, "系統錯誤", Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onFailure(Call<JsonArray> call, Throwable t) {
-
+                Toast.makeText(purchase_record.this, "系統錯誤", Toast.LENGTH_SHORT).show();
             }
         });
     }

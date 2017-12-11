@@ -1,7 +1,9 @@
 package com.example.aishalien.bento;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -140,34 +142,53 @@ public class today_meal extends AppCompatActivity {
         Model.enqueue(new Callback<JsonArray>() {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
-                resource = response.body().getAsJsonArray();
-                System.out.println(resource);
-                listFromResource= new String[resource.size()];
-                listFromMeal = new String[resource.size()];
-                listFromNum= new String[resource.size()];
-                listStatus= new String[resource.size()];
-                listPic = new int [resource.size()];
-                for(int i=0;i<resource.size();i++){
-                    System.out.println(resource.get(i).getAsJsonObject());
-                    JsonArray Jarr = resource.get(i).getAsJsonObject().get("details").getAsJsonArray();
-                    for(int j=0;j<Jarr.size();j++){
-                        JsonObject tmp = new JsonObject();
-                        tmp = Jarr.get(j).getAsJsonObject();
-                        listPic[i] = setpic(tmp);
-                        listFromResource[i] = tmp.get("meal").getAsJsonObject().get("shop_name").getAsString();
-                        listFromMeal [i] = tmp.get("meal").getAsJsonObject().get("meal_name").getAsString();
-                        listFromNum[i] = tmp.get("amount").getAsString();
-                        //配合陣列位置getAsInt()-1
-                        int tmpcode = tmp.get("state").getAsInt()-1;
-                        listStatus[i] = codeStatus[tmpcode];
+                if(response.code()==200){
+                    resource = response.body().getAsJsonArray();
+                    if(resource.size() == 0){
+                        new AlertDialog.Builder(today_meal.this)
+                                // 標題
+                                .setTitle("提示")
+                                // 訊息
+                                .setMessage("尚未有商品！")
+                                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                })
+                                .show();
+                    }else{
+                        listFromResource= new String[resource.size()];
+                        listFromMeal = new String[resource.size()];
+                        listFromNum= new String[resource.size()];
+                        listStatus= new String[resource.size()];
+                        listPic = new int [resource.size()];
+                        for(int i=0;i<resource.size();i++){
+                            System.out.println(resource.get(i).getAsJsonObject());
+                            JsonArray Jarr = resource.get(i).getAsJsonObject().get("details").getAsJsonArray();
+                            for(int j=0;j<Jarr.size();j++){
+                                JsonObject tmp = new JsonObject();
+                                tmp = Jarr.get(j).getAsJsonObject();
+                                listPic[i] = setpic(tmp);
+                                listFromResource[i] = tmp.get("meal").getAsJsonObject().get("shop_name").getAsString();
+                                listFromMeal [i] = tmp.get("meal").getAsJsonObject().get("meal_name").getAsString();
+                                listFromNum[i] = tmp.get("amount").getAsString();
+                                //配合陣列位置getAsInt()-1
+                                int tmpcode = tmp.get("state").getAsInt()-1;
+                                listStatus[i] = codeStatus[tmpcode];
+                            }
+                        }
+                        setlist();
                     }
+                }else{
+                    Toast.makeText(today_meal.this, "系統錯誤", Toast.LENGTH_SHORT).show();
                 }
-                setlist();
+
             }
 
             @Override
             public void onFailure(Call<JsonArray> call, Throwable t) {
-                System.out.println("error");
+                Toast.makeText(today_meal.this, "系統錯誤", Toast.LENGTH_SHORT).show();
             }
         });
     }
