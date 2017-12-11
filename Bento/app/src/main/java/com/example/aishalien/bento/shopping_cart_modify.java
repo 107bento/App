@@ -227,6 +227,7 @@ public class shopping_cart_modify extends AppCompatActivity {
                         Toast toast = Toast.makeText(shopping_cart_modify.this,
                                 "已修改", Toast.LENGTH_LONG);
                         toast.show();
+                        finish();
                         onBackPressed();
                     }
                 }else{
@@ -237,6 +238,7 @@ public class shopping_cart_modify extends AppCompatActivity {
                     Toast toast = Toast.makeText(shopping_cart_modify.this,
                             "已修改", Toast.LENGTH_LONG);
                     toast.show();
+                    finish();
                     onBackPressed();
                 }
 
