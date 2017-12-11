@@ -109,7 +109,9 @@ public class shopping_cart_modify extends AppCompatActivity {
         current = amount;
         random_pick = bundle.getInt("random_pick");
         //判斷是不是不要wish
-        String Jignore = cartvalue.get(position).getAsJsonObject().get("wish_id_1").getAsString();
+        String Jignore1 = cartvalue.get(position).getAsJsonObject().get("wish_id_1").getAsString();
+        String Jignore2 = cartvalue.get(position).getAsJsonObject().get("wish_id_2").getAsString();
+        String Jignore3 = cartvalue.get(position).getAsJsonObject().get("wish_id_3").getAsString();
         // toolbar
         mtoolbar = (Toolbar) findViewById(R.id.tb_toolbar);
         // 設置toolbar標題
@@ -160,7 +162,7 @@ public class shopping_cart_modify extends AppCompatActivity {
         });
         //監聽是否要跳過志願序
         ignoreBox = (CheckBox) findViewById(R.id.ignore);
-        if(Jignore.equals("0")){
+        if(Jignore1.equals("0")&&Jignore2.equals("0")&&Jignore3.equals("0")){
             ignoreBox.setChecked(true);
             ignoreIndex = 1;
         }else{
@@ -319,7 +321,7 @@ public class shopping_cart_modify extends AppCompatActivity {
                 meal_id1[0] = "0";
             }else{
                 //第一家店的餐點志願序
-                JsonArray tmpmeal1 = resource.get(storeID).getAsJsonObject().get("meals").getAsJsonArray();
+                JsonArray tmpmeal1 = resource.get(nowStore).getAsJsonObject().get("meals").getAsJsonArray();
                 meal= new String[tmpmeal1.size()];
                 meal_id1 = new String[tmpmeal1.size()];
                 for(int i=0;i<tmpmeal1.size();i++){
@@ -354,7 +356,7 @@ public class shopping_cart_modify extends AppCompatActivity {
                 meal_id2[0] = "0";
             }else{
                 //第二家店的第一個餐點志願序
-                JsonArray tmpmeal2 = resource.get(storeID).getAsJsonObject().get("meals").getAsJsonArray();
+                JsonArray tmpmeal2 = resource.get(nowStore).getAsJsonObject().get("meals").getAsJsonArray();
                 meal= new String[tmpmeal2.size()];
                 meal_id2 = new String[tmpmeal2.size()];
                 for(int i=0;i<tmpmeal2.size();i++){
@@ -389,7 +391,7 @@ public class shopping_cart_modify extends AppCompatActivity {
                 meal_id3[0] = "0";
             }else{
                 //第三家店的第一個餐點志願序
-                JsonArray tmpmeal3 = resource.get(storeID).getAsJsonObject().get("meals").getAsJsonArray();
+                JsonArray tmpmeal3 = resource.get(nowStore).getAsJsonObject().get("meals").getAsJsonArray();
                 meal= new String[tmpmeal3.size()];
                 meal_id3 = new String[tmpmeal3.size()];
                 for(int i=0;i<tmpmeal3.size();i++){
@@ -400,7 +402,7 @@ public class shopping_cart_modify extends AppCompatActivity {
             ArrayAdapter<String> mealList3 = new ArrayAdapter<>(shopping_cart_modify.this, android.R.layout.simple_spinner_dropdown_item,meal);
             spinnerM3.setAdapter(mealList3);
             spinnerM3.setSelection(set_meal_init(position,meal_id3,2));
-            wish_id[1] = meal_id3[set_meal_init(position,meal_id3,2)];
+            wish_id[2] = meal_id3[set_meal_init(position,meal_id3,2)];
             //監聽事件
             spinnerM3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
