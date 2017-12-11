@@ -16,7 +16,7 @@
         android:id="@+id/nav_user_head"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/user_2" />
+        app:srcCompat="@mipmap/bento_icon" />
 
     <TextView
         android:id="@+id/nav_user_name"
