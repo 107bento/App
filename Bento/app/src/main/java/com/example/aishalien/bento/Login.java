@@ -163,7 +163,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
 
                         @Override
                         public void onFailure(Call<LoginAPI> call, Throwable t) {
-                            Toast.makeText(view.getContext(), "登入失敗請稍後再試", Toast.LENGTH_LONG).show();
+                            Toast.makeText(view.getContext(), "登入失敗，請稍後再試", Toast.LENGTH_LONG).show();
                         }
 
                     });
