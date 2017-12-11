@@ -137,7 +137,31 @@ public class application_fillment extends AppCompatActivity {
         btn.setOnClickListener(new ImageButton.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(ignoreIndex==1){
+                //檢查是否有相同店家
+                if((swish_id[0].equals(swish_id[1])||swish_id[1].equals(swish_id[2])||swish_id[2].equals(swish_id[0]))&& !swish_id[0].equals("0")){
+                    new AlertDialog.Builder(application_fillment.this)
+                            .setTitle("請不要選擇相同店家")
+                            .setMessage("志願序考量各店家營業狀況不同，希望使用者選擇其他店家以防無法成單")
+                            .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                }
+                            })
+                            .show();
+                }
+                else if(random_pick == 1&&(swish_id[0].equals(swish_id[1])&&swish_id[1].equals(swish_id[2])&&swish_id[2].equals(swish_id[0])&&swish_id[0].equals("0"))){
+                    new AlertDialog.Builder(application_fillment.this)
+                            .setTitle("請選擇志願序")
+                            .setMessage("請選擇志願序至少一個志願序")
+                            .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                }
+                            })
+                            .show();
+                }
+                //檢查是否有隨機 跟 放棄 的選項同時勾選的
+                else if(ignoreIndex==1){
                     if(random_pick == 1){
                         new AlertDialog.Builder(application_fillment.this)
                                 .setTitle("請選擇 隨機 或是 放棄志願序")
