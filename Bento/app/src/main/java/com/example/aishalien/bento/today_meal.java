@@ -75,8 +75,8 @@ public class today_meal extends AppCompatActivity {
                 /**
                  * 測試有沒有拿到資料
                  */
-                Object meal_name = map.get("meal_name");
-                Toast.makeText(getApplicationContext(), "你選擇的是" + meal_name, Toast.LENGTH_SHORT).show();
+//                Object meal_name = map.get("meal_name");
+//                Toast.makeText(getApplicationContext(), "你選擇的是" + meal_name, Toast.LENGTH_SHORT).show();
 
                 /*
                 *  傳遞 HashMap 物件:

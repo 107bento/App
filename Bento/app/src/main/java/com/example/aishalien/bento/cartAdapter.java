@@ -134,7 +134,7 @@ public class cartAdapter  extends BaseAdapter {
                     public void onClick(DialogInterface dialog, int which) {
                         // 按下"是"以後要做的事情
                         User.remCart(position);
-                        Toast.makeText(mContext, "已刪除第"+position+"號單",
+                        Toast.makeText(mContext, "已刪除",
                                 Toast.LENGTH_LONG).show();
 
                         activity.finish();
