@@ -44,6 +44,8 @@ public class today_meal extends AppCompatActivity {
     String[] listFromMeal ;
     String[] listFromNum;
     String[] listStatus;
+    //確認今天餐點到底有多少個
+    int count;
     String[] codeStatus =  {"訂單確認中，未銷帳", "已成單，待領取", "已領取", "流單"};
 
     int[] listPic;
@@ -82,11 +84,11 @@ public class today_meal extends AppCompatActivity {
                 *  傳遞 HashMap 物件:
                 *  由於Bundle是可以帶Serializable的，而HashMap實作了Serializable
                 */
-                Intent intent=new Intent(today_meal.this, today_meal_detail.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("HashMap", map);
-                intent.putExtras(bundle);
-                startActivity(intent);
+//                Intent intent=new Intent(today_meal.this, today_meal_detail.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putSerializable("HashMap", map);
+//                intent.putExtras(bundle);
+//                startActivity(intent);
 
             }
         });
@@ -142,7 +144,10 @@ public class today_meal extends AppCompatActivity {
         Model.enqueue(new Callback<JsonArray>() {
             @Override
             public void onResponse(Call<JsonArray> call, Response<JsonArray> response) {
+                count = 0;
                 if(response.code()==200){
+                    //占存每個deatails用來計算數目的array
+                    JsonArray ctmp;
                     resource = response.body().getAsJsonArray();
                     if(resource.size() == 0){
                         new AlertDialog.Builder(today_meal.this)
@@ -158,24 +163,31 @@ public class today_meal extends AppCompatActivity {
                                 })
                                 .show();
                     }else{
-                        listFromResource= new String[resource.size()];
-                        listFromMeal = new String[resource.size()];
-                        listFromNum= new String[resource.size()];
-                        listStatus= new String[resource.size()];
-                        listPic = new int [resource.size()];
+                        //拿到details的數目
                         for(int i=0;i<resource.size();i++){
-                            System.out.println(resource.get(i).getAsJsonObject());
+                            ctmp = resource.get(i).getAsJsonObject().get("details").getAsJsonArray();
+                            count = count + ctmp.size();
+                        }
+                        System.out.println("count"+count);
+                        listFromResource= new String[count];
+                        listFromMeal = new String[count];
+                        listFromNum= new String[count];
+                        listStatus= new String[count];
+                        listPic = new int [count];
+                        int index  = 0;
+                        for(int i=0;i<resource.size();i++){
                             JsonArray Jarr = resource.get(i).getAsJsonObject().get("details").getAsJsonArray();
                             for(int j=0;j<Jarr.size();j++){
                                 JsonObject tmp = new JsonObject();
                                 tmp = Jarr.get(j).getAsJsonObject();
-                                listPic[i] = setpic(tmp);
-                                listFromResource[i] = tmp.get("meal").getAsJsonObject().get("shop_name").getAsString();
-                                listFromMeal [i] = tmp.get("meal").getAsJsonObject().get("meal_name").getAsString();
-                                listFromNum[i] = tmp.get("amount").getAsString();
+                                listPic[index] = setpic(tmp);
+                                listFromResource[index] = tmp.get("meal").getAsJsonObject().get("shop_name").getAsString();
+                                listFromMeal [index] = tmp.get("meal").getAsJsonObject().get("meal_name").getAsString();
+                                listFromNum[index] = tmp.get("amount").getAsString();
                                 //配合陣列位置getAsInt()-1
                                 int tmpcode = tmp.get("state").getAsInt()-1;
-                                listStatus[i] = codeStatus[tmpcode];
+                                listStatus[index] = codeStatus[tmpcode];
+                                index++;
                             }
                         }
                         setlist();
@@ -183,7 +195,6 @@ public class today_meal extends AppCompatActivity {
                 }else{
                     Toast.makeText(today_meal.this, "系統錯誤", Toast.LENGTH_SHORT).show();
                 }
-
             }
 
             @Override

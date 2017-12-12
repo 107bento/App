@@ -36,8 +36,6 @@ import retrofit2.http.GET;
 
 public class shopping_cart_modify extends AppCompatActivity {
     private Toolbar mtoolbar;
-    CheckBox ignoreBox;
-    int ignoreIndex=0;
     //設定檔 from application
     String mMeal;
     int counter; //數量
@@ -160,25 +158,6 @@ public class shopping_cart_modify extends AppCompatActivity {
                 counter = amount;
             }
         });
-        //監聽是否要跳過志願序
-        ignoreBox = (CheckBox) findViewById(R.id.ignore);
-        if(Jignore1.equals("0")&&Jignore2.equals("0")&&Jignore3.equals("0")){
-            ignoreBox.setChecked(true);
-            ignoreIndex = 1;
-        }else{
-            ignoreBox.setChecked(false);
-        }
-        ignoreBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {
-                    ignoreIndex=1;
-                }
-                else{
-                    ignoreIndex=0;
-                }
-            }
-        });
     }
 
     public void initimgbtn(){
@@ -209,27 +188,7 @@ public class shopping_cart_modify extends AppCompatActivity {
                             })
                             .show();
                 }
-                else if(ignoreIndex==1){
-                    if(random_pick == 1){
-                        new AlertDialog.Builder(shopping_cart_modify.this)
-                                .setTitle("請選擇 隨機 或是 放棄志願序")
-                                .setMessage("你給我選一個ヽ(#ﾟДﾟ)ﾉ┌┛)`Дﾟ)･;")
-                                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                    }
-                                })
-                                .show();
-                    }else{
-                        User.editCart(position,orign,meal_id,counter*meal_value,counter,"0","0","0",random_pick);
-                        User.editInfo(position,store_name,store_id,counter,mMeal,"0","0","0",meal_value);
-                        // 提示訊息
-                        Toast toast = Toast.makeText(shopping_cart_modify.this,
-                                "已修改", Toast.LENGTH_LONG);
-                        toast.show();
-                        onBackPressed();
-                    }
-                }else{
+                else{
                     // 抓取頁面資料，保存到本地端（購物車資料）
                     User.editCart(position,orign,meal_id,counter*meal_value,counter,wish_id[0],wish_id[1],wish_id[2],random_pick);
                     User.editInfo(position,store_name,store_id,counter,mMeal,swish_id[0],swish_id[1],swish_id[2],meal_value);
