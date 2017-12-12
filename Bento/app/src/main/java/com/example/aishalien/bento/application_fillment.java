@@ -138,7 +138,7 @@ public class application_fillment extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //檢查是否有相同店家
-                if((swish_id[0].equals(swish_id[1])||swish_id[1].equals(swish_id[2])||swish_id[2].equals(swish_id[0]))&& !swish_id[0].equals("0")){
+                if((swish_id[0].equals(swish_id[1])||swish_id[1].equals(swish_id[2])||swish_id[2].equals(swish_id[0]))&& (!swish_id[0].equals("0")&&!swish_id[1].equals("0")|| !swish_id[1].equals("0")&& !swish_id[2].equals("0")|| !swish_id[2].equals("0")&&!swish_id[0].equals("0"))){
                     new AlertDialog.Builder(application_fillment.this)
                             .setTitle("請不要選擇相同店家")
                             .setMessage("志願序考量各店家營業狀況不同，希望使用者選擇其他店家以防無法成單")
@@ -189,12 +189,14 @@ public class application_fillment extends AppCompatActivity {
                     GlobalVariable User = (GlobalVariable)getApplicationContext();
                     User.addCart(meal_id,amount,amount*meal_value,wish_id[0],wish_id[1],wish_id[2],random_pick);
                     User.addInfo(store_name,store_name_id,amount,mMeal,swish_id[0],swish_id[1],swish_id[2],meal_value);
-                    System.out.println(mMeal+"志願序"+swish_id[0]+" "+swish_id[1]+" "+swish_id[2]+" ");
                     // 提示訊息
                     Toast toast = Toast.makeText(application_fillment.this,
                             "已加入購物車", Toast.LENGTH_LONG);
                     //System.out.println("User : "+User.details);
                     toast.show();
+                    //-1為呼叫前一頁 刪除他自己
+                    setResult(-1);
+                    finish();
                     onBackPressed();
                 }
             }
@@ -347,7 +349,6 @@ public class application_fillment extends AppCompatActivity {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     wish_id[2] = meal_id3[position];
-                    Toast.makeText(application_fillment.this, "你選的一" +  wish_id[0]+"二."+ wish_id[1]+"三."+ wish_id[2], Toast.LENGTH_SHORT).show();
                     setmealOption(R.id.meal_spinner03,position);
                 }
                 @Override

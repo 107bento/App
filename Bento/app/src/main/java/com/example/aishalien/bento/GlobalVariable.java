@@ -1,9 +1,13 @@
 package com.example.aishalien.bento;
 
+import android.app.Activity;
 import android.app.Application;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+
+import java.util.LinkedList;
+import java.util.List;
 
 
 /**
@@ -35,6 +39,7 @@ public class GlobalVariable extends Application {
     public String getUsername(){
         return username;
     }
+
     public void addCart(String meal_id,int amount,int subtotal,String wish_id_1,String wish_id_2,String wish_id_3,int random_pic){
         JsonObject tmpcart = new JsonObject();
         total = total+subtotal;

@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 public class meal_purchase extends AppCompatActivity {
     TextView value,num;
@@ -97,11 +97,20 @@ public class meal_purchase extends AppCompatActivity {
                 intento.setClass(meal_purchase.this, application_fillment.class);
                 // 將bundle傳入
                 intento.putExtras(bundle);
-                startActivity(intento);
+                startActivityForResult(intento,0);
             }
         });
     }
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == -1) {
+            //-1為呼叫前一頁 刪除他自己
+            setResult(-1);
+            finish();
+            onBackPressed();
+        }
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {

@@ -45,13 +45,40 @@ public class purchase_record_order_detail extends AppCompatActivity {
         int tmpcode = JsonObj.get("state").getAsInt()-1;
         status = codeStatus[tmpcode];
 
-        if( JsonObj.get("wish_1").isJsonNull()){
-            sstore_1= " ";
-            sstore_2= " ";
-            sstore_3= " ";
-            sswish_1= " ";
-            sswish_2 = " ";
-            sswish_3 = " ";
+        if( JsonObj.get("wish_1").isJsonNull()||JsonObj.get("wish_2").isJsonNull()||JsonObj.get("wish_3").isJsonNull()){
+            String[] mwish = {"wish_1","wish_2","wish_3"};
+            String[] sorm = {"shop_name","meal_name"};
+            int flag[] = {1,1,1};
+            if(JsonObj.get("wish_1").isJsonNull()){
+                sstore_1= " ";
+                sswish_1= " ";
+                flag[0] = 0;
+            }
+            if(JsonObj.get("wish_2").isJsonNull()){
+                sstore_2= " ";
+                sswish_2 = " ";
+                flag[1] = 0;
+            }
+            if(JsonObj.get("wish_3").isJsonNull()){
+                sstore_3= " ";
+                sswish_3 = " ";
+                flag[2] = 0;
+            }
+            for(int i=0;i<3;i++){
+                if(flag[i]!=0){
+                    if(i==0){
+                        sstore_1= JsonObj.get("wish_1").getAsJsonObject().get("shop_name").getAsString();
+                        sswish_1= JsonObj.get("wish_1").getAsJsonObject().get("meal_name").getAsString();
+                    }else if(i==1){
+                        sstore_2= JsonObj.get("wish_2").getAsJsonObject().get("shop_name").getAsString();
+                        sswish_2 = JsonObj.get("wish_2").getAsJsonObject().get("meal_name").getAsString();
+                    }else{
+                        sstore_3= JsonObj.get("wish_3").getAsJsonObject().get("shop_name").getAsString();
+                        sswish_3 = JsonObj.get("wish_3").getAsJsonObject().get("meal_name").getAsString();
+                    }
+                }
+
+            }
         }else{
             sstore_1= JsonObj.get("wish_1").getAsJsonObject().get("shop_name").getAsString();
             sstore_2= JsonObj.get("wish_2").getAsJsonObject().get("shop_name").getAsString();
