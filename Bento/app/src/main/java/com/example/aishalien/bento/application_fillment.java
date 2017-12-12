@@ -189,12 +189,14 @@ public class application_fillment extends AppCompatActivity {
                     GlobalVariable User = (GlobalVariable)getApplicationContext();
                     User.addCart(meal_id,amount,amount*meal_value,wish_id[0],wish_id[1],wish_id[2],random_pick);
                     User.addInfo(store_name,store_name_id,amount,mMeal,swish_id[0],swish_id[1],swish_id[2],meal_value);
-                    System.out.println(mMeal+"志願序"+swish_id[0]+" "+swish_id[1]+" "+swish_id[2]+" ");
                     // 提示訊息
                     Toast toast = Toast.makeText(application_fillment.this,
                             "已加入購物車", Toast.LENGTH_LONG);
                     //System.out.println("User : "+User.details);
                     toast.show();
+                    //-1為呼叫前一頁 刪除他自己
+                    setResult(-1);
+                    finish();
                     onBackPressed();
                 }
             }

@@ -113,7 +113,7 @@ public class store_menu extends AppCompatActivity{
                         intento.setClass(store_menu.this,meal_purchase.class);
                         //將bundle傳入
                         intento.putExtras(bundle);
-                        startActivity(intento);
+                        startActivityForResult(intento,0);
                     }
                 }
             }
@@ -204,7 +204,16 @@ public class store_menu extends AppCompatActivity{
         }
         return super.onOptionsItemSelected(item);
     }
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == -1) {
+            //-1為呼叫前一頁 刪除他自己
+            setResult(-1);
+            finish();
+            onBackPressed();
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
