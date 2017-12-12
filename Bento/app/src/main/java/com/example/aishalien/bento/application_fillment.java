@@ -41,7 +41,6 @@ public class application_fillment extends AppCompatActivity {
 
     private Toolbar mtoolbar;
     CheckBox ignoreBox;
-    int ignoreIndex=0;
     String mMeal;
     JsonArray resource;
     JsonObject tmp;
@@ -116,19 +115,6 @@ public class application_fillment extends AppCompatActivity {
                 }
             }
         });
-        //監聽是否要跳過志願序
-        ignoreBox = (CheckBox) findViewById(R.id.ignore);
-        ignoreBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {
-                    ignoreIndex=1;
-                }
-                else{
-                    ignoreIndex=0;
-                }
-            }
-        });
     }
 
     // 完成按鈕
@@ -161,30 +147,7 @@ public class application_fillment extends AppCompatActivity {
                             .show();
                 }
                 //檢查是否有隨機 跟 放棄 的選項同時勾選的
-                else if(ignoreIndex==1){
-                    if(random_pick == 1){
-                        new AlertDialog.Builder(application_fillment.this)
-                                .setTitle("請選擇 隨機 或是 放棄志願序")
-                                .setMessage("你給我選一個ヽ(#ﾟДﾟ)ﾉ┌┛)`Дﾟ)･;")
-                                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                    }
-                                })
-                                .show();
-                    }else{
-                        // 抓取頁面資料，保存到本地端（購物車資料）
-                        GlobalVariable User = (GlobalVariable)getApplicationContext();
-                        User.addCart(meal_id,amount,amount*meal_value,"0","0","0",random_pick);
-                        User.addInfo(store_name,store_name_id,amount,mMeal,"0","0","0",meal_value);
-                        // 提示訊息
-                        Toast toast = Toast.makeText(application_fillment.this,
-                                "已加入購物車", Toast.LENGTH_LONG);
-                        //System.out.println("User : "+User.details);
-                        toast.show();
-                        onBackPressed();
-                    }
-                }else{
+                else{
                     // 抓取頁面資料，保存到本地端（購物車資料）
                     GlobalVariable User = (GlobalVariable)getApplicationContext();
                     User.addCart(meal_id,amount,amount*meal_value,wish_id[0],wish_id[1],wish_id[2],random_pick);
