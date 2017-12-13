@@ -194,7 +194,7 @@ public class shopping_cart_modify extends AppCompatActivity {
                     User.editInfo(position,store_name,store_id,counter,mMeal,swish_id[0],swish_id[1],swish_id[2],meal_value);
                     // 提示訊息
                     Toast toast = Toast.makeText(shopping_cart_modify.this,
-                            "已修改", Toast.LENGTH_LONG);
+                            "已修改", Toast.LENGTH_SHORT);
                     toast.show();
                     onBackPressed();
                 }
